@@ -4,6 +4,9 @@
 // ============================================================
 
 import './bootstrap';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
 const menuBtn = document.getElementById('menuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
@@ -54,3 +57,8 @@ const sectionObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.4 });
 
 sections.forEach((section) => sectionObs.observe(section));
+
+
+
+/* Animações realizadas com GSAP (biblioteca de controle de animações) e ScrollTrigger (plugin do GSAP para animações baseadas em rolagem) */
+

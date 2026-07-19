@@ -9,7 +9,7 @@
             <li><a href="#skills" class="nav-link">Projetos</a></li>
         </ul>
 
-        <a href="" class="rounded-full border-4 border-sun px-5 py-2.5 text-sm text-sun font-semibold  transition-all duration-300 hover:bg-sun hover:text-black md:inline-block">
+        <a href="" class="rounded-full bg-sun text-black px-5 py-2.5 text-sm  font-semibold  transition-all duration-300 hover:bg-sun/80 hover:text-black md:inline-block">
             Fale comigo
         </a>
 

@@ -1,36 +1,48 @@
-<section id="jornada" class="bg-white/60 px-6 py-24 md:px-12">
+<section id="jornada" class="bg-white/60 py-24">
     <div class="mx-auto max-w-6xl">
         <div class="reveal mb-16 text-center">
             <span class="eyebrow">Minha jornada</span>
-            <h2 class="section-title mt-4">Uma trajetória construída com intenção</h2>
-            <p class="mx-auto mt-4 max-w-2xl leading-relaxed text-muted">
-                As setas aparecem conforme você avança na página, refletindo o sentido do movimento e a continuidade da evolução profissional.
-            </p>
         </div>
 
-        <div class="relative space-y-10">
-            @foreach($timeline as $index => $step)
-                <div class="reveal flex items-start gap-4 {{ $index % 2 === 0 ? 'justify-start' : 'justify-end' }}">
-                    <div class="max-w-xl rounded-[28px] border border-ink/10 bg-cream p-6 shadow-sm">
-                        <div class="flex items-center gap-3">
-                            <span class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-sun/40 bg-sun/20 font-mono text-sm font-semibold text-ink">{{ $index + 1 }}</span>
-                            <div>
-                                <p class="text-xs font-semibold uppercase tracking-[0.24em] text-muted">{{ $step['period'] }}</p>
-                                <h3 class="mt-1 font-display text-xl font-semibold text-ink">{{ $step['title'] }}</h3>
-                            </div>
-                        </div>
-                        <p class="mt-4 text-sm leading-7 text-muted">{{ $step['desc'] }}</p>
-                        <div class="mt-4 flex flex-wrap gap-2">
-                            @foreach($step['tags'] as $tag)
-                                <span class="rounded-full border border-ink/10 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">{{ $tag }}</span>
-                            @endforeach
-                        </div>
-                    </div>
-                    <div class="flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 bg-white text-2xl shadow-sm">
-                        {{ $index % 2 === 0 ? '→' : '←' }}
+    </div>
+
+    <div class="mt-16 flex flex-col gap-8 md:gap-10">
+        @foreach($timeline as $index => $step)
+            @php
+                $isEven  = $index % 2 === 0;
+                $isLast  = $index === count($timeline) - 1;
+                $bgClass =  'bg-sun';
+                $clip    = $isEven
+                    ? '[clip-path:polygon(0_0,90%_0,100%_50%,90%_100%,0_100%)]'
+                    : '[clip-path:polygon(10%_0,100%_0,100%_100%,10%_100%,0_50%)]';
+            @endphp
+
+            <div
+                class="relative  flex w-full max-w-[70%] flex-col gap-6 px-10 py-10 text-ink md:gap-12 md:px-20 md:py-14
+                       {{ $bgClass . ' ' . $clip . ' md:flex-row md:items-center mr-auto' . ($isEven ? '' : 'md:flex-row-reverse ml-auto') }}"
+            >
+                {{-- Bloco de texto: período, título, descrição e tags --}}
+                <div class="flex-1 mx-auto flex max-w-2xl flex-col gap-2 items-center">
+                    <p class="text-xs font-semibold uppercase tracking-[0.24em] text-ink/60">{{ $step['period'] }}</p>
+                    <h3 class="mt-2 font-display text-2xl font-extrabold text-ink">{{ $step['title'] }}</h3>
+                    <p class="mx-auto mt-4 max-w-2xl text-sm leading-7 text-ink/80">{{ $step['desc'] }}</p>
+
+                    <div class="mt-5 flex flex-wrap gap-2 {{ $isLast ? 'justify-center' : '' }}">
+                        @foreach($step['tags'] as $tag)
+                            <span class="rounded-full border border-ink/15 bg-white/50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/80">{{ $tag }}</span>
+                        @endforeach
                     </div>
                 </div>
-            @endforeach
-        </div>
+
+                {{-- Bloco de imagens (só aparece se $step['images'] existir e tiver itens) --}}
+                @if(!empty($step['images']))
+                    <div class="flex shrink-0 gap-3">
+                        @foreach($step['images'] as $image)
+                            <div class="h-24 w-24 rounded-2xl bg-ink/10"></div>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+        @endforeach
     </div>
 </section>

@@ -4,7 +4,7 @@
     <div class="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-16 md:grid-cols-[1.05fr_0.95fr]">
         <div class="reveal">
             <span
-                class="mb-6 inline-block rounded-full bg-sun/80 px-4 py-2 font-bold text-xs uppercase tracking-[0.28em] text-black">
+                class="mb-6 inline-block rounded-full border-2 border-sun px-4 py-2 font-bold text-xs uppercase tracking-[0.24em] text-black">
                 Desenvolvedor Full Stack
             </span>
 
@@ -27,7 +27,7 @@
                     Ver projetos
                 </a>
                 <a href="<?php echo e($contact['linkedin']); ?>" target="_blank" rel="noopener noreferrer"
-                    class="rounded-full border-2 border-black px-7 py-3.5 font-semibold transition duration-300 hover:border-sun hover:bg-sun hover:text-black">
+                    class="rounded-full bg-sun px-7 py-3.5 font-semibold transition duration-300 text-black hover:bg-sun/80 hover:text-black">
                     LinkedIn
                 </a>
             </div>
