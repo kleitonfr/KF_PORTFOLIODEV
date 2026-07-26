@@ -9,7 +9,7 @@ export default {
         extend: {
             colors: {
                 white:  '#FFFFFF',
-                sun:    '#F2C30E',
+                sun:    '#FFBE00',
                 pink:   '#FF6B9D',
                 aqua:   '#00D4E8',
                 violet: '#C084FC',

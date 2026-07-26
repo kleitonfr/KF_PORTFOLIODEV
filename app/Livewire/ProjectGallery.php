@@ -9,28 +9,13 @@ class ProjectGallery extends Component
 {
     public array $projects = [];
 
-    public string $selectedSlug = '';
-
     public function mount(PortfolioService $service): void
     {
-        $data = $service->getPageData();
-        $this->projects = $data['projects'];
-    }
-
-    public function openProject(string $slug): void
-    {
-        $this->selectedSlug = $slug;
-    }
-
-    public function closeProject(): void
-    {
-        $this->selectedSlug = '';
+        $this->projects = $service->getPageData()['projects'];
     }
 
     public function render()
     {
-        $project = collect($this->projects)->firstWhere('slug', $this->selectedSlug);
-
-        return view('livewire.project-gallery', ['project' => $project]);
+        return view('livewire.project-gallery');
     }
 }

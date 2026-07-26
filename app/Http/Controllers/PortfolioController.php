@@ -16,32 +16,40 @@ class PortfolioController extends Controller
     {
         $pageData = $this->portfolioService->getPageData();
 
-        $contact = [
-            'email' => 'kleytonferreira9@gmail.com',
-            'whatsapp' => 'https://wa.me/5512981232278',
-            'linkedin' => $pageData['socialLinks'][1]['url'] ?? '',
-            'github' => $pageData['socialLinks'][0]['url'] ?? '',
-            'location' => 'Caraguatatuba · São Paulo · Brasil',
-        ];
-
         return view('portfolio.index', [
             'hero' => $pageData['hero'],
             'journey' => $pageData['journey'],
             'projects' => $pageData['projects'],
             'socialLinks' => $pageData['socialLinks'],
-            'contact' => $contact,
+            'contact' => $this->buildContact($pageData),
         ]);
     }
 
     public function showProject(string $slug): View
     {
+        $pageData = $this->portfolioService->getPageData();
         $project = $this->portfolioService->getProjectBySlug($slug);
 
         abort_if($project === null, 404);
 
         return view('portfolio.project', [
             'project' => $project,
-            'socialLinks' => $this->portfolioService->getPageData()['socialLinks'],
+            'socialLinks' => $pageData['socialLinks'],
+            'contact' => $this->buildContact($pageData),
         ]);
+    }
+
+    /**
+     * Monta o array de contato exibido no footer (compartilhado por todas as páginas).
+     */
+    private function buildContact(array $pageData): array
+    {
+        return [
+            'email' => 'kleytonferreira9@gmail.com',
+            'whatsapp' => 'https://wa.me/5512981232278',
+            'linkedin' => $pageData['socialLinks'][1]['url'] ?? '',
+            'github' => $pageData['socialLinks'][0]['url'] ?? '',
+            'location' => 'Caraguatatuba · São Paulo · Brasil',
+        ];
     }
 }

@@ -12,10 +12,16 @@ const menuBtn = document.getElementById('menuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 
 menuBtn?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
+    const isHidden = mobileMenu?.classList.toggle('hidden');
+    menuBtn.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
+    menuBtn.textContent = isHidden ? 'Menu' : 'Fechar';
 });
 
-window.closeMobile = () => mobileMenu?.classList.add('hidden');
+window.closeMobile = () => {
+    mobileMenu?.classList.add('hidden');
+    menuBtn?.setAttribute('aria-expanded', 'false');
+    if (menuBtn) menuBtn.textContent = 'Menu';
+};
 
 const revealEls = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {

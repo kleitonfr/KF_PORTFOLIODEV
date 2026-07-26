@@ -1,30 +1,48 @@
 # CLAUDE.md — Mapa do Projeto: Portfólio Kleiton Ferreira
 
 > Guia de orientação para o Claude (e para qualquer dev) entender rapidamente a estrutura, as convenções e o propósito de cada parte deste projeto.
+> Atualizado após a refatoração para a estrutura de 3 seções (Hero / Projetos / Outras Curiosidades).
 
 ## Visão Geral
 
 - **Nome:** Portfólio Kleiton Ferreira
 - **Stack:** Laravel 12 (PHP 8.2+) · Livewire 3.6 · Tailwind CSS 3 · Vite 6 · SQLite · GSAP
-- **Tipo:** Site de portfólio pessoal (single page + páginas de detalhe de projeto)
+- **Tipo:** Site de portfólio pessoal (single page com 3 seções + páginas de artigo por projeto)
 - **Banco de dados:** SQLite (`database/database.sqlite`), usado apenas para a tabela `projects`
 - **Padrão arquitetural:** Repository + Service, com injeção de dependência via interface (`PortfolioRepositoryInterface`)
 - **URL local:** `http://localhost/portfolio-kleiton/public`
 
-## Fluxo de Dados (do request à view)
+## Regras de Design (vigentes desde a refatoração)
+
+- **Mobile first**, 100% responsivo.
+- **Sem ícones** em nenhum lugar da UI (nada de SVG decorativo, devicon, emoji-como-ícone). Hierarquia por tipografia, espaçamento e cor.
+- **CTAs sempre em `sun` (`#FFBE00`)** — classe utilitária `.btn-cta`. Ações secundárias usam `.btn-outline`.
+- **Header e footer com fundo preto.**
+- **Gradiente de transição entre seções**, do topo ao rodapé: `branco → aqua → pink → violet → preto (footer)`.
+  Implementado em `resources/css/app.css` via `.flow-hero`, `.flow-projetos`, `.flow-curiosidades`, `.flow-footer` — aplicadas como classe de fundo de cada `<section>`, formando um degradê contínuo ao rolar a página.
+
+## Estrutura da Home (exatamente 3 seções, nesta ordem)
+
+1. **Hero** (`sections/hero.blade.php`) — mesma estrutura/modelo de antes da refatoração, só com CTA amarelo e sem emoji.
+2. **Projetos** (`sections/projetos.blade.php`) — grade de cards 100% clicáveis (`components/project-card.blade.php`, via `livewire/project-gallery.blade.php`), cada um com imagem grande, título e descrição breve. Clicar navega para `/projetos/{slug}` (`portfolio/project.blade.php`), não abre mais modal.
+3. **Outras Curiosidades** (`sections/outras-curiosidades.blade.php`) — timeline **horizontal** (scroll-snap) da jornada profissional, usando os mesmos dados de `getJourneyItems()` do repositório (período, título, descrição, tags).
+
+> Decisão registrada: as antigas seções de Hard Skills, Soft Skills, Sobre e Experiências (que já estavam com o include comentado / nunca renderizavam) e a seção de Contato avulsa foram removidas da home. O conteúdo de contato foi absorvido pelo **footer**, presente em todas as páginas.
+
+## Fluxo de Dados
 
 ```
 routes/web.php
    → PortfolioController (Http/Controllers)
        → PortfolioService (Services)
            → PortfolioRepositoryInterface (Contracts)
-               → PortfolioRepository (Data)   [implementação concreta]
+               → PortfolioRepository (Data)
                    ├── dados estáticos (hero, jornada, links sociais) — hardcoded em PHP
                    └── dados de projetos — vindos da tabela SQLite `projects`
    → view (resources/views/portfolio/*.blade.php)
 ```
 
-O binding `PortfolioRepositoryInterface → PortfolioRepository` e o singleton de `PortfolioService` são registrados em `app/Providers/AppServiceProvider.php`.
+`PortfolioController` tem um método privado `buildContact()` compartilhado por `index()` e `showProject()`, usado para alimentar o footer em qualquer página. **Correção feita na refatoração:** antes, `<x-layouts.app>` era chamado sem props em `portfolio/index.blade.php` e `portfolio/project.blade.php`, então `$socialLinks` e `$contact` nunca chegavam de fato ao footer (ficavam nos defaults vazios do `@props`). Agora ambos são passados explicitamente: `<x-layouts.app :socialLinks="$socialLinks" :contact="$contact">`.
 
 ---
 
@@ -34,120 +52,76 @@ O binding `PortfolioRepositoryInterface → PortfolioRepository` e o singleton d
 
 | Arquivo | Descrição |
 |---|---|
-| `.env` / `.env.example` | Variáveis de ambiente (chave da app, conexão do banco, etc.) |
-| `.htaccess` | Redirecionamento do Apache/XAMPP para `public/` |
-| `artisan` | CLI do Laravel |
-| `composer.json` / `composer.lock` | Dependências PHP (Laravel 12, Livewire 3.6, Pint, Faker) |
-| `package.json` / `package-lock.json` | Dependências JS (Vite 6, Tailwind 3, GSAP, Axios) |
-| `postcss.config.js` / `tailwind.config.js` / `vite.config.js` | Configuração de build de front-end |
-| `README.md` | Instruções de instalação, paleta de cores e guia de edição de conteúdo (em PT-BR, bem detalhado) |
+| `.env` / `.env.example` | Variáveis de ambiente |
+| `artisan`, `composer.json`, `package.json` | CLI e dependências (Laravel 12, Livewire 3.6, Vite 6, Tailwind 3, GSAP) |
+| `tailwind.config.js` | Paleta de cores (`sun` corrigido para `#FFBE00`, batendo com o CSS e o README) |
+| `README.md` | Instruções de instalação e mapa de seções, atualizado pós-refatoração |
+| `_deprecated/` | Código antigo fora de uso — ver seção própria abaixo |
 
-### `app/` — Código da aplicação
+### `app/`
 
 | Caminho | Descrição |
 |---|---|
-| `Contracts/PortfolioRepositoryInterface.php` | Interface que define o contrato de acesso a dados do portfólio (hero, jornada, projetos, links sociais) |
-| `Data/PortfolioRepository.php` | Implementação concreta do repositório. Dados de hero/jornada/links são hardcoded aqui; projetos vêm do banco SQLite |
-| `Http/Controllers/PortfolioController.php` | Único controller da aplicação. Duas ações: `index` (home) e `showProject` (página de detalhe via slug) |
-| `Jornada/*.php` | Conjunto de classes relacionadas ao layout dos cards da linha do tempo ("Jornada"): `JourneyCardsLayout` (classe abstrata com o contrato de shape/imagens/animação GSAP), e variações de card (`LeftCard`, `RightCard`, `FullScreenCard`, `CompleteLeftCard`, `CompleteRightCard`, `CardFromBottom`, `CardWithImageAfterCardFullScreen`) — parecem representar diferentes estilos visuais de apresentação de cada item da timeline |
-| `Livewire/ProjectGallery.php` | Componente Livewire que gerencia a galeria de projetos interativa (abrir/fechar modal de projeto selecionado via `selectedSlug`) |
-| `Providers/AppServiceProvider.php` | Registra o binding da interface do repositório e o singleton do `PortfolioService` |
-| `Services/PortfolioService.php` | Camada de serviço que agrega os dados do repositório em `getPageData()` e expõe `getProjectBySlug()` |
-| `View/Components/JourneyCard.php` | Componente Blade (`<x-journey-card>`) que renderiza `components.journey-card` |
+| `Contracts/PortfolioRepositoryInterface.php` | Contrato de acesso a dados do portfólio |
+| `Data/PortfolioRepository.php` | Implementação concreta (hero/jornada/social hardcoded; projetos via SQLite) |
+| `Http/Controllers/PortfolioController.php` | `index()`, `showProject()` e `buildContact()` (privado, compartilhado) |
+| `Livewire/ProjectGallery.php` | Simplificado na refatoração: só monta e lista `$projects`, sem lógica de modal |
+| `Providers/AppServiceProvider.php` | Bindings (`PortfolioRepositoryInterface` → `PortfolioRepository`, singleton do `PortfolioService`) |
+| `Services/PortfolioService.php` | Agrega dados do repositório |
 
-### `bootstrap/`
+### `resources/views/`
 
 | Caminho | Descrição |
 |---|---|
-| `app.php` | Bootstrap da aplicação Laravel 12 (novo formato sem Kernel.php) |
-| `providers.php` | Lista de service providers registrados |
-| `cache/*.php` | Cache de pacotes/serviços gerado pelo Composer (não editar manualmente) |
+| `components/layouts/app.blade.php` | **Único layout** (`<x-layouts.app>`). Recebe `title`, `description`, `socialLinks`, `contact`. Sem devicon/CDN de ícones. |
+| `components/navbar.blade.php` | Fundo preto, sem SVG (botão mobile é só texto "Menu"/"Fechar"), links resolvem `#âncora` na home ou `route('home').'#âncora'` nas demais páginas |
+| `components/footer.blade.php` | Fundo preto (`.flow-footer`), recebe `:socialLinks` e `:contact`, contém o CTA de e-mail/WhatsApp que antes era a seção `contato` |
+| `components/project-card.blade.php` | Card 100% clicável (`<a>` como elemento raiz): imagem grande, título, descrição |
+| `livewire/project-gallery.blade.php` | Grid responsivo (`sm:grid-cols-2 lg:grid-cols-3`) de `<x-project-card>` |
+| `portfolio/index.blade.php` | Monta as 3 seções da home |
+| `portfolio/project.blade.php` | Página de artigo: capa em destaque, depois seções (`Sobre o projeto`, `Stack & tecnologias`) |
+| `sections/hero.blade.php` | Mesma estrutura de sempre; CTA amarelo, sem emoji |
+| `sections/projetos.blade.php` | Intro da seção + `<livewire:project-gallery />` |
+| `sections/outras-curiosidades.blade.php` | Timeline horizontal (novo) |
 
-### `config/`
+### `resources/css/app.css`
 
-| Caminho | Descrição |
-|---|---|
-| `database.php` | Conexão padrão `sqlite`, apontando para `database/database.sqlite` |
-| `livewire.php` | Configuração do pacote Livewire |
+Reescrito na refatoração. Principais grupos de classes:
+- `.flow-*` — gradiente de fundo entre seções
+- `.btn-cta` / `.btn-outline` — botões
+- `.curio-*` — timeline horizontal de Outras Curiosidades
+- `.project-card-v2-*` — cards de projeto
+- `.article-*` — página de artigo do projeto
+- Mantidos: `.blob*`, `.chip*`, `.hero-avatar*`, `.reveal`, `.eyebrow`, `.section-title` (usados pelo Hero e globalmente)
+- Removidos (eram código morto ou ficaram sem uso): `.timeline*` antigo (vertical), `.skill-card`, `.soft-card`, `.exp-card*`, `.stat-mini*`, `.value-chip`, `.contact-btn*`, `.social-icon`
 
-### `database/`
+### `_deprecated/` — código movido, não excluído
 
-| Caminho | Descrição |
-|---|---|
-| `database.sqlite` | Banco de dados SQLite usado em dev/produção simples |
-| `migrations/2026_07_14_000001_create_projects_table.php` | Cria a tabela `projects` (slug, title, subtitle, excerpt, description, tags JSON, image, is_featured, position) |
-| `seeders/ProjectSeeder.php` | Popula/atualiza (`updateOrInsert`) os projetos de exemplo: "Portal LGPD360" e "Mapeamento LGPD" |
+O MCP de filesystem usado nesta sessão não tem ferramenta de exclusão de arquivos, então tudo que ficou fora de uso na refatoração foi **movido** para cá (preservando o caminho relativo original), em vez de apagado. Pode ser removido manualmente quando não precisar mais consultar:
 
-### `public/` — Document root (aponta para cá no Apache)
-
-| Caminho | Descrição |
-|---|---|
-| `index.php` | Entry point do Laravel |
-| `.htaccess` | Rewrite rules do Laravel |
-| `build/` | Assets compilados pelo Vite (JS/CSS com hash) + `manifest.json` |
-| `css/style.css` | CSS legado/estático (fora do pipeline Vite) |
-| `js/app.js` | JS legado/estático (fora do pipeline Vite) |
-| `img/kleitonF.jpeg` | Foto de perfil usada no hero |
-| `hot` | Arquivo criado pelo Vite quando `npm run dev` está ativo (hot reload) |
-
-### `resources/` — Fonte de front-end
-
-| Caminho | Descrição |
-|---|---|
-| `css/app.css` | CSS principal com diretivas Tailwind |
-| `js/app.js` | Scroll reveal, navbar, menu mobile (JS de interação da página) |
-| `js/bootstrap.js` | Bootstrap padrão do Laravel (Axios, etc.) |
-| `views/layouts/app.blade.php` e `views/components/layouts/app.blade.php` | Layout base HTML (existe em dois lugares — possível duplicação a revisar) |
-| `views/components/navbar.blade.php` | Barra de navegação |
-| `views/components/footer.blade.php` | Rodapé |
-| `views/components/project-card.blade.php` | Card de projeto (usado na listagem) |
-| `views/components/skill-card.blade.php` | Card de habilidade (hard/soft skills) |
-| `views/components/journey-card.blade.php` | Card da timeline/jornada profissional |
-| `views/livewire/project-gallery.blade.php` | View do componente Livewire `ProjectGallery` |
-| `views/portfolio/index.blade.php` | View principal da home (compõe todas as `sections/`) |
-| `views/portfolio/project.blade.php` | View de detalhe de um projeto individual (`/projetos/{slug}`) |
-| `views/sections/hero.blade.php` | Seção de abertura (nome, cargo, headline, foto) |
-| `views/sections/jornada.blade.php` | Linha do tempo profissional |
-| `views/sections/hard-skills.blade.php` | Habilidades técnicas |
-| `views/sections/soft-skills.blade.php` | Habilidades comportamentais |
-| `views/sections/experiencias.blade.php` | Experiências profissionais |
-| `views/sections/projetos.blade.php` | Seção de projetos em destaque |
-| `views/sections/sobre.blade.php` | Seção "sobre mim" |
-| `views/sections/contato.blade.php` | Seção de contato (e-mail, WhatsApp, LinkedIn, GitHub) |
-
-### `routes/`
-
-| Caminho | Descrição |
-|---|---|
-| `web.php` | Duas rotas: `/` (home) e `/projetos/{slug}` (detalhe do projeto) |
-| `console.php` | Comandos Artisan customizados (se houver) |
-
-### `storage/`
-
-| Caminho | Descrição |
-|---|---|
-| `framework/cache/`, `framework/sessions/`, `framework/views/` | Caches internos do Laravel (views compiladas, sessões) — gerados automaticamente, não versionar conteúdo |
-| `logs/laravel.log` | Log de erros/eventos da aplicação |
+- `resources/views/layouts/app.blade.php` — layout duplicado, nunca era usado de fato (`<x-layouts.app>` sempre resolvia para `components/layouts/app.blade.php`)
+- `resources/views/sections/jornada.blade.php` — versão antiga (vertical) da timeline, com o markup real já comentado
+- `resources/views/sections/hard-skills.blade.php`, `soft-skills.blade.php`, `experiencias.blade.php`, `sobre.blade.php`, `contato.blade.php` — já não eram incluídas em `portfolio/index.blade.php` antes da refatoração (código morto)
+- `resources/views/components/skill-card.blade.php`, `journey-card.blade.php` — sem uso
+- `app/View/Components/JourneyCard.php` — classe de apoio do componente acima
+- `app/Jornada/*.php` (8 classes) — módulo de variações de layout de card (esquerda/direita/fullscreen/etc.) nunca instanciado em lugar nenhum do código
 
 ---
 
-## Convenções e Observações Importantes
+## Pontos de Atenção para Próximas Alterações
 
-1. **Conteúdo estático (hero, jornada, links sociais)** vive hardcoded em `App\Data\PortfolioRepository`, não no banco. Apenas **projetos** usam a tabela `projects` no SQLite.
-2. **README.md menciona `app/Data/PortfolioData.php`** como arquivo central de conteúdo, mas o código atual usa `PortfolioRepository.php` — o README parece estar **desatualizado** em relação ao código-fonte (possível refatoração de Data → Repository/Contracts pattern que não foi refletida na documentação).
-3. **Paleta de cores** (tema "Steven Universe"): sun `#FFBE00`, pink `#FF6B9D`, aqua `#00D4E8`, violet `#C084FC`, cream `#FFFBF2`, ink `#1A1A2E`, muted `#5B5B7A`.
-4. **`app/Jornada/`** parece um módulo em construção/experimentação para diferentes variações visuais dos cards da timeline, usando GSAP para animação. Vale checar se todas as classes estão de fato em uso nas views.
-5. Existe **duplicação de layout**: `resources/views/layouts/app.blade.php` e `resources/views/components/layouts/app.blade.php`. Vale confirmar qual é o realmente usado e remover o obsoleto.
-6. Migração de projetos tem data `2026_07_14`, indicando que o banco de projetos foi adicionado recentemente (evolução de dados estáticos para dados dinâmicos).
+1. Os projetos seedados (`ProjectSeeder.php`) têm `image => null` — os cards e a capa do artigo caem no fallback tipográfico (`.project-card-v2-media-label` / `.article-cover-label`). Para usar fotos reais, defina o campo `image` com um caminho em `public/img/...`.
+2. O link "Fale comigo" da navbar e os links internos de seção (`Projetos`, `Curiosidades`) resolvem a âncora certa conforme a rota atual (`request()->routeIs('home')`), já que agora existem duas páginas com o mesmo layout/navbar.
+3. Se quiser reaproveitar algo de `_deprecated/`, adapte para as novas classes de CSS — as antigas (`.exp-card`, `.value-chip` etc.) foram removidas do `app.css`.
 
 ## Comandos Úteis
 
 ```bash
-composer install          # dependências PHP
-npm install                # dependências JS
-php artisan migrate        # roda migrations
-php artisan db:seed --class=ProjectSeeder   # popula projetos de exemplo
-npm run dev                 # Vite com hot reload
-npm run build                # build de produção
-php artisan serve            # servidor embutido (alternativa ao XAMPP)
+composer install
+npm install
+php artisan migrate
+php artisan db:seed --class=ProjectSeeder
+npm run dev
+npm run build
+php artisan serve
 ```

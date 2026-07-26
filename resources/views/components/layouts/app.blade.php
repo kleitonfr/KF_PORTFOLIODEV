@@ -1,4 +1,4 @@
-@props(['title' => null, 'description' => null, 'socialLinks' => []])
+@props(['title' => null, 'description' => null, 'socialLinks' => [], 'contact' => []])
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -15,15 +15,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
 
     @livewireStyles
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="overflow-x-hidden bg-cream font-body text-ink">
+<body class="overflow-x-hidden bg-white font-body text-ink">
     <x-navbar />
+
     {{ $slot }}
-    <x-footer :socialLinks="$socialLinks ?? []" />
+
+    <x-footer :socialLinks="$socialLinks ?? []" :contact="$contact ?? []" />
 
     @livewireScripts
 </body>
