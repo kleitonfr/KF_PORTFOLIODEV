@@ -47,8 +47,13 @@ class PortfolioRepository implements PortfolioRepositoryInterface
                 'desc' => 'Era responsável por receber, conferir e armazenar mercadorias, recepcionar o transportador, bem como o controle e cadastro da DANFE em sistema ERP.',
                 'direction' => 'left',
                 'tags' => ['Organização', 'Atenção aos detalhes', 'ERP', 'Controle de NF'],
+
+            ],
+
+            [
                 'images' => ['image-1', 'image-2'],
             ],
+
             [
                 'period' => '2022 — 2023',
                 'title' => 'Agente Administrativo — SESEP',
@@ -57,6 +62,11 @@ class PortfolioRepository implements PortfolioRepositoryInterface
                 'tags' => ['Gestão Pública', 'Resolução de problemas', 'Inovação'],
                 'images' => ['image-1', 'image-2', 'image-3'],
             ],
+
+            [
+                'images' => ['image-1', 'image-2'],
+            ],
+
             [
                 'period' => '2022 — 2024',
                 'title' => 'Help Desk & Suporte Técnico — STII',
@@ -64,6 +74,11 @@ class PortfolioRepository implements PortfolioRepositoryInterface
                 'direction' => 'left',
                 'tags' => ['Suporte Técnico', 'Liderança', 'Excelência no atendimento'],
             ],
+
+            [
+                'images' => ['image-1', 'image-2', 'image-3'],
+            ],
+
             [
                 'period' => '2025 — 2026',
                 'title' => 'Desenvolvedor Fullstack',

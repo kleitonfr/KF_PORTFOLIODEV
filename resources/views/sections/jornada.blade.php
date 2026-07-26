@@ -3,11 +3,15 @@
         <div class="reveal mb-16 text-center">
             <span class="eyebrow">Minha jornada</span>
         </div>
-
     </div>
 
     <div class="mt-16 flex flex-col gap-8 md:gap-10">
-        @foreach($timeline as $index => $step)
+
+        @foreach ($timeline as $index => $contentOfEachStep)
+            <x-journey-card :contentOfEachStep="$contentOfEachStep" :index="$index" />
+        @endforeach
+
+        <!-- @foreach($timeline as $index => $step)
             @php
                 $isEven  = $index % 2 === 0;
                 $isLast  = $index === count($timeline) - 1;
@@ -44,5 +48,5 @@
                 @endif
             </div>
         @endforeach
-    </div>
+    </div> -->
 </section>

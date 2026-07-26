@@ -3,11 +3,34 @@
         <div class="reveal mb-16 text-center">
             <span class="eyebrow">Minha jornada</span>
         </div>
-
     </div>
 
     <div class="mt-16 flex flex-col gap-8 md:gap-10">
-        <?php $__currentLoopData = $timeline; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $step): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+        <?php $__currentLoopData = $timeline; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $contentOfEachStep): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php if (isset($component)) { $__componentOriginal4036b9abc7205433acebb4233014d844 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal4036b9abc7205433acebb4233014d844 = $attributes; } ?>
+<?php $component = App\View\Components\JourneyCard::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('journey-card'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\App\View\Components\JourneyCard::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['contentOfEachStep' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($contentOfEachStep),'index' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($index)]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal4036b9abc7205433acebb4233014d844)): ?>
+<?php $attributes = $__attributesOriginal4036b9abc7205433acebb4233014d844; ?>
+<?php unset($__attributesOriginal4036b9abc7205433acebb4233014d844); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal4036b9abc7205433acebb4233014d844)): ?>
+<?php $component = $__componentOriginal4036b9abc7205433acebb4233014d844; ?>
+<?php unset($__componentOriginal4036b9abc7205433acebb4233014d844); ?>
+<?php endif; ?>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+        <!-- <?php $__currentLoopData = $timeline; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $step): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <?php
                 $isEven  = $index % 2 === 0;
                 $isLast  = $index === count($timeline) - 1;
@@ -44,6 +67,6 @@
                 <?php endif; ?>
             </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-    </div>
+    </div> -->
 </section>
 <?php /**PATH C:\xampp\htdocs\portfolio-kleiton\resources\views/sections/jornada.blade.php ENDPATH**/ ?>
