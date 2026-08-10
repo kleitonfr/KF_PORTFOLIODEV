@@ -9,7 +9,7 @@
     <meta name="keywords" content="Kleiton Ferreira, desenvolvedor, full stack, Laravel, PHP, LGPD, Caraguatatuba, portfólio, UX, design" />
     <meta property="og:title" content="{{ $title ?? 'Kleiton Ferreira — Dev Full Stack & Designer' }}" />
     <meta property="og:description" content="Transformando problemas reais em soluções digitais." />
-    <meta name="theme-color" content="#FFBE00" />
+    <meta name="theme-color" content="#0B0B10" />
     <title>{{ $title ?? 'Kleiton Ferreira — Dev Full Stack & Designer' }}</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,7 +19,7 @@
     @livewireStyles
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="overflow-x-hidden bg-white font-body text-ink">
+<body class="overflow-x-hidden bg-bg font-body text-ink">
     <x-navbar />
 
     {{ $slot }}

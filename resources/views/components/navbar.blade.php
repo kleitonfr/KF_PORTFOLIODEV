@@ -9,11 +9,12 @@
         </a>
 
         <ul class="hidden gap-8 text-sm font-semibold text-white/70 md:flex">
+            <li><a href="{{ $anchor('depoimentos') }}" class="nav-link">Depoimentos</a></li>
             <li><a href="{{ $anchor('projetos') }}" class="nav-link">Projetos</a></li>
             <li><a href="{{ $anchor('curiosidades') }}" class="nav-link">Curiosidades</a></li>
         </ul>
 
-        <a href="{{ $anchor('contato') }}" class="btn-cta hidden !px-5 !py-2.5 text-sm md:inline-flex">
+        <a href="{{ $anchor('contato') }}" class="btn-cta hidden !px-5 !py-2.5 text-sm md:inline-flex" aria-label="Fale comigo">
             Fale comigo
         </a>
 
@@ -24,6 +25,7 @@
 
     <div id="mobileMenu" class="mx-4 mt-4 hidden rounded-2xl border border-white/10 bg-black p-6 shadow-xl md:hidden">
         <ul class="flex flex-col gap-5 font-semibold text-white/70">
+            <li><a href="{{ $anchor('depoimentos') }}" onclick="closeMobile()" class="block transition-colors hover:text-white">Depoimentos</a></li>
             <li><a href="{{ $anchor('projetos') }}" onclick="closeMobile()" class="block transition-colors hover:text-white">Projetos</a></li>
             <li><a href="{{ $anchor('curiosidades') }}" onclick="closeMobile()" class="block transition-colors hover:text-white">Curiosidades</a></li>
             <li><a href="{{ $anchor('contato') }}" onclick="closeMobile()" class="block transition-colors hover:text-white">Contato</a></li>

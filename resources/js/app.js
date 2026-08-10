@@ -64,6 +64,41 @@ const sectionObs = new IntersectionObserver((entries) => {
 
 sections.forEach((section) => sectionObs.observe(section));
 
+// ── Navbar: borda/sombra ao rolar ──
+const navbar = document.getElementById('navbar');
+const toggleNavbarScrolled = () => navbar?.classList.toggle('is-scrolled', window.scrollY > 12);
+toggleNavbarScrolled();
+window.addEventListener('scroll', toggleNavbarScrolled, { passive: true });
+
+// ── Lightbox: qualquer elemento com [data-lightbox-trigger] abre a imagem ampliada ──
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightboxImage');
+const lightboxClose = document.getElementById('lightboxClose');
+
+const openLightbox = (src, alt = '') => {
+    if (!lightbox || !lightboxImage) return;
+    lightboxImage.src = src;
+    lightboxImage.alt = alt;
+    lightbox.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+};
+
+const closeLightbox = () => {
+    if (!lightbox) return;
+    lightbox.classList.remove('is-open');
+    document.body.style.overflow = '';
+};
+
+document.querySelectorAll('[data-lightbox-trigger]').forEach((el) => {
+    el.addEventListener('click', () => {
+        openLightbox(el.getAttribute('data-lightbox-src'), el.getAttribute('aria-label') || '');
+    });
+});
+
+lightboxClose?.addEventListener('click', closeLightbox);
+lightbox?.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
 
 
 /* Animações realizadas com GSAP (biblioteca de controle de animações) e ScrollTrigger (plugin do GSAP para animações baseadas em rolagem) */

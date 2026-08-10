@@ -69,8 +69,8 @@ class PortfolioRepository implements PortfolioRepositoryInterface
 
             [
                 'period' => '2022 — 2024',
-                'title' => 'Help Desk & Suporte Técnico — STII',
-                'desc' => 'Em uma equipe de 15+ técnicos, liderei o ranking interno de chamados solucionados por três meses consecutivos, atuando em múltiplos grupos: Sistemas, Helpdesk, Segurança de Rede e Embras-Atendimentos.',
+                'title' => 'Analista Service Desk — STII',
+                'desc' => 'Liderei o ranking interno de chamados solucionados por três meses consecutivos, atuando em múltiplos grupos: Sistemas, Helpdesk, Segurança de Rede e Embras-Atendimentos.',
                 'direction' => 'left',
                 'tags' => ['Suporte Técnico', 'Liderança', 'Excelência no atendimento'],
             ],
@@ -112,6 +112,24 @@ class PortfolioRepository implements PortfolioRepositoryInterface
         ];
     }
 
+    public function getTestimonials(): array
+    {
+        return [
+            [
+                'image' => 'img/Comentarios/chefe.jpg',
+                'role' => 'Gestor(a) direto(a)',
+            ],
+            [
+                'image' => 'img/Comentarios/colegaDeTrabalho.jpg',
+                'role' => 'Colega de trabalho',
+            ],
+            [
+                'image' => 'img/Comentarios/colegaDeHackathon.jpg',
+                'role' => 'Colega de hackathon',
+            ],
+        ];
+    }
+
     private function mapProject(object $project): array
     {
         return [
@@ -124,6 +142,35 @@ class PortfolioRepository implements PortfolioRepositoryInterface
             'image' => $project->image,
             'slug' => $project->slug,
             'is_featured' => (bool) $project->is_featured,
+
+            // Metadados do case
+            'role' => $project->role ?? null,
+            'year' => $project->year ?? null,
+            'status' => $project->status ?? null,
+            'client' => $project->client ?? null,
+
+            // Estrutura narrativa (nem todo projeto preenche tudo)
+            'context' => $project->context ?? null,
+            'problem' => $project->problem ?? null,
+            'objective' => $project->objective ?? null,
+            'solution' => $project->solution ?? null,
+            'process' => $project->process ?? null,
+            'decisions' => $project->decisions ?? null,
+            'result' => $project->result ?? null,
+            'learnings' => $project->learnings ?? null,
+
+            // Mídia
+            'gallery' => json_decode($project->gallery ?? '[]', true) ?: [],
+            'video' => $project->video ?? null,
+
+            // Links externos
+            'external_url' => $project->external_url ?? null,
+            'linkedin_url' => $project->linkedin_url ?? null,
+            'repo_url' => $project->repo_url ?? null,
+
+            // Reconhecimento
+            'is_award' => (bool) ($project->is_award ?? false),
+            'award_label' => $project->award_label ?? null,
         ];
     }
 }

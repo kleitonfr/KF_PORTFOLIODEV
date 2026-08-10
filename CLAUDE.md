@@ -15,7 +15,8 @@
 ## Regras de Design (vigentes desde a refatoração)
 
 - **Mobile first**, 100% responsivo.
-- **Sem ícones** em nenhum lugar da UI (nada de SVG decorativo, devicon, emoji-como-ícone). Hierarquia por tipografia, espaçamento e cor.
+- **Sem ícones decorativos** na UI em geral (nada de SVG decorativo, emoji-como-ícone). Hierarquia por tipografia, espaçamento e cor.
+  - **Exceção:** os ícones de skills técnicas ao redor do avatar no Hero (`.skill-orbit`) usam SVGs do [Devicon](https://devicon.dev) com as cores originais de cada marca. Essa é a única área da UI com ícones — decisão registrada em conversa com o Kleiton.
 - **CTAs sempre em `sun` (`#FFBE00`)** — classe utilitária `.btn-cta`. Ações secundárias usam `.btn-outline`.
 - **Header e footer com fundo preto.**
 - **Gradiente de transição entre seções**, do topo ao rodapé: `branco → aqua → pink → violet → preto (footer)`.
@@ -92,7 +93,14 @@ Reescrito na refatoração. Principais grupos de classes:
 - `.curio-*` — timeline horizontal de Outras Curiosidades
 - `.project-card-v2-*` — cards de projeto
 - `.article-*` — página de artigo do projeto
-- Mantidos: `.blob*`, `.chip*`, `.hero-avatar*`, `.reveal`, `.eyebrow`, `.section-title` (usados pelo Hero e globalmente)
+- Mantidos: `.blob*`, `.hero-avatar*`, `.reveal`, `.eyebrow`, `.section-title` (usados pelo Hero e globalmente)
+- `.skill-orbit`, `.skill-icon-wrap`, `.skill-icon-float`, `.skill-icon` — ícones de skills ao redor do avatar (substituem os antigos `.chip*`). Composição com **3 planos de profundidade** definidos à mão no array `$skills` de `hero.blade.php` (não são mais equidistantes/simétricos):
+  - `fg` (primeiro plano, 3 ícones: Laravel/JS/PHP) — maior escala (`--icon-scale` ~1.3–1.46), raio maior (pode ultrapassar o anel do avatar), sombra mais forte (`.skill-icon--fg`), `z-index` mais alto, flutuação com mais amplitude (`--float-amp`).
+  - `mid` (intermediário, 4 ícones: HTML/CSS/MySQL/Git) — escala ~1, sombra média (`.skill-icon--mid`).
+  - `bg` (fundo, 5 ícones: REST API/SQLite/PostgreSQL/Figma/GitHub) — menor escala (~0.65–0.72), raio menor (mais perto do centro), sombra suave + leve `brightness(.97)` (`.skill-icon--bg`), opacidade reduzida (`--icon-opacity: .82`), `z-index` mais baixo, flutuação quase parada.
+  - Cada ícone também tem `--tilt` (rotação estática leve, poucos graus) para reforçar a perspectiva sem prejudicar a leitura do logo.
+  - Posicionamento: vetor unitário `--ux`/`--uy` (calculado a partir do `angle` de cada item) multiplicado por `--orbit-radius` (responsívo) e por `--r` (raio individual do item).
+  - Animação de entrada `skillEmerge` (de dentro pra fora, escala 0 → `--icon-scale`, roda uma vez, `fg` emerge por último) + flutuação contínua `skillFloat` (só translateY, amplitude variável por plano) — sem órbita ao redor da foto e sem giro no próprio eixo. Tooltip via `data-tooltip` + `::before`/`::after`.
 - Removidos (eram código morto ou ficaram sem uso): `.timeline*` antigo (vertical), `.skill-card`, `.soft-card`, `.exp-card*`, `.stat-mini*`, `.value-chip`, `.contact-btn*`, `.social-icon`
 
 ### `_deprecated/` — código movido, não excluído

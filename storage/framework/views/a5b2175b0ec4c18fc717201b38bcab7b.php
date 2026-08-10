@@ -16,6 +16,8 @@
         'linkedin' => $contact['linkedin'] ?? '',
     ]], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
+    <?php echo $__env->make('sections.depoimentos', ['testimonials' => $testimonials], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
     <?php echo $__env->make('sections.projetos', ['projects' => $projects], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
     <?php echo $__env->make('sections.outras-curiosidades', ['timeline' => $journey], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>

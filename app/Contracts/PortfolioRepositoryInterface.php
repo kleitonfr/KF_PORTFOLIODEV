@@ -13,4 +13,6 @@ interface PortfolioRepositoryInterface
     public function getProjectBySlug(string $slug): ?array;
 
     public function getSocialLinks(): array;
+
+    public function getTestimonials(): array;
 }

@@ -14,7 +14,7 @@
         <p class="curio-hint reveal mb-10 text-center text-white/50">← arraste →</p>
     </div>
 
-    <div class="curio-track mx-auto max-w-full px-6 md:px-12">
+    <div class="curio-track mx-auto max-w-6xl px-6 md:px-12">
         <?php $__currentLoopData = $steps; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $step): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="curio-card reveal">
                 <p class="curio-period"><?php echo e($step['period']); ?></p>

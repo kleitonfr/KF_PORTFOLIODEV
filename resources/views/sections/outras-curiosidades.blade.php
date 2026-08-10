@@ -14,7 +14,7 @@
         <p class="curio-hint reveal mb-10 text-center text-white/50">← arraste →</p>
     </div>
 
-    <div class="curio-track mx-auto max-w-full px-6 md:px-12">
+    <div class="curio-track mx-auto max-w-6xl px-6 md:px-12">
         @foreach($steps as $step)
             <div class="curio-card reveal">
                 <p class="curio-period">{{ $step['period'] }}</p>

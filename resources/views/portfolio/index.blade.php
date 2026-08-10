@@ -7,6 +7,8 @@
         'linkedin' => $contact['linkedin'] ?? '',
     ]])
 
+    @include('sections.depoimentos', ['testimonials' => $testimonials])
+
     @include('sections.projetos', ['projects' => $projects])
 
     @include('sections.outras-curiosidades', ['timeline' => $journey])

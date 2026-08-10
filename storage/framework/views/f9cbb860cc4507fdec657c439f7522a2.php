@@ -37,7 +37,7 @@ unset($__defined_vars, $__key, $__value); ?>
     <meta name="keywords" content="Kleiton Ferreira, desenvolvedor, full stack, Laravel, PHP, LGPD, Caraguatatuba, portfólio, UX, design" />
     <meta property="og:title" content="<?php echo e($title ?? 'Kleiton Ferreira — Dev Full Stack & Designer'); ?>" />
     <meta property="og:description" content="Transformando problemas reais em soluções digitais." />
-    <meta name="theme-color" content="#FFBE00" />
+    <meta name="theme-color" content="#0B0B10" />
     <title><?php echo e($title ?? 'Kleiton Ferreira — Dev Full Stack & Designer'); ?></title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -48,7 +48,7 @@ unset($__defined_vars, $__key, $__value); ?>
 
     <?php echo app('Illuminate\Foundation\Vite')(['resources/css/app.css', 'resources/js/app.js']); ?>
 </head>
-<body class="overflow-x-hidden bg-white font-body text-ink">
+<body class="overflow-x-hidden bg-bg font-body text-ink">
     <?php if (isset($component)) { $__componentOriginala591787d01fe92c5706972626cdf7231 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginala591787d01fe92c5706972626cdf7231 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.navbar','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>

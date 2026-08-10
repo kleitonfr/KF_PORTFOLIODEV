@@ -17,6 +17,7 @@ class PortfolioService
             'journey' => $this->repository->getJourneyItems(),
             'projects' => $this->repository->getProjects(),
             'socialLinks' => $this->repository->getSocialLinks(),
+            'testimonials' => $this->repository->getTestimonials(),
         ];
     }
 

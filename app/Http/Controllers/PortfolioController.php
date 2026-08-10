@@ -21,6 +21,7 @@ class PortfolioController extends Controller
             'journey' => $pageData['journey'],
             'projects' => $pageData['projects'],
             'socialLinks' => $pageData['socialLinks'],
+            'testimonials' => $pageData['testimonials'],
             'contact' => $this->buildContact($pageData),
         ]);
     }

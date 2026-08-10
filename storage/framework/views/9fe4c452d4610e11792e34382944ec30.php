@@ -39,11 +39,23 @@ unset($__defined_vars, $__key, $__value); ?>
         <?php else: ?>
             <span class="project-card-v2-media-label"><?php echo e($project['title']); ?></span>
         <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+
+        <!--[if BLOCK]><![endif]--><?php if(!empty($project['is_award'])): ?>
+            <span class="project-card-v2-award">&#9733; Premiado</span>
+        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
     </div>
 
     <div class="project-card-v2-body">
         <h3 class="project-card-v2-title"><?php echo e($project['title']); ?></h3>
         <p class="project-card-v2-desc"><?php echo e($project['excerpt']); ?></p>
+
+        <!--[if BLOCK]><![endif]--><?php if(!empty($project['tags'])): ?>
+            <div class="project-card-v2-tags">
+                <!--[if BLOCK]><![endif]--><?php $__currentLoopData = array_slice($project['tags'], 0, 3); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <span><?php echo e($tag); ?></span>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+            </div>
+        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
     </div>
 </a>
 <?php /**PATH C:\xampp\htdocs\portfolio-kleiton\resources\views/components/project-card.blade.php ENDPATH**/ ?>
