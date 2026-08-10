@@ -27,7 +27,7 @@
                 </a>
             </div>
 
-            <div class="mt-10 flex flex-wrap gap-10 border-t border-border pt-7 md:gap-12">
+            <div class="mt-10 grid grid-cols-1 gap-6 border-t border-border pt-7 sm:grid-cols-3 sm:gap-6 md:gap-8">
 
                 <div>
                     <h3 class="font-display text-2xl font-extrabold leading-tight text-ink md:text-3xl lg:text-4xl">#1</h3>
