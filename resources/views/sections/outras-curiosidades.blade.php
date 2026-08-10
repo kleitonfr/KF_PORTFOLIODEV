@@ -2,33 +2,38 @@
     $steps = collect($timeline ?? [])->filter(fn ($step) => !empty($step['title']))->values();
 @endphp
 
-<section id="curiosidades" class="flow-curiosidades px-6 py-24 md:px-12">
+<section id="curiosidades" class="border-b border-border bg-bg px-6 py-24 md:px-12 md:py-32">
     <div class="mx-auto max-w-6xl">
-        <div class="reveal mb-4 text-center">
-            <span class="eyebrow border-white/40 bg-white/20">Outras curiosidades</span>
-            <h2 class="section-title mt-4 text-white">Minha jornada profissional</h2>
+        <div class="reveal">
+            <x-section-label index="03">Outras curiosidades</x-section-label>
         </div>
-        <p class="reveal mx-auto mb-4 max-w-2xl text-center text-sm leading-7 text-white/80">
-            Arraste para o lado e acompanhe, período a período, os passos que me trouxeram até aqui.
+        <h2 class="reveal mt-6 max-w-3xl text-4xl font-extrabold text-balance text-ink md:text-6xl">
+            Minha jornada profissional
+        </h2>
+        <p class="reveal mt-5 max-w-xl text-muted">
+            Período a período, os passos que me trouxeram até aqui.
         </p>
-        <p class="curio-hint reveal mb-10 text-center text-white/50">← arraste →</p>
-    </div>
+        <p class="curio-hint reveal mt-6 md:hidden">&larr; arraste &rarr;</p>
 
-    <div class="curio-track mx-auto max-w-6xl px-6 md:px-12">
-        @foreach($steps as $step)
-            <div class="curio-card reveal">
-                <p class="curio-period">{{ $step['period'] }}</p>
-                <h3 class="curio-title">{{ $step['title'] }}</h3>
-                <p class="curio-desc">{{ $step['desc'] }}</p>
+        <div class="curio-track mt-10 md:mt-14 md:border-t md:border-border">
+            @foreach($steps as $step)
+                <div class="curio-card reveal md:grid md:grid-cols-12 md:gap-6 md:border-b md:border-border md:py-10">
+                    <span class="label-mono md:col-span-3">{{ $step['period'] }}</span>
 
-                @if(!empty($step['tags']))
-                    <div class="curio-tags">
-                        @foreach($step['tags'] as $tag)
-                            <span>{{ $tag }}</span>
-                        @endforeach
+                    <div class="mt-3 md:col-span-6 md:mt-0">
+                        <h3 class="text-xl font-bold text-ink">{{ $step['title'] }}</h3>
+                        <p class="mt-3 text-sm leading-relaxed text-muted">{{ $step['desc'] }}</p>
                     </div>
-                @endif
-            </div>
-        @endforeach
+
+                    @if(!empty($step['tags']))
+                        <div class="mt-4 flex flex-wrap gap-2 md:col-span-3 md:mt-0 md:justify-end">
+                            @foreach($step['tags'] as $tag)
+                                <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">{{ $tag }}</span>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+            @endforeach
+        </div>
     </div>
 </section>

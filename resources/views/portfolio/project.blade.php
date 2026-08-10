@@ -1,95 +1,86 @@
-<x-layouts.app :socialLinks="$socialLinks ?? []" :contact="$contact ?? []" :title="$project['title'] . ' — Kleiton Ferreira'">
-    <article class="flow-projetos px-6 py-24 md:px-12">
-        <div class="mx-auto max-w-4xl">
+<x-layouts.app :socialLinks="$socialLinks ?? []" :contact="$contact ?? []" :title="$project['title'] . ' — Kleiton Ferreira'" :description="$project['excerpt'] ?? null">
 
-            <a href="{{ route('home') }}#projetos" wire:navigate class="text-sm font-semibold uppercase tracking-[0.2em] text-muted transition hover:text-sun">
-                &larr; Voltar aos projetos
+    <article class="bg-bg px-6 py-20 md:px-12 md:py-28">
+        <div class="mx-auto max-w-3xl">
+
+            <a href="{{ route('home') }}#projetos" wire:navigate class="label-mono transition-colors hover:text-sun">
+                &larr; Todos os projetos
             </a>
 
-            <div class="article-cover mt-8">
+            @if(!empty($project['subtitle']))
+                <p class="label-mono mt-10 text-sun">{{ $project['subtitle'] }}</p>
+            @endif
+
+            <h1 class="mt-4 text-4xl font-extrabold text-balance text-ink md:text-6xl">
+                {{ $project['title'] }}
+            </h1>
+
+            @if(!empty($project['excerpt']))
+                <p class="mt-6 text-lg leading-relaxed text-muted">{{ $project['excerpt'] }}</p>
+            @endif
+
+            @if($project['is_award'] && !empty($project['award_label']))
+                <div class="mt-6 inline-flex items-center gap-2 rounded-full border border-sun/40 bg-sun/10 px-4 py-2 label-mono !text-sun">
+                    <span>&#9733;</span> {{ $project['award_label'] }}
+                </div>
+            @endif
+
+            {{-- Metadados: papel, ano, status, cliente --}}
+            @if(array_filter([$project['role'], $project['year'], $project['status'], $project['client']]))
+                <div class="mt-8 flex flex-wrap gap-x-10 gap-y-5 border-t border-border pt-8">
+                    @if(!empty($project['role']))
+                        <div><span class="label-mono block">Papel</span><span class="mt-1 block text-sm font-semibold text-ink">{{ $project['role'] }}</span></div>
+                    @endif
+                    @if(!empty($project['year']))
+                        <div><span class="label-mono block">Período</span><span class="mt-1 block text-sm font-semibold text-ink">{{ $project['year'] }}</span></div>
+                    @endif
+                    @if(!empty($project['status']))
+                        <div><span class="label-mono block">Status</span><span class="mt-1 block text-sm font-semibold text-ink">{{ $project['status'] }}</span></div>
+                    @endif
+                    @if(!empty($project['client']))
+                        <div><span class="label-mono block">Cliente</span><span class="mt-1 block text-sm font-semibold text-ink">{{ $project['client'] }}</span></div>
+                    @endif
+                </div>
+            @endif
+
+            @if(!empty($project['tags']))
+                <div class="mt-8 flex flex-wrap gap-2">
+                    @foreach($project['tags'] as $tag)
+                        <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">{{ $tag }}</span>
+                    @endforeach
+                </div>
+            @endif
+
+            {{-- Ações: site em produção, publicação no LinkedIn, repositório --}}
+            @if(!empty($project['external_url']) || !empty($project['linkedin_url']) || !empty($project['repo_url']))
+                <div class="mt-6 flex flex-wrap gap-3">
+                    @if(!empty($project['external_url']))
+                        <a href="{{ $project['external_url'] }}" target="_blank" rel="noopener noreferrer" class="btn-sm">Acessar o site &nearr;</a>
+                    @endif
+                    @if(!empty($project['linkedin_url']))
+                        <a href="{{ $project['linkedin_url'] }}" target="_blank" rel="noopener noreferrer" class="btn-sm">Ver publicação no LinkedIn &nearr;</a>
+                    @endif
+                    @if(!empty($project['repo_url']))
+                        <a href="{{ $project['repo_url'] }}" target="_blank" rel="noopener noreferrer" class="btn-sm">Ver repositório &nearr;</a>
+                    @endif
+                </div>
+            @endif
+
+            {{-- Capa --}}
+            <div class="mt-12 aspect-video w-full overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-surface2 to-bg">
                 @if(!empty($project['image']))
-                    <img src="{{ asset($project['image']) }}" alt="{{ $project['title'] }}">
+                    <img src="{{ asset($project['image']) }}" alt="{{ $project['title'] }}" class="h-full w-full object-cover">
                 @else
-                    <span class="article-cover-label">{{ $project['title'] }}</span>
+                    <div class="flex h-full items-center justify-center p-8 text-center font-display text-2xl font-extrabold text-ink/80">{{ $project['title'] }}</div>
                 @endif
             </div>
 
-            <header class="mt-10">
-                @if(!empty($project['subtitle']))
-                    <p class="eyebrow">{{ $project['subtitle'] }}</p>
-                @endif
-                <h1 class="section-title mt-4">{{ $project['title'] }}</h1>
-
-                @if($project['is_award'] && !empty($project['award_label']))
-                    <div class="article-award">
-                        <span>&#9733;</span> {{ $project['award_label'] }}
-                    </div>
-                @endif
-
-                {{-- Barra de metadados: papel, ano, status, cliente --}}
-                @if(array_filter([$project['role'], $project['year'], $project['status'], $project['client']]))
-                    <div class="article-meta">
-                        @if(!empty($project['role']))
-                            <div class="article-meta-item">
-                                <span class="article-meta-label">Papel</span>
-                                <span class="article-meta-value">{{ $project['role'] }}</span>
-                            </div>
-                        @endif
-                        @if(!empty($project['year']))
-                            <div class="article-meta-item">
-                                <span class="article-meta-label">Período</span>
-                                <span class="article-meta-value">{{ $project['year'] }}</span>
-                            </div>
-                        @endif
-                        @if(!empty($project['status']))
-                            <div class="article-meta-item">
-                                <span class="article-meta-label">Status</span>
-                                <span class="article-meta-value">{{ $project['status'] }}</span>
-                            </div>
-                        @endif
-                        @if(!empty($project['client']))
-                            <div class="article-meta-item">
-                                <span class="article-meta-label">Cliente</span>
-                                <span class="article-meta-value">{{ $project['client'] }}</span>
-                            </div>
-                        @endif
-                    </div>
-                @endif
-
-                {{-- Ações: site em produção, publicação no LinkedIn, repositório --}}
-                @if(!empty($project['external_url']) || !empty($project['linkedin_url']) || !empty($project['repo_url']))
-                    <div class="article-links mt-6">
-                        @if(!empty($project['external_url']))
-                            <a href="{{ $project['external_url'] }}" target="_blank" rel="noopener noreferrer" class="btn-sm">
-                                Acessar o site &nearr;
-                            </a>
-                        @endif
-                        @if(!empty($project['linkedin_url']))
-                            <a href="{{ $project['linkedin_url'] }}" target="_blank" rel="noopener noreferrer" class="btn-sm">
-                                Ver publicação no LinkedIn &nearr;
-                            </a>
-                        @endif
-                        @if(!empty($project['repo_url']))
-                            <a href="{{ $project['repo_url'] }}" target="_blank" rel="noopener noreferrer" class="btn-sm">
-                                Ver repositório &nearr;
-                            </a>
-                        @endif
-                    </div>
-                @endif
-            </header>
-
-            <div class="article-body mt-12">
-
-                @if(!empty($project['excerpt']))
-                    <section class="article-section">
-                        <p>{{ $project['excerpt'] }}</p>
-                    </section>
-                @endif
+            <div class="mt-16 space-y-14">
 
                 @if(!empty($project['description']))
-                    <section class="article-section">
-                        <span class="article-section-label">Visão geral</span>
-                        <p>{{ $project['description'] }}</p>
+                    <section>
+                        <h2 class="text-2xl font-bold text-ink">Visão geral</h2>
+                        <p class="mt-4 leading-relaxed text-muted">{{ $project['description'] }}</p>
                     </section>
                 @endif
 
@@ -101,25 +92,25 @@
                         'solution'   => ['label' => 'Solução',             'value' => $project['solution']   ?? null],
                         'process'    => ['label' => 'Processo',            'value' => $project['process']    ?? null],
                         'decisions'  => ['label' => 'Decisões relevantes', 'value' => $project['decisions']  ?? null],
-                        'result'     => ['label' => 'Resultado',          'value' => $project['result']      ?? null],
+                        'result'     => ['label' => 'Resultado',           'value' => $project['result']     ?? null],
                         'learnings'  => ['label' => 'Aprendizados',        'value' => $project['learnings']  ?? null],
                     ];
                 @endphp
 
                 @foreach ($narrative as $block)
                     @if(!empty($block['value']))
-                        <section class="article-section">
-                            <span class="article-section-label">{{ $block['label'] }}</span>
-                            <p>{{ $block['value'] }}</p>
+                        <section>
+                            <h2 class="text-2xl font-bold text-ink">{{ $block['label'] }}</h2>
+                            <p class="mt-4 leading-relaxed text-muted">{{ $block['value'] }}</p>
                         </section>
                     @endif
                 @endforeach
 
                 {{-- Vídeo demonstrativo --}}
                 @if(!empty($project['video']))
-                    <section class="article-section">
-                        <span class="article-section-label">Demonstração</span>
-                        <div class="article-gallery-item is-wide">
+                    <section>
+                        <h2 class="text-2xl font-bold text-ink">Demonstração</h2>
+                        <div class="mt-4 overflow-hidden rounded-2xl border border-border">
                             <video src="{{ asset($project['video']) }}" controls preload="metadata" class="w-full"></video>
                         </div>
                     </section>
@@ -132,29 +123,18 @@
                         ->values();
                 @endphp
                 @if($galleryItems->isNotEmpty())
-                    <section class="article-section">
-                        <span class="article-section-label">Galeria</span>
-                        <div class="article-gallery">
+                    <section>
+                        <h2 class="text-2xl font-bold text-ink">Galeria</h2>
+                        <div class="mt-4 grid gap-4 sm:grid-cols-2">
                             @foreach ($galleryItems as $item)
-                                <div>
-                                    <div class="article-gallery-item @if(($item['type'] ?? null) === 'before_after') is-wide @endif">
-                                        <img src="{{ asset($item['path']) }}" alt="{{ $item['caption'] ?? $project['title'] }}" loading="lazy">
+                                <figure>
+                                    <div class="overflow-hidden rounded-2xl border border-border {{ ($item['type'] ?? null) === 'before_after' ? 'sm:col-span-2 aspect-video' : 'aspect-[4/3]' }}">
+                                        <img src="{{ asset($item['path']) }}" alt="{{ $item['caption'] ?? $project['title'] }}" loading="lazy" class="h-full w-full object-cover">
                                     </div>
                                     @if(!empty($item['caption']))
-                                        <p class="article-gallery-caption">{{ $item['caption'] }}</p>
+                                        <figcaption class="label-mono mt-2 text-center !normal-case !tracking-normal text-mutedDim">{{ $item['caption'] }}</figcaption>
                                     @endif
-                                </div>
-                            @endforeach
-                        </div>
-                    </section>
-                @endif
-
-                @if(!empty($project['tags']))
-                    <section class="article-section">
-                        <span class="article-section-label">Stack &amp; tecnologias</span>
-                        <div class="flex flex-wrap gap-2">
-                            @foreach($project['tags'] as $tag)
-                                <span class="article-tag">{{ $tag }}</span>
+                                </figure>
                             @endforeach
                         </div>
                     </section>

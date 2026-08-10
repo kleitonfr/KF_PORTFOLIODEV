@@ -57,7 +57,6 @@ const sectionObs = new IntersectionObserver((entries) => {
         navLinks.forEach((link) => {
             const active = link.getAttribute('href') === `#${entry.target.id}`;
             link.classList.toggle('text-sun', active);
-            link.classList.toggle('text-white', !active);
         });
     });
 }, { threshold: 0.4 });

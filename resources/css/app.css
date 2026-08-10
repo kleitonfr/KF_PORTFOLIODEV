@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 /* ============================================================
-   CSS VARIABLES — tema escuro
+   CSS VARIABLES — tema escuro (paleta "spectrum")
    ============================================================ */
 :root {
     --bg:       #0B0B10;
@@ -18,6 +18,7 @@
     --pink:     #FF6B9D;
     --aqua:     #00D4E8;
     --violet:   #C084FC;
+    --gradient-spectrum: linear-gradient(120deg, var(--sun) 0%, var(--pink) 38%, var(--violet) 68%, var(--aqua) 100%);
 }
 
 /* ============================================================
@@ -26,6 +27,7 @@
 @layer base {
     html { scroll-behavior: smooth; }
     body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; color: var(--ink); overflow-x: hidden; }
+    h1, h2, h3, h4 { font-family: 'Syne', sans-serif; letter-spacing: -0.02em; }
     ::selection { background: var(--sun); color: #000; }
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
@@ -39,106 +41,29 @@
 @layer components {
 
     /* ── Navbar ── */
-    #navbar { transition: background .35s, box-shadow .35s, border-color .35s; border-bottom: 1px solid transparent; }
-    #navbar.is-scrolled { border-bottom-color: var(--border); box-shadow: 0 12px 30px rgba(0,0,0,.35); }
-    .nav-link { @apply text-white/60 hover:text-sun transition-colors; }
+    #navbar { transition: box-shadow .35s, border-color .35s; }
+    #navbar.is-scrolled { box-shadow: 0 12px 30px rgba(0,0,0,.35); }
+    .nav-link { color: rgba(242,241,236,.62); transition: color .2s ease; }
+    .nav-link:hover, .nav-link.text-sun { color: var(--sun); }
 
-    /* ── Text gradient ── */
-    .text-gradient {
-        background: linear-gradient(120deg, #FFBE00 0%, #FF6B9D 55%, #00D4E8 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    /* ── Avatar (hero) ── */
-    .hero-avatar-wrap { position: relative; width: 240px; height: 240px; flex-shrink: 0; }
-    .hero-avatar-ring {
-        position: absolute; inset: -12px; border-radius: 50%;
-        border: 1.5px solid rgba(255,190,0,.35);
-    }
-    .hero-avatar-inner {
-        width: 100%; height: 100%; border-radius: 50%;
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        box-shadow: 0 30px 80px rgba(0,0,0,.55);
-        display: flex; align-items: center; justify-content: center; overflow: hidden;
-    }
-    .hero-avatar-inner img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; filter: grayscale(.15) contrast(1.05); }
-
-    @media (min-width: 768px) {
-        .hero-avatar-wrap { width: 300px; height: 300px; }
-    }
-
-    /* ============================================================
-       STACK STRIP — faixa horizontal de tecnologias (substitui os
-       ícones em órbita ao redor da foto). Monocromático em repouso,
-       ganha cor da marca no hover — funcional, não decorativo.
-       ============================================================ */
-    .stack-strip {
-        position: relative;
-        margin-top: 3.5rem;
-        padding-top: 2rem;
-        border-top: 1px solid var(--border);
-    }
-    .stack-strip-label {
+    /* ── Vocabulário tipográfico do design ── */
+    .label-mono {
         font-family: 'JetBrains Mono', monospace;
-        font-size: .68rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
-        color: var(--muted-dim);
-        margin-bottom: 1.1rem;
-        display: block;
-    }
-    .stack-strip-track {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1.6rem 2rem;
-        align-items: center;
-    }
-    .stack-icon {
-        display: flex; align-items: center; justify-content: center;
-        width: 26px; height: 26px;
-        opacity: .82;
-        filter: grayscale(0);
-        transition: opacity .25s ease, transform .25s ease, filter .25s ease;
-    }
-    .stack-icon img, .stack-icon svg { width: 100%; height: 100%; }
-    .stack-icon:hover, .stack-icon:focus-visible {
-        opacity: 1;
-        transform: translateY(-2px) scale(1.08);
-    }
-
-    /* ── Scroll Reveal ── */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    /* ── Typography helpers ── */
-    .eyebrow {
-        display: inline-block;
-        font-family: 'JetBrains Mono', monospace;
-        font-size: .68rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+        font-size: .6875rem;
+        font-weight: 600;
+        letter-spacing: .22em;
+        text-transform: uppercase;
         color: var(--muted);
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 999px; padding: 4px 14px;
     }
-    .section-title {
-        font-family: 'Syne', sans-serif;
-        font-size: clamp(1.8rem, 4vw, 3rem);
-        font-weight: 800; line-height: 1.15; color: var(--ink);
+    .text-spectrum {
+        background-image: var(--gradient-spectrum);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
     }
+    .rule-spectrum { background-image: var(--gradient-spectrum); }
 
-    /* ============================================================
-       SEÇÕES — degradê de cor entre seções (identidade preservada),
-       em versão escura/saturada. Ordem da página:
-       hero → depoimentos → projetos → curiosidades → footer.
-       ============================================================ */
-    .flow-hero          { background: var(--bg); }
-    .flow-depoimentos   { background: linear-gradient(180deg, #0B0B10 0%, #052A33 100%); }
-    .flow-projetos      { background: linear-gradient(180deg, #052A33 0%, #4A1633 100%); }
-    .flow-curiosidades  { background: linear-gradient(180deg, #4A1633 0%, #2A1145 55%, #170B27 100%); }
-    .flow-footer        { background: linear-gradient(180deg, #170B27 0%, #000000 65%); }
-
-    /* ── Botão CTA (sempre amarelo/sun) ── */
+    /* ── Botões ── */
     .btn-cta {
         display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
         border-radius: 999px; padding: .9rem 1.8rem;
@@ -158,7 +83,6 @@
     }
     .btn-outline:hover { transform: translateY(-2px); border-color: rgba(242,241,236,.3); }
 
-    /* Botão pequeno (usado dentro de cards/artigo, ex: "Ver publicação no LinkedIn") */
     .btn-sm {
         display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
         border-radius: 999px; padding: .55rem 1.1rem;
@@ -168,171 +92,36 @@
     }
     .btn-sm:hover { border-color: var(--sun); color: var(--sun); }
 
-    /* ============================================================
-       OUTRAS CURIOSIDADES — timeline horizontal
-       ============================================================ */
-    .curio-track {
-        display: flex;
-        gap: 1.25rem;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        padding: .5rem .25rem 1.5rem;
-        scrollbar-width: thin;
+    /* ── Avatar (hero) ── */
+    .hero-avatar-wrap { position: relative; width: 220px; height: 220px; flex-shrink: 0; }
+    .hero-avatar-ring {
+        position: absolute; inset: -12px; border-radius: 50%;
+        background: var(--gradient-spectrum);
+        padding: 1.5px;
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: .55;
     }
-    .curio-card {
-        scroll-snap-align: start;
-        flex: 0 0 auto;
-        width: 84%;
+    .hero-avatar-inner {
+        width: 100%; height: 100%; border-radius: 50%;
         background: var(--surface2);
         border: 1px solid var(--border);
-        border-radius: 22px;
-        padding: 1.75rem;
-        transition: transform .3s ease, border-color .3s ease;
+        box-shadow: 0 30px 80px rgba(0,0,0,.55);
+        display: flex; align-items: center; justify-content: center; overflow: hidden;
     }
-    .curio-card:hover { transform: translateY(-4px); border-color: rgba(255,190,0,.25); }
-    .curio-period {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-        color: var(--sun);
-    }
-    .curio-title {
-        font-family: 'Syne', sans-serif; font-weight: 800;
-        font-size: 1.15rem; margin-top: .5rem; color: var(--ink);
-    }
-    .curio-desc { margin-top: .75rem; font-size: .875rem; line-height: 1.75; color: var(--muted); }
-    .curio-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
-    .curio-tags span {
-        font-size: .62rem; font-weight: 700; font-family: 'JetBrains Mono', monospace;
-        letter-spacing: .06em; text-transform: uppercase;
-        background: var(--surface); border: 1px solid var(--border);
-        border-radius: 999px; padding: 3px 10px; color: var(--muted);
-    }
+    .hero-avatar-inner img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; filter: grayscale(.15) contrast(1.05); }
 
     @media (min-width: 768px) {
-        .curio-card { width: 360px; padding: 2rem; }
+        .hero-avatar-wrap { width: 280px; height: 280px; }
     }
 
-    .curio-hint {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
-        color: var(--muted-dim);
-    }
+    /* ── Scroll Reveal ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ============================================================
-       PROJETOS — cards clicáveis
-       ============================================================ */
-    .project-card-v2 {
-        display: flex;
-        flex-direction: column;
-        border-radius: 22px;
-        overflow: hidden;
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        transition: transform .3s ease, border-color .3s ease;
-        height: 100%;
-    }
-    .project-card-v2:hover { transform: translateY(-6px); border-color: rgba(255,190,0,.3); }
-    .project-card-v2-media {
-        position: relative;
-        aspect-ratio: 4 / 3;
-        width: 100%;
-        min-height: 0;
-        overflow: hidden;
-        display: flex; align-items: center; justify-content: center;
-        background: linear-gradient(135deg, #3D2E00 0%, #052A33 100%);
-    }
-    .project-card-v2-media img { width: 100%; height: 100%; object-fit: cover; }
-    .project-card-v2-media-label {
-        font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem;
-        color: rgba(242,241,236,.85); text-align: center; padding: 0 1.5rem;
-    }
-    .project-card-v2-award {
-        position: absolute; top: .9rem; left: .9rem;
-        display: inline-flex; align-items: center; gap: .35rem;
-        font-family: 'JetBrains Mono', monospace; font-size: .62rem; font-weight: 700;
-        letter-spacing: .06em; text-transform: uppercase;
-        background: var(--sun); color: #0B0B10;
-        border-radius: 999px; padding: 4px 11px;
-    }
-    .project-card-v2-body { padding: 1.5rem; display: flex; flex-direction: column; gap: .6rem; flex: 1; }
-    .project-card-v2-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--ink); }
-    .project-card-v2-desc { font-size: .875rem; line-height: 1.7; color: var(--muted); }
-    .project-card-v2-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: auto; padding-top: .5rem; }
-    .project-card-v2-tags span {
-        font-size: .6rem; font-weight: 700; font-family: 'JetBrains Mono', monospace;
-        letter-spacing: .04em; text-transform: uppercase;
-        color: var(--muted-dim); border: 1px solid var(--border);
-        border-radius: 999px; padding: 2px 9px;
-    }
-
-    /* ============================================================
-       PÁGINA DE PROJETO — case profissional
-       ============================================================ */
-    .article-cover {
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        border-radius: 22px;
-        overflow: hidden;
-        display: flex; align-items: center; justify-content: center;
-        background: linear-gradient(135deg, #3D2E00 0%, #4A1633 55%, #052A33 100%);
-        border: 1px solid var(--border);
-    }
-    .article-cover img { width: 100%; height: 100%; object-fit: cover; }
-    .article-cover-label {
-        font-family: 'Syne', sans-serif; font-weight: 800;
-        font-size: clamp(1.6rem, 5vw, 2.6rem); color: rgba(242,241,236,.85); text-align: center; padding: 0 2rem;
-    }
-
-    .article-meta { display: flex; flex-wrap: wrap; gap: .5rem 1.75rem; margin-top: 1.75rem; }
-    .article-meta-item { display: flex; flex-direction: column; gap: .2rem; }
-    .article-meta-label {
-        font-family: 'JetBrains Mono', monospace; font-size: .6rem; font-weight: 600;
-        letter-spacing: .12em; text-transform: uppercase; color: var(--muted-dim);
-    }
-    .article-meta-value { font-size: .85rem; font-weight: 600; color: var(--ink); }
-
-    .article-award {
-        display: inline-flex; align-items: center; gap: .5rem;
-        margin-top: 1.5rem;
-        font-family: 'JetBrains Mono', monospace; font-size: .7rem; font-weight: 700;
-        letter-spacing: .08em; text-transform: uppercase;
-        background: rgba(255,190,0,.08); border: 1px solid rgba(255,190,0,.35); color: var(--sun);
-        border-radius: 999px; padding: 6px 16px;
-    }
-
-    .article-body { max-width: 68ch; margin: 0 auto; }
-    .article-body p { font-size: 1.02rem; line-height: 1.9; color: var(--muted); }
-    .article-section + .article-section { margin-top: 3rem; padding-top: 3rem; border-top: 1px solid var(--border); }
-    .article-section-label {
-        font-family: 'JetBrains Mono', monospace; font-size: .68rem; font-weight: 700;
-        letter-spacing: .14em; text-transform: uppercase; color: var(--sun);
-        margin-bottom: .9rem; display: block;
-    }
-    .article-heading {
-        font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--ink);
-    }
-    .article-tag {
-        font-size: .68rem; font-weight: 700; font-family: 'JetBrains Mono', monospace;
-        letter-spacing: .08em; text-transform: uppercase;
-        border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; color: var(--muted);
-    }
-    .article-links { display: flex; flex-wrap: wrap; gap: .75rem; }
-
-    /* Galeria de imagens dentro do case */
-    .article-gallery { display: grid; gap: .9rem; grid-template-columns: repeat(2, 1fr); }
-    .article-gallery-item { border-radius: 16px; overflow: hidden; border: 1px solid var(--border); background: var(--surface); }
-    .article-gallery-item img, .article-gallery-item video { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .article-gallery-item.is-wide { grid-column: 1 / -1; aspect-ratio: 16/9; }
-    .article-gallery-item:not(.is-wide) { aspect-ratio: 4/3; }
-    .article-gallery-caption {
-        font-size: .72rem; color: var(--muted-dim); margin-top: .5rem; text-align: center;
-        font-family: 'JetBrains Mono', monospace;
-    }
-
-    /* ============================================================
-       COMENTÁRIOS / DEPOIMENTOS — mosaico com imagens no formato
-       real (sem corte quadrado), como recortes/prints colados.
+       COMENTÁRIOS / DEPOIMENTOS — prints reais em mosaico
        ============================================================ */
     .comments-grid {
         columns: 1;
@@ -348,7 +137,7 @@
     .comment-frame {
         display: block;
         width: 100%;
-        border-radius: 14px;
+        border-radius: 1rem;
         overflow: hidden;
         border: 1px solid var(--border);
         background: var(--surface2);
@@ -356,13 +145,13 @@
         padding: 0;
         transition: transform .3s ease, border-color .3s ease;
     }
-    .comment-frame:hover, .comment-frame:focus-visible { transform: translateY(-4px); border-color: rgba(255,190,0,.3); }
+    .comment-frame:hover, .comment-frame:focus-visible { transform: translateY(-4px); border-color: var(--sun); }
     .comment-frame img { width: 100%; height: auto; display: block; }
     .comment-role {
         display: flex; align-items: center; gap: .5rem;
-        margin-top: .7rem;
+        margin-top: .75rem;
         font-family: 'JetBrains Mono', monospace; font-size: .68rem; font-weight: 700;
-        letter-spacing: .1em; text-transform: uppercase; color: var(--sun);
+        letter-spacing: .16em; text-transform: uppercase; color: var(--sun);
     }
 
     /* Lightbox (modal de imagem ampliada) */
@@ -375,7 +164,7 @@
         transition: opacity .25s ease;
     }
     .lightbox-overlay.is-open { opacity: 1; pointer-events: auto; }
-    .lightbox-overlay img { max-width: min(92vw, 720px); max-height: 88vh; border-radius: 14px; border: 1px solid var(--border); }
+    .lightbox-overlay img { max-width: min(92vw, 720px); max-height: 88vh; border-radius: 1rem; border: 1px solid var(--border); }
     .lightbox-close {
         position: absolute; top: 1.5rem; right: 1.5rem;
         width: 42px; height: 42px; border-radius: 50%;
@@ -384,21 +173,45 @@
         font-size: 1.1rem; cursor: pointer;
     }
     .lightbox-close:hover { border-color: var(--sun); color: var(--sun); }
-}
 
-/* ============================================================
-   KEYFRAMES
-   ============================================================ */
-@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    /* ============================================================
+       OUTRAS CURIOSIDADES — timeline horizontal (mobile) /
+       lista com regua (desktop), no mesmo componente responsivo.
+       ============================================================ */
+    .curio-track {
+        display: flex;
+        gap: 1.25rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding: .5rem .25rem 1.5rem;
+        scrollbar-width: thin;
+    }
+    .curio-card {
+        scroll-snap-align: start;
+        flex: 0 0 auto;
+        width: 86%;
+        border: 1px solid var(--border);
+        border-radius: 1.25rem;
+        padding: 1.75rem;
+        transition: transform .3s ease, border-color .3s ease;
+    }
+    .curio-card:hover { border-color: rgba(255,190,0,.3); }
+    .curio-hint {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+        color: var(--muted-dim);
+    }
+    @media (min-width: 768px) {
+        .curio-track { display: block; overflow: visible; padding: 0; }
+        .curio-card { width: auto; border: 0; border-radius: 0; padding: 0; }
+        .curio-card:hover { border-color: transparent; }
+    }
+}
 
 /* ============================================================
    RESPONSIVE
    ============================================================ */
-@media (max-width: 640px) {
-    .article-gallery { grid-template-columns: 1fr; }
-    .article-gallery-item.is-wide { aspect-ratio: 4/3; }
-}
-
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }

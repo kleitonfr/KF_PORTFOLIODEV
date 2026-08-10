@@ -1,14 +1,16 @@
-<section id="depoimentos" class="flow-depoimentos px-6 py-24 md:px-12">
+<section id="depoimentos" class="border-b border-border bg-surface px-6 py-24 md:px-12 md:py-32">
     <div class="mx-auto max-w-6xl">
-        <div class="reveal mb-4 text-center">
-            <span class="eyebrow">Quem viveu de perto</span>
-            <h2 class="section-title mt-4">Depoimentos</h2>
+        <div class="reveal">
+            <x-section-label index="02">Quem viveu de perto</x-section-label>
         </div>
-        <p class="reveal mx-auto mb-12 max-w-2xl text-center text-sm leading-7 text-muted">
-            Mensagens reais de gestão, time e hackathon. Clique para ampliar e ler na íntegra.
+        <h2 class="reveal mt-6 max-w-3xl text-4xl font-extrabold text-balance text-ink md:text-6xl">
+            Depoimentos
+        </h2>
+        <p class="reveal mt-5 max-w-2xl text-muted">
+            Mensagens reais de gestão, time e hackathon — os prints originais, sem edição. Clique para ampliar.
         </p>
 
-        <div class="reveal comments-grid">
+        <div class="reveal comments-grid mt-14">
             @foreach ($testimonials as $testimonial)
                 <div class="comment-item">
                     <button

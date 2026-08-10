@@ -1,0 +1,37 @@
+@props(['contact' => []])
+
+<section id="contato" class="bg-bg px-6 py-24 md:px-12 md:py-32">
+    <div class="mx-auto max-w-6xl">
+        <div class="reveal">
+            <x-section-label index="04">Vamos trabalhar juntos?</x-section-label>
+        </div>
+        <h2 class="reveal mt-6 max-w-3xl text-4xl font-extrabold text-balance text-ink md:text-7xl">
+            Fale <span class="text-spectrum">comigo</span>
+        </h2>
+        <p class="reveal mt-5 max-w-xl text-muted">
+            Aberto a projetos, parcerias e oportunidades que envolvam tecnologia com propósito.
+        </p>
+
+        <div class="reveal mt-12 grid gap-4 md:grid-cols-2">
+            @if(!empty($contact['email']))
+                <a href="mailto:{{ $contact['email'] }}" class="group flex items-center justify-between rounded-2xl border border-border bg-surface p-8 transition-colors hover:border-sun">
+                    <span>
+                        <span class="label-mono block">E-mail</span>
+                        <span class="mt-2 block break-all font-display text-lg font-bold text-ink">{{ $contact['email'] }}</span>
+                    </span>
+                    <span class="text-xl text-sun transition-transform group-hover:translate-x-1">&rarr;</span>
+                </a>
+            @endif
+
+            @if(!empty($contact['whatsapp']))
+                <a href="{{ $contact['whatsapp'] }}" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between rounded-2xl border border-border bg-surface p-8 transition-colors hover:border-aqua">
+                    <span>
+                        <span class="label-mono block">WhatsApp</span>
+                        <span class="mt-2 block font-display text-lg font-bold text-ink">Conversa direta</span>
+                    </span>
+                    <span class="text-xl text-aqua transition-transform group-hover:translate-x-1">&rarr;</span>
+                </a>
+            @endif
+        </div>
+    </div>
+</section>

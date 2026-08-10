@@ -90,7 +90,7 @@ class ProjectSeeder extends Seeder
                 'is_featured' => true,
                 'is_award' => false,
                 'award_label' => null,
-                'position' => 2,
+                'position' => 4,
             ],
 
             // ─────────────────────────────────────────────────────────────
@@ -115,8 +115,13 @@ class ProjectSeeder extends Seeder
                 'result' => 'Portal em produção com navegação sem dropdowns, home com 6 constelações animadas, roadmap com timeline vertical imersiva, sistema de artigos funcional e acessibilidade completa (VLibras, alto contraste, controle de fonte, semântica HTML e ARIA).',
                 'learnings' => 'Este projeto foi, acima de tudo, um exercício de transformar complexidade em clareza — mostrar que um redesign de portal público pode ir muito além da estética, criando um universo visual capaz de tornar conceitos estratégicos complexos em algo intuitivo, memorável e humano.',
                 'tags' => json_encode(['HTML', 'CSS (Mobile First)', 'JavaScript', 'PHP/Laravel', 'JSON-LD']),
-                'image' => 'img/estrategiaDigital/imageComoEraAntes (1).png',
+                'image' => 'img/estrategiaDigital/recenteCapa01.png',
                 'gallery' => json_encode([
+                    ['path' => 'img/estrategiaDigital/recenteCapa01.png', 'type' => 'cover', 'caption' => 'Home — versão atual, com constelações dos eixos estratégicos'],
+                    ['path' => 'img/estrategiaDigital/recente02.png', 'type' => 'screenshot', 'caption' => 'Constelação de eixo estratégico'],
+                    ['path' => 'img/estrategiaDigital/recente03.png', 'type' => 'screenshot', 'caption' => 'Roadmap — timeline vertical imersiva'],
+                    ['path' => 'img/estrategiaDigital/recente04.png', 'type' => 'screenshot', 'caption' => 'Detalhe de iniciativa'],
+                    ['path' => 'img/estrategiaDigital/recente05.png', 'type' => 'screenshot', 'caption' => 'Sistema de artigos'],
                     ['path' => 'img/estrategiaDigital/imageComoEraAntes (1).png', 'type' => 'before_after', 'caption' => 'Home — versão anterior ao redesign'],
                     ['path' => 'img/estrategiaDigital/imageComoEraAntes (2).png', 'type' => 'before_after', 'caption' => 'Seção de eixos — versão anterior'],
                     ['path' => 'img/estrategiaDigital/imageComoEraAntes (3).png', 'type' => 'before_after', 'caption' => 'Roadmap — versão anterior'],
@@ -128,7 +133,7 @@ class ProjectSeeder extends Seeder
                 'is_featured' => true,
                 'is_award' => false,
                 'award_label' => null,
-                'position' => 3,
+                'position' => 2,
             ],
 
             // ─────────────────────────────────────────────────────────────
@@ -170,7 +175,7 @@ class ProjectSeeder extends Seeder
                 'is_featured' => false,
                 'is_award' => false,
                 'award_label' => null,
-                'position' => 4,
+                'position' => 5,
             ],
 
             // ─────────────────────────────────────────────────────────────
@@ -206,7 +211,7 @@ class ProjectSeeder extends Seeder
                 'is_featured' => false,
                 'is_award' => false,
                 'award_label' => null,
-                'position' => 5,
+                'position' => 6,
             ],
 
             // ─────────────────────────────────────────────────────────────
@@ -240,7 +245,7 @@ class ProjectSeeder extends Seeder
                 'is_featured' => false,
                 'is_award' => false,
                 'award_label' => null,
-                'position' => 6,
+                'position' => 3,
             ],
         ];
 
