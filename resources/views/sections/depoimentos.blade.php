@@ -7,7 +7,7 @@
             Depoimentos
         </h2>
         <p class="reveal mt-5 max-w-2xl text-muted">
-            Mensagens reais de gestão, time e hackathon — os prints originais, sem edição. Clique para ampliar.
+            Mensagens reais de gestão, time e hackathon
         </p>
 
         <div class="reveal comments-grid mt-14">
