@@ -44,8 +44,8 @@ class PortfolioController extends Controller
     private function montarContato(array $dadosDaPagina): array
     {
         return [
-            'email' => 'kleytonferreira9@gmail.com',
-            'whatsapp' => 'https://wa.me/5512981232278',
+            'email' => 'kleiton.sfr@gmail.com',
+            'whatsapp' => 'https://wa.me/5512997968787',
             'linkedin' => $dadosDaPagina['socialLinks'][1]['url'] ?? '',
             'github' => $dadosDaPagina['socialLinks'][0]['url'] ?? '',
             'location' => 'Caraguatatuba · São Paulo · Brasil',

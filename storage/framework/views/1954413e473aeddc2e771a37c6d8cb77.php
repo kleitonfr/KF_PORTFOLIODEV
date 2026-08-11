@@ -51,10 +51,10 @@ unset($__defined_vars, $__key, $__value); ?>
 <?php unset($__componentOriginal1289ed7a7566caee9d9374ccbe752a3b); ?>
 <?php endif; ?>
         </div>
-        <h2 class="reveal mt-6 max-w-3xl text-4xl font-extrabold text-balance text-ink md:text-7xl">
+        <h2 class="reveal mx-auto mt-6 max-w-3xl text-center text-4xl font-extrabold text-balance text-ink md:mx-0 md:text-left md:text-7xl">
             Fale <span class="text-spectrum">comigo</span>
         </h2>
-        <p class="reveal mt-5 max-w-xl text-muted">
+        <p class="reveal mx-auto mt-5 max-w-xl text-center text-muted md:mx-0 md:text-left">
             Aberto a projetos, parcerias e oportunidades que envolvam tecnologia com propósito.
         </p>
 

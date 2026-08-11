@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <div class="md:order-2">
+        <div class="text-center md:order-2 md:text-left">
             <p class="reveal label-mono">Desenvolvedor full stack</p>
 
             <h1 class="reveal mt-6 max-w-2xl text-4xl font-extrabold leading-[1.02] text-balance text-spectrum md:text-6xl lg:text-7xl">
@@ -26,7 +26,7 @@
                 na vida de cidadãos e no funcionamento de instituições públicas.
             </p>
 
-            <div class="reveal mt-9 flex flex-wrap gap-3" style="animation-delay:.1s">
+            <div class="reveal mt-9 flex flex-wrap justify-center gap-3 md:justify-start" style="animation-delay:.1s">
                 <a href="#projetos" class="btn-cta">Ver projetos</a>
                 <a href="{{ $contact['linkedin'] }}" target="_blank" rel="noopener noreferrer" class="btn-outline">
                     LinkedIn
@@ -53,9 +53,9 @@
 
 {{-- Stack — faixa monocromática, sem ícones, conforme diretriz de design do projeto --}}
 <section class="border-b border-border bg-surface px-6 py-10 md:px-12">
-    <div class="mx-auto flex max-w-6xl flex-wrap items-center gap-x-8 gap-y-4">
+    <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-4 md:justify-start">
         <span class="label-mono text-mutedDim">Stack</span>
-        @foreach (['Laravel', 'PHP', 'Python','JavaScript', 'HTML', 'CSS', 'MySQL', 'PostgreSQL', 'SQLite', 'Git', 'GitHub', 'Figma', 'Rest API'] as $tech)
+        @foreach (['Laravel', 'NestJS', 'PHP', 'Python','JavaScript', 'TypeScript', 'HTML', 'CSS', 'MySQL', 'PostgreSQL', 'SQLite', 'Git', 'GitHub', 'Figma', 'Rest API'] as $tech)
             <span class="text-sm font-semibold text-muted">{{ $tech }}</span>
         @endforeach
     </div>

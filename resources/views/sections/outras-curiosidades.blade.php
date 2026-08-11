@@ -7,10 +7,10 @@
         <div class="reveal">
             <x-section-label index="03">Outras curiosidades</x-section-label>
         </div>
-        <h2 class="reveal mt-6 max-w-3xl text-4xl font-extrabold text-balance text-ink md:text-6xl">
+        <h2 class="reveal mx-auto mt-6 max-w-3xl text-center text-4xl font-extrabold text-balance text-ink md:mx-0 md:text-left md:text-6xl">
             Minha jornada profissional
         </h2>
-        <p class="reveal mt-5 max-w-xl text-muted">
+        <p class="reveal mx-auto mt-5 max-w-xl text-center text-muted md:mx-0 md:text-left">
             Período a período, os passos que me trouxeram até aqui.
         </p>
         <div class="curio-track mt-10 md:mt-14 md:border-t md:border-border">

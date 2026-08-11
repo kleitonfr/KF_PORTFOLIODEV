@@ -3,10 +3,10 @@
         <div class="reveal">
             <x-section-label index="01">Projetos</x-section-label>
         </div>
-        <h2 class="reveal mt-6 max-w-3xl text-4xl font-extrabold text-balance text-ink md:text-6xl">
+        <h2 class="reveal mx-auto mt-6 max-w-3xl text-center text-4xl font-extrabold text-balance text-ink md:mx-0 md:text-left md:text-6xl">
             Cada card abre um estudo de caso completo
         </h2>
-        <p class="reveal mt-5 max-w-2xl text-muted">
+        <p class="reveal mx-auto mt-5 max-w-2xl text-center text-muted md:mx-0 md:text-left">
             Contexto, decisões de arquitetura, resultados e imagens reais em uma página dedicada por projeto.
         </p>
 

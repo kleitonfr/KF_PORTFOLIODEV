@@ -3,10 +3,10 @@
         <div class="reveal">
             <x-section-label index="02">Quem viveu de perto</x-section-label>
         </div>
-        <h2 class="reveal mt-6 max-w-3xl break-words text-4xl font-extrabold text-balance text-ink md:text-6xl">
+        <h2 class="reveal mx-auto mt-6 max-w-3xl break-words text-center text-4xl font-extrabold text-balance text-ink md:mx-0 md:text-left md:text-6xl">
             Depoimentos
         </h2>
-        <p class="reveal mt-5 max-w-2xl text-muted">
+        <p class="reveal mx-auto mt-5 max-w-2xl text-center text-muted md:mx-0 md:text-left">
             Mensagens reais de gestão, time e hackathon
         </p>
 

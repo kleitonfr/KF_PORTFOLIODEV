@@ -8,4 +8,6 @@
     @include('sections.projetos')
 
     @include('sections.outras-curiosidades', ['timeline' => $journey])
+
+    @include('sections.contato', ['contact' => $contact ?? []])
 </x-layouts.app>

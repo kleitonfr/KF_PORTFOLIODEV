@@ -28,7 +28,7 @@ foreach ($attributes->all() as $__key => $__value) {
 
 unset($__defined_vars, $__key, $__value); ?>
 
-<div <?php echo e($attributes->merge(['class' => 'flex items-center gap-4'])); ?>>
+<div <?php echo e($attributes->merge(['class' => 'flex items-center justify-center gap-4 md:justify-start'])); ?>>
     <span class="label-mono text-sun"><?php echo e($index); ?></span>
     <span class="h-px w-10 rule-spectrum opacity-60"></span>
     <span class="label-mono"><?php echo e($slot); ?></span>

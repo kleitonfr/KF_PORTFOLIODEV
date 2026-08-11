@@ -89,9 +89,9 @@ class PortfolioRepository implements PortfolioRepositoryInterface
     public function obterRedesSociais(): array
     {
         return [
-            ['label' => 'GitHub', 'url' => 'https://github.com/kleitonferreira', 'icon' => 'GH'],
-            ['label' => 'LinkedIn', 'url' => 'https://www.linkedin.com/in/kleiton-ferreira-a956b0155/', 'icon' => 'in'],
-            ['label' => 'E-mail', 'url' => 'mailto:kleytonferreira9@gmail.com', 'icon' => '@'],
+            ['label' => 'GitHub', 'url' => 'https://github.com/kleitonfr', 'icon' => 'GH'],
+            ['label' => 'LinkedIn', 'url' => 'https://www.linkedin.com/in/kleiton-ferreira', 'icon' => 'in'],
+            ['label' => 'E-mail', 'url' => 'mailto:kleiton.sfr@gmail.com', 'icon' => '@'],
         ];
     }
 
