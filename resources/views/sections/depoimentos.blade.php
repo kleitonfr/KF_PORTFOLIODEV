@@ -3,7 +3,7 @@
         <div class="reveal">
             <x-section-label index="02">Quem viveu de perto</x-section-label>
         </div>
-        <h2 class="reveal mt-6 max-w-3xl text-4xl font-extrabold text-balance text-ink md:text-6xl">
+        <h2 class="reveal mt-6 max-w-3xl break-words text-4xl font-extrabold text-balance text-ink md:text-6xl">
             Depoimentos
         </h2>
         <p class="reveal mt-5 max-w-2xl text-muted">

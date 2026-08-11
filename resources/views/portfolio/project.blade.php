@@ -77,6 +77,30 @@
 
             <div class="mt-16 space-y-14">
 
+                {{-- Galeria de imagens (exclui a capa, já exibida no topo) — vem antes do texto --}}
+                @php
+                    $galleryItems = collect($project['gallery'] ?? [])
+                        ->filter(fn ($item) => ($item['path'] ?? null) !== ($project['image'] ?? null))
+                        ->values();
+                @endphp
+                @if($galleryItems->isNotEmpty())
+                    <section>
+                        <h2 class="text-2xl font-bold text-ink">Galeria</h2>
+                        <div class="mt-4 grid gap-4 sm:grid-cols-2">
+                            @foreach ($galleryItems as $item)
+                                <figure>
+                                    <div class="overflow-hidden rounded-2xl border border-border {{ ($item['type'] ?? null) === 'before_after' ? 'sm:col-span-2 aspect-video' : 'aspect-[4/3]' }}">
+                                        <img src="{{ asset($item['path']) }}" alt="{{ $item['caption'] ?? $project['title'] }}" loading="lazy" class="h-full w-full object-cover">
+                                    </div>
+                                    @if(!empty($item['caption']))
+                                        <figcaption class="label-mono mt-2 text-center !normal-case !tracking-normal text-mutedDim">{{ $item['caption'] }}</figcaption>
+                                    @endif
+                                </figure>
+                            @endforeach
+                        </div>
+                    </section>
+                @endif
+
                 @if(!empty($project['description']))
                     <section>
                         <h2 class="text-2xl font-bold text-ink">Visão geral</h2>
@@ -112,30 +136,6 @@
                         <h2 class="text-2xl font-bold text-ink">Demonstração</h2>
                         <div class="mt-4 overflow-hidden rounded-2xl border border-border">
                             <video src="{{ asset($project['video']) }}" controls preload="metadata" class="w-full"></video>
-                        </div>
-                    </section>
-                @endif
-
-                {{-- Galeria de imagens (exclui a capa, já exibida no topo) --}}
-                @php
-                    $galleryItems = collect($project['gallery'] ?? [])
-                        ->filter(fn ($item) => ($item['path'] ?? null) !== ($project['image'] ?? null))
-                        ->values();
-                @endphp
-                @if($galleryItems->isNotEmpty())
-                    <section>
-                        <h2 class="text-2xl font-bold text-ink">Galeria</h2>
-                        <div class="mt-4 grid gap-4 sm:grid-cols-2">
-                            @foreach ($galleryItems as $item)
-                                <figure>
-                                    <div class="overflow-hidden rounded-2xl border border-border {{ ($item['type'] ?? null) === 'before_after' ? 'sm:col-span-2 aspect-video' : 'aspect-[4/3]' }}">
-                                        <img src="{{ asset($item['path']) }}" alt="{{ $item['caption'] ?? $project['title'] }}" loading="lazy" class="h-full w-full object-cover">
-                                    </div>
-                                    @if(!empty($item['caption']))
-                                        <figcaption class="label-mono mt-2 text-center !normal-case !tracking-normal text-mutedDim">{{ $item['caption'] }}</figcaption>
-                                    @endif
-                                </figure>
-                            @endforeach
                         </div>
                     </section>
                 @endif

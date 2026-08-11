@@ -21,11 +21,11 @@
 <?php unset($__componentOriginal1289ed7a7566caee9d9374ccbe752a3b); ?>
 <?php endif; ?>
         </div>
-        <h2 class="reveal mt-6 max-w-3xl text-4xl font-extrabold text-balance text-ink md:text-6xl">
+        <h2 class="reveal mt-6 max-w-3xl break-words text-4xl font-extrabold text-balance text-ink md:text-6xl">
             Depoimentos
         </h2>
         <p class="reveal mt-5 max-w-2xl text-muted">
-            Mensagens reais de gestão, time e hackathon — os prints originais, sem edição. Clique para ampliar.
+            Mensagens reais de gestão, time e hackathon
         </p>
 
         <div class="reveal comments-grid mt-14">

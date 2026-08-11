@@ -13,8 +13,6 @@
         <p class="reveal mt-5 max-w-xl text-muted">
             Período a período, os passos que me trouxeram até aqui.
         </p>
-        <p class="curio-hint reveal mt-6 md:hidden">&larr; arraste &rarr;</p>
-
         <div class="curio-track mt-10 md:mt-14 md:border-t md:border-border">
             @foreach($steps as $step)
                 <div class="curio-card reveal md:grid md:grid-cols-12 md:gap-6 md:border-b md:border-border md:py-10">

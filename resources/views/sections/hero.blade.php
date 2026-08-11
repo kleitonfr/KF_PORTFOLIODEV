@@ -1,4 +1,4 @@
-<section id="hero" class="relative overflow-hidden border-b border-border bg-bg px-6 pb-20 pt-16 md:px-12 md:pb-28 md:pt-24">
+<section id="hero" class="relative overflow-hidden border-b border-border bg-bg px-6 pb-20 pt-24 md:px-12 md:pb-28 md:pt-24">
     <div
         aria-hidden="true"
         class="pointer-events-none absolute -top-40 left-[-10%] h-[32rem] w-[32rem] rounded-full rule-spectrum opacity-20 blur-[120px]"
@@ -33,17 +33,17 @@
                 </a>
             </div>
 
-            <dl class="reveal mt-14 grid grid-cols-1 gap-8 border-t border-border pt-10 sm:grid-cols-3" style="animation-delay:.15s">
+            <dl class="reveal mt-14 grid grid-cols-1 gap- border-t border-border pt-10 sm:grid-cols-3" style="animation-delay:.15s">
                 <div>
-                    <dt class="font-display text-3xl font-extrabold text-ink md:text-4xl">#1</dt>
+                    <dt class="font-display text-3xl font-extrabold text-ink md:text-3xl">#1</dt>
                     <dd class="mt-2 text-sm leading-relaxed text-muted">Ranking em atendimentos<br>3 meses seguidos</dd>
                 </div>
                 <div>
-                    <dt class="font-display text-3xl font-extrabold text-sun md:text-4xl">Prêmio</dt>
+                    <dt class="font-display text-3xl  font-extrabold text-sun md:text-3xl">Prêmio</dt>
                     <dd class="mt-2 text-sm leading-relaxed text-muted">InovaCidade<br>Iniciativas 2026</dd>
                 </div>
                 <div>
-                    <dt class="font-display text-3xl font-extrabold text-ink md:text-4xl">4</dt>
+                    <dt class="font-display text-3xl font-extrabold text-ink md:text-3xl">4</dt>
                     <dd class="mt-2 text-sm leading-relaxed text-muted">Sistemas em<br>produção real</dd>
                 </div>
             </dl>
@@ -55,7 +55,7 @@
 <section class="border-b border-border bg-surface px-6 py-10 md:px-12">
     <div class="mx-auto flex max-w-6xl flex-wrap items-center gap-x-8 gap-y-4">
         <span class="label-mono text-mutedDim">Stack</span>
-        @foreach (['Laravel', 'PHP', 'JavaScript', 'HTML', 'CSS', 'MySQL', 'PostgreSQL', 'SQLite', 'Git', 'GitHub', 'Figma'] as $tech)
+        @foreach (['Laravel', 'PHP', 'Python','JavaScript', 'HTML', 'CSS', 'MySQL', 'PostgreSQL', 'SQLite', 'Git', 'GitHub', 'Figma', 'Rest API'] as $tech)
             <span class="text-sm font-semibold text-muted">{{ $tech }}</span>
         @endforeach
     </div>

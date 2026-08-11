@@ -37,10 +37,10 @@ class ProjectSeeder extends Seeder
                 'gallery' => json_encode([
                     ['path' => 'img/lgpd360/image (1).png', 'type' => 'cover', 'caption' => 'Página inicial do portal'],
                     ['path' => 'img/lgpd360/image (2).png', 'type' => 'screenshot', 'caption' => 'Consulta de dados pessoais'],
-                    ['path' => 'img/lgpd360/image (3).png', 'type' => 'screenshot', 'caption' => 'Painel de adequação por secretaria'],
-                    ['path' => 'img/lgpd360/image (4).png', 'type' => 'screenshot', 'caption' => 'Página educativa sobre a LGPD'],
-                    ['path' => 'img/lgpd360/1780945314933.jpg', 'type' => 'detail', 'caption' => 'Detalhe de interface'],
-                    ['path' => 'img/lgpd360/1782323272578.jpg', 'type' => 'detail', 'caption' => 'Detalhe de interface'],
+                    ['path' => 'img/lgpd360/image (3).png', 'type' => 'screenshot', 'caption' => 'Página educativa sobre a LGPD'],
+                    ['path' => 'img/lgpd360/image (4).png', 'type' => 'screenshot', 'caption' => 'Canal de comunicação com o DPO'],
+                    ['path' => 'img/lgpd360/1780945314933.jpg', 'type' => 'detail', 'caption' => 'Apresentação do projeto'],
+                    ['path' => 'img/lgpd360/1782323272578.jpg', 'type' => 'detail', 'caption' => 'Prêmio InovaCidade · Iniciativas 2026'],
                 ]),
                 'video' => null,
                 'external_url' => 'https://lgpd360.caraguatatuba.sp.gov.br/',
@@ -79,11 +79,11 @@ class ProjectSeeder extends Seeder
                     ['path' => 'img/mapeamentoLGPD/image1.png', 'type' => 'cover', 'caption' => 'Visão geral do sistema'],
                     ['path' => 'img/mapeamentoLGPD/image2.png', 'type' => 'screenshot', 'caption' => 'Gestão de registros ROPA'],
                     ['path' => 'img/mapeamentoLGPD/image3.png', 'type' => 'screenshot', 'caption' => 'Relatório de Impacto (RIPD)'],
-                    ['path' => 'img/mapeamentoLGPD/image4.png', 'type' => 'screenshot', 'caption' => 'Matriz de riscos'],
+                    ['path' => 'img/mapeamentoLGPD/image4.png', 'type' => 'screenshot', 'caption' => 'Painel de cadastro'],
                     ['path' => 'img/mapeamentoLGPD/image5.png', 'type' => 'screenshot', 'caption' => 'Sistema de pendências'],
                     ['path' => 'img/mapeamentoLGPD/image6.png', 'type' => 'detail', 'caption' => 'Detalhe de interface'],
                 ]),
-                'video' => null,
+                'video' => 'img/mapeamentoLGPD/WhatsApp Video 2026-08-11 at 19.20.39.mp4',
                 'external_url' => null,
                 'linkedin_url' => null,
                 'repo_url' => null,
@@ -119,9 +119,9 @@ class ProjectSeeder extends Seeder
                 'gallery' => json_encode([
                     ['path' => 'img/estrategiaDigital/recenteCapa01.png', 'type' => 'cover', 'caption' => 'Home — versão atual, com constelações dos eixos estratégicos'],
                     ['path' => 'img/estrategiaDigital/recente02.png', 'type' => 'screenshot', 'caption' => 'Constelação de eixo estratégico'],
-                    ['path' => 'img/estrategiaDigital/recente03.png', 'type' => 'screenshot', 'caption' => 'Roadmap — timeline vertical imersiva'],
-                    ['path' => 'img/estrategiaDigital/recente04.png', 'type' => 'screenshot', 'caption' => 'Detalhe de iniciativa'],
-                    ['path' => 'img/estrategiaDigital/recente05.png', 'type' => 'screenshot', 'caption' => 'Sistema de artigos'],
+                    ['path' => 'img/estrategiaDigital/recente03.png', 'type' => 'screenshot', 'caption' => 'Demonstração dos eixos estratégicos'],
+                    ['path' => 'img/estrategiaDigital/recente04.png', 'type' => 'screenshot', 'caption' => 'Início do roteiro digital'],
+                    ['path' => 'img/estrategiaDigital/recente05.png', 'type' => 'screenshot', 'caption' => 'Roadmap — timeline vertical imersiva'],
                     ['path' => 'img/estrategiaDigital/imageComoEraAntes (1).png', 'type' => 'before_after', 'caption' => 'Home — versão anterior ao redesign'],
                     ['path' => 'img/estrategiaDigital/imageComoEraAntes (2).png', 'type' => 'before_after', 'caption' => 'Seção de eixos — versão anterior'],
                     ['path' => 'img/estrategiaDigital/imageComoEraAntes (3).png', 'type' => 'before_after', 'caption' => 'Roadmap — versão anterior'],
@@ -137,27 +137,27 @@ class ProjectSeeder extends Seeder
             ],
 
             // ─────────────────────────────────────────────────────────────
-            // 4. nestFlorestal — informação limitada (fonte externa resumida)
+            // 4. Nest Florestal — API de fiscalização ambiental (NestJS)
             // ─────────────────────────────────────────────────────────────
             [
                 'slug' => 'nest-florestal',
                 'title' => 'Nest Florestal',
-                'subtitle' => 'Sistema de gestão e monitoramento florestal',
+                'subtitle' => 'API de fiscalização e monitoramento ambiental',
                 'role' => 'Desenvolvedor Backend',
-                'year' => null,
+                'year' => '2025',
                 'status' => 'Privado',
                 'client' => null,
-                'excerpt' => 'API robusta para controle de recursos naturais e processos ambientais, construída com NestJS.',
-                'description' => 'Sistema de gestão e monitoramento florestal desenvolvido com NestJS, com foco em uma API robusta para controle de recursos naturais e processos ambientais.',
-                'context' => null,
-                'problem' => null,
-                'objective' => null,
-                'solution' => null,
-                'process' => null,
-                'decisions' => null,
-                'result' => null,
-                'learnings' => null,
-                'tags' => json_encode(['NestJS', 'TypeScript', 'Prisma', 'PostgreSQL']),
+                'excerpt' => 'API REST para gestão de fiscalização ambiental e florestal, construída com NestJS — autenticação e autorização em camadas com JWT e Guards, persistência via Prisma e modelagem de fiscais, infrações e relatórios.',
+                'description' => 'O Nest Florestal é uma API backend para gerenciamento de fiscalização e ocorrências ambientais/florestais: permite que fiscais autenticados registrem relatórios de infrações, associando cada ocorrência a um responsável, um tipo de infração, local, data e um texto descritivo, com enquadramento administrativo e penal.',
+                'context' => 'Fiscalização ambiental depende do registro estruturado de ocorrências — associar cada infração a um fiscal responsável, um tipo de infração, local, data e um relatório descritivo — para viabilizar acompanhamento, auditoria e enquadramento administrativo ou penal.',
+                'problem' => 'Processos de registro de ocorrências ambientais tendem a ser manuais e descentralizados, sem uma base única que relacione fiscais, infrações e relatórios de forma consistente e consultável.',
+                'objective' => 'Construir uma API REST que centralize a fiscalização ambiental: cadastro de infrações, emissão de relatórios por fiscais autenticados e um modelo de dados auditável para as ocorrências.',
+                'solution' => 'Modelei o domínio em três entidades centrais — fiscal, infração e relatório —, com o relatório mediando a relação entre fiscal e infração (um fiscal emite vários relatórios; uma infração pode estar associada a vários relatórios). Cada infração carrega categoria, tags, procedimentos administrativos/operacionais e enquadramento penal e administrativo; cada relatório registra local, data, observações e o texto da ocorrência.',
+                'process' => 'A API foi construída em NestJS com arquitetura modular — autenticação, usuários e acesso a dados isolados em módulos próprios em vez de um controller único. A autenticação usa JWT com Passport (estratégias local e JWT) e senhas com bcrypt; um `JwtAuthGuard` está configurado como guard global, protegendo toda rota por padrão. Guards e decorators dedicados (`admin.guard`, `self.guard`, `is-admin`, `is-self`) tratam os diferentes níveis de autorização, com um middleware específico para validação de CPF.',
+                'decisions' => 'Optei pelo Prisma como ORM sobre MySQL, com schema versionado por migration e um seed para dados iniciais, em vez de depender de criação manual do banco. Centralizar autorização em guards e decorators — ao invés de checagens condicionais espalhadas pelos controllers — manteve essa regra em um único lugar, testável isoladamente.',
+                'result' => 'API funcional com módulos de autenticação, usuários e persistência via Prisma, cobertura de testes unitários e end-to-end (Jest e Supertest) para os componentes de autenticação, e scripts próprios para lint, build e análise de cobertura.',
+                'learnings' => 'Aprofundei na prática a separação entre autenticação e autorização com guards e decorators do NestJS, e as vantagens de proteger rotas por padrão — com exceções explícitas — em vez de proteger caso a caso.',
+                'tags' => json_encode(['NestJS', 'TypeScript', 'Prisma', 'MySQL', 'JWT']),
                 'image' => 'img/nestFlorestal/app1.jpeg',
                 'gallery' => json_encode([
                     ['path' => 'img/nestFlorestal/app1.jpeg', 'type' => 'cover', 'caption' => null],
@@ -215,29 +215,33 @@ class ProjectSeeder extends Seeder
             ],
 
             // ─────────────────────────────────────────────────────────────
-            // 6. Vaga Fácil — ESTRUTURA PRONTA, CONTEÚDO PENDENTE (.txt)
+            // 6. Vaga Fácil — Central de Vagas Escolares (Hackathon IFSP 2026)
             // ─────────────────────────────────────────────────────────────
             [
                 'slug' => 'vaga-facil',
                 'title' => 'Vaga Fácil',
-                'subtitle' => null, // TODO: preencher com o .txt
-                'role' => null,
-                'year' => null,
-                'status' => null,
+                'subtitle' => 'Central de Vagas Escolares',
+                'role' => 'Desenvolvedor Full Stack',
+                'year' => '2026',
+                'status' => 'Protótipo — Hackathon IFSP 2026',
                 'client' => null,
-                'excerpt' => null, // TODO
-                'description' => null, // TODO
-                'context' => null, // TODO
-                'problem' => null, // TODO
-                'objective' => null, // TODO
-                'solution' => null, // TODO
-                'process' => null, // TODO
-                'decisions' => null, // TODO
-                'result' => null, // TODO
-                'learnings' => null, // TODO
-                'tags' => json_encode([]), // TODO
-                'image' => null,
-                'gallery' => json_encode([]),
+                'excerpt' => 'Plataforma desenvolvida em equipe durante o Hackathon IFSP 2026 para facilitar o acesso a vagas da rede municipal de ensino de Caraguatatuba: consulta pública por região, mapa interativo e pré-inscrição, com um painel administrativo para gestão de vagas, alunos e listas de espera.',
+                'description' => 'O Vaga Fácil é uma central de vagas escolares construída durante o Hackathon IFSP 2026. Permite que pais e responsáveis consultem escolas e vagas disponíveis por região, bairro e série, visualizem as unidades em um mapa interativo e façam a pré-inscrição de alunos — enquanto a Secretaria de Educação e as unidades escolares ganham uma área administrativa para gerenciar vagas, alunos e listas de espera, com classificação automática baseada em critérios definidos pelo sistema.',
+                'context' => 'O acesso a vagas na rede municipal de ensino costuma depender de contato direto com cada escola ou com a Secretaria, sem um canal digital único de consulta por região, bairro ou série.',
+                'problem' => 'Pais e responsáveis não tinham como visualizar de forma centralizada quais escolas tinham vagas disponíveis, e a gestão escolar não contava com uma ferramenta própria para administrar vagas, alunos e listas de espera de forma automatizada.',
+                'objective' => 'Construir, nas 30 horas do hackathon, uma plataforma que unisse consulta pública de vagas com um painel administrativo completo para a gestão escolar — incluindo classificação automática de listas de espera.',
+                'solution' => 'A equipe implementou consulta pública com filtros por região, bairro e série, visualização das unidades em mapa interativo e um fluxo de pré-inscrição de alunos. Do lado administrativo, a Secretaria e as escolas ganharam um painel para gerenciar vagas, alunos e listas de espera, com classificação automática dos alunos conforme critérios definidos pelo sistema e controle de acesso conforme o perfil de cada usuário.',
+                'process' => null,
+                'decisions' => null,
+                'result' => 'Protótipo funcional apresentado ao final do Hackathon IFSP 2026, cobrindo consulta pública com mapa interativo e um painel administrativo com gestão de vagas, alunos e listas de espera.',
+                'learnings' => null,
+                'tags' => json_encode(['PHP', 'Laravel 13', 'Livewire 3', 'Alpine.js', 'Tailwind CSS 4', 'MySQL', 'Laravel Jetstream', 'Sanctum']),
+                'image' => 'img/vagaFacil/capa.jpg',
+                'gallery' => json_encode([
+                    ['path' => 'img/vagaFacil/capa.jpg', 'type' => 'cover', 'caption' => null],
+                    ['path' => 'img/vagaFacil/1783401851443.jpg', 'type' => 'screenshot', 'caption' => null],
+                    ['path' => 'img/vagaFacil/WhatsApp Image 2026-08-11 at 19.13.57.jpeg', 'type' => 'screenshot', 'caption' => null],
+                ]),
                 'video' => 'img/vagaFacil/Gravação de Tela 2026-07-05 222436.mp4',
                 'external_url' => null,
                 'linkedin_url' => 'https://www.linkedin.com/posts/kleiton-ferreira_hackathon-ifsp-ugcPost-7480129526455402496-ARIQ/',

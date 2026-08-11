@@ -180,30 +180,20 @@
        ============================================================ */
     .curio-track {
         display: flex;
+        flex-direction: column;
         gap: 1.25rem;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
         padding: .5rem .25rem 1.5rem;
-        scrollbar-width: thin;
     }
     .curio-card {
-        scroll-snap-align: start;
-        flex: 0 0 auto;
-        width: 86%;
+        width: 100%;
         border: 1px solid var(--border);
         border-radius: 1.25rem;
         padding: 1.75rem;
         transition: transform .3s ease, border-color .3s ease;
     }
     .curio-card:hover { border-color: rgba(255,190,0,.3); }
-    .curio-hint {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
-        color: var(--muted-dim);
-    }
     @media (min-width: 768px) {
-        .curio-track { display: block; overflow: visible; padding: 0; }
+        .curio-track { display: block; padding: 0; }
         .curio-card { width: auto; border: 0; border-radius: 0; padding: 0; }
         .curio-card:hover { border-color: transparent; }
     }
