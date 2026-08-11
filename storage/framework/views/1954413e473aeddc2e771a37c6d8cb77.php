@@ -1,46 +1,83 @@
-<section id="contato" class="relative overflow-hidden bg-ink px-6 py-24 md:px-12">
-    <div class="pointer-events-none absolute right-0 top-0 h-96 w-96 rounded-full opacity-10" style="background:radial-gradient(#FFBE00,transparent);transform:translate(30%,-30%)"></div>
-    <div class="pointer-events-none absolute bottom-0 left-0 h-80 w-80 rounded-full opacity-10" style="background:radial-gradient(#00D4E8,transparent);transform:translate(-30%,30%)"></div>
-    <div class="pointer-events-none absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-5" style="background:radial-gradient(#FF6B9D,transparent)"></div>
+<?php $attributes ??= new \Illuminate\View\ComponentAttributeBag;
 
-    <div class="relative z-10 mx-auto max-w-3xl text-center">
+$__newAttributes = [];
+$__propNames = \Illuminate\View\ComponentAttributeBag::extractPropNames((['contact' => []]));
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (in_array($__key, $__propNames)) {
+        $$__key = $$__key ?? $__value;
+    } else {
+        $__newAttributes[$__key] = $__value;
+    }
+}
+
+$attributes = new \Illuminate\View\ComponentAttributeBag($__newAttributes);
+
+unset($__propNames);
+unset($__newAttributes);
+
+foreach (array_filter((['contact' => []]), 'is_string', ARRAY_FILTER_USE_KEY) as $__key => $__value) {
+    $$__key = $$__key ?? $__value;
+}
+
+$__defined_vars = get_defined_vars();
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (array_key_exists($__key, $__defined_vars)) unset($$__key);
+}
+
+unset($__defined_vars, $__key, $__value); ?>
+
+<section id="contato" class="bg-bg px-6 py-24 md:px-12 md:py-32">
+    <div class="mx-auto max-w-6xl">
         <div class="reveal">
-            <span class="mb-4 inline-block font-mono text-xs uppercase tracking-[0.3em] text-sun/70">
-                Vamos trabalhar juntos?
-            </span>
-            <h2 class="mb-6 font-display text-5xl font-extrabold text-white md:text-6xl">Fale comigo</h2>
-            <p class="mx-auto mb-12 max-w-xl text-lg leading-relaxed text-white/60">
-                Aberto a projetos, parcerias e oportunidades que envolvam tecnologia com propósito.
-            </p>
+            <?php if (isset($component)) { $__componentOriginal1289ed7a7566caee9d9374ccbe752a3b = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal1289ed7a7566caee9d9374ccbe752a3b = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.section-label','data' => ['index' => '04']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('section-label'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['index' => '04']); ?>Vamos trabalhar juntos? <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal1289ed7a7566caee9d9374ccbe752a3b)): ?>
+<?php $attributes = $__attributesOriginal1289ed7a7566caee9d9374ccbe752a3b; ?>
+<?php unset($__attributesOriginal1289ed7a7566caee9d9374ccbe752a3b); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal1289ed7a7566caee9d9374ccbe752a3b)): ?>
+<?php $component = $__componentOriginal1289ed7a7566caee9d9374ccbe752a3b; ?>
+<?php unset($__componentOriginal1289ed7a7566caee9d9374ccbe752a3b); ?>
+<?php endif; ?>
+        </div>
+        <h2 class="reveal mt-6 max-w-3xl text-4xl font-extrabold text-balance text-ink md:text-7xl">
+            Fale <span class="text-spectrum">comigo</span>
+        </h2>
+        <p class="reveal mt-5 max-w-xl text-muted">
+            Aberto a projetos, parcerias e oportunidades que envolvam tecnologia com propósito.
+        </p>
 
-            <div class="mb-12 flex flex-wrap justify-center gap-4">
-                <a href="mailto:<?php echo e($contact['email']); ?>" class="rounded-full bg-sun px-6 py-3 font-semibold text-ink transition hover:-translate-y-1">
-                    ✉️ <?php echo e($contact['email']); ?>
-
+        <div class="reveal mt-12 grid gap-4 md:grid-cols-2">
+            <?php if(!empty($contact['email'])): ?>
+                <a href="mailto:<?php echo e($contact['email']); ?>" class="group flex items-center justify-between rounded-2xl border border-border bg-surface p-8 transition-colors hover:border-sun">
+                    <span>
+                        <span class="label-mono block">E-mail</span>
+                        <span class="mt-2 block break-all font-display text-lg font-bold text-ink"><?php echo e($contact['email']); ?></span>
+                    </span>
+                    <span class="text-xl text-sun transition-transform group-hover:translate-x-1">&rarr;</span>
                 </a>
-                <a href="<?php echo e($contact['whatsapp']); ?>" target="_blank" rel="noopener noreferrer" class="rounded-full border border-white/15 bg-white/10 px-6 py-3 font-semibold text-white transition hover:-translate-y-1">
-                    💬 WhatsApp
+            <?php endif; ?>
+
+            <?php if(!empty($contact['whatsapp'])): ?>
+                <a href="<?php echo e($contact['whatsapp']); ?>" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between rounded-2xl border border-border bg-surface p-8 transition-colors hover:border-aqua">
+                    <span>
+                        <span class="label-mono block">WhatsApp</span>
+                        <span class="mt-2 block font-display text-lg font-bold text-ink">Conversa direta</span>
+                    </span>
+                    <span class="text-xl text-aqua transition-transform group-hover:translate-x-1">&rarr;</span>
                 </a>
-            </div>
-
-            <div class="flex justify-center gap-5">
-                <a href="<?php echo e($contact['linkedin']); ?>" target="_blank" rel="noopener noreferrer" class="social-icon" title="LinkedIn">
-                    <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                </a>
-
-                <a href="<?php echo e($contact['github']); ?>" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub">
-                    <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
-                        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-                    </svg>
-                </a>
-            </div>
-
-            <p class="mt-12 font-mono text-xs uppercase tracking-[0.3em] text-white/20">
-                <?php echo e($contact['location']); ?> &middot; <?php echo e(date('Y')); ?>
-
-            </p>
+            <?php endif; ?>
         </div>
     </div>
 </section>

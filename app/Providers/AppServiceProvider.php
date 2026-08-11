@@ -18,9 +18,4 @@ class AppServiceProvider extends ServiceProvider
             return new PortfolioService($app->make(PortfolioRepositoryInterface::class));
         });
     }
-
-    public function boot(): void
-    {
-        
-    }
 }

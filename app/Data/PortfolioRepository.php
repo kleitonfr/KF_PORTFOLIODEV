@@ -7,24 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class PortfolioRepository implements PortfolioRepositoryInterface
 {
-    public function getHeroData(): array
-    {
-        return [
-            'name' => 'Kleiton Ferreira',
-            'role' => 'Desenvolvedor Full Stack & Designer',
-            'headline' => 'Transformo problemas reais em experiências digitais claras, acessíveis e com impacto social.',
-            'location' => 'Caraguatatuba · São Paulo',
-            'avatar' => null,
-            'highlights' => [
-                ['value' => 'Laravel', 'label' => 'Laravel', 'icon' => '⚙️'],
-                ['value' => 'Tailwind', 'label' => 'Tailwind', 'icon' => '🎨'],
-                ['value' => 'Livewire', 'label' => 'Livewire', 'icon' => '⚡'],
-                ['value' => 'SQLite', 'label' => 'SQLite', 'icon' => '🗄️'],
-            ],
-        ];
-    }
-
-    public function getJourneyItems(): array
+    public function obterItensDaJornada(): array
     {
         return [
             [
@@ -89,21 +72,21 @@ class PortfolioRepository implements PortfolioRepositoryInterface
         ];
     }
 
-    public function getProjects(): array
+    public function obterProjetos(): array
     {
-        return DB::connection('sqlite')->table('projects')->orderBy('position')->get()->map(function ($project) {
-            return $this->mapProject($project);
+        return DB::connection('sqlite')->table('projects')->orderBy('position')->get()->map(function ($projeto) {
+            return $this->mapearProjeto($projeto);
         })->all();
     }
 
-    public function getProjectBySlug(string $slug): ?array
+    public function obterProjetoPorSlug(string $slug): ?array
     {
-        $project = DB::connection('sqlite')->table('projects')->where('slug', $slug)->first();
+        $projeto = DB::connection('sqlite')->table('projects')->where('slug', $slug)->first();
 
-        return $project ? $this->mapProject($project) : null;
+        return $projeto ? $this->mapearProjeto($projeto) : null;
     }
 
-    public function getSocialLinks(): array
+    public function obterRedesSociais(): array
     {
         return [
             ['label' => 'GitHub', 'url' => 'https://github.com/kleitonferreira', 'icon' => 'GH'],
@@ -112,7 +95,7 @@ class PortfolioRepository implements PortfolioRepositoryInterface
         ];
     }
 
-    public function getTestimonials(): array
+    public function obterDepoimentos(): array
     {
         return [
             [
@@ -130,47 +113,47 @@ class PortfolioRepository implements PortfolioRepositoryInterface
         ];
     }
 
-    private function mapProject(object $project): array
+    private function mapearProjeto(object $projeto): array
     {
         return [
-            'id' => $project->id,
-            'title' => $project->title,
-            'subtitle' => $project->subtitle,
-            'excerpt' => $project->excerpt,
-            'description' => $project->description,
-            'tags' => json_decode($project->tags, true) ?: [],
-            'image' => $project->image,
-            'slug' => $project->slug,
-            'is_featured' => (bool) $project->is_featured,
+            'id' => $projeto->id,
+            'title' => $projeto->title,
+            'subtitle' => $projeto->subtitle,
+            'excerpt' => $projeto->excerpt,
+            'description' => $projeto->description,
+            'tags' => json_decode($projeto->tags, true) ?: [],
+            'image' => $projeto->image,
+            'slug' => $projeto->slug,
+            'is_featured' => (bool) $projeto->is_featured,
 
             // Metadados do case
-            'role' => $project->role ?? null,
-            'year' => $project->year ?? null,
-            'status' => $project->status ?? null,
-            'client' => $project->client ?? null,
+            'role' => $projeto->role ?? null,
+            'year' => $projeto->year ?? null,
+            'status' => $projeto->status ?? null,
+            'client' => $projeto->client ?? null,
 
             // Estrutura narrativa (nem todo projeto preenche tudo)
-            'context' => $project->context ?? null,
-            'problem' => $project->problem ?? null,
-            'objective' => $project->objective ?? null,
-            'solution' => $project->solution ?? null,
-            'process' => $project->process ?? null,
-            'decisions' => $project->decisions ?? null,
-            'result' => $project->result ?? null,
-            'learnings' => $project->learnings ?? null,
+            'context' => $projeto->context ?? null,
+            'problem' => $projeto->problem ?? null,
+            'objective' => $projeto->objective ?? null,
+            'solution' => $projeto->solution ?? null,
+            'process' => $projeto->process ?? null,
+            'decisions' => $projeto->decisions ?? null,
+            'result' => $projeto->result ?? null,
+            'learnings' => $projeto->learnings ?? null,
 
             // Mídia
-            'gallery' => json_decode($project->gallery ?? '[]', true) ?: [],
-            'video' => $project->video ?? null,
+            'gallery' => json_decode($projeto->gallery ?? '[]', true) ?: [],
+            'video' => $projeto->video ?? null,
 
             // Links externos
-            'external_url' => $project->external_url ?? null,
-            'linkedin_url' => $project->linkedin_url ?? null,
-            'repo_url' => $project->repo_url ?? null,
+            'external_url' => $projeto->external_url ?? null,
+            'linkedin_url' => $projeto->linkedin_url ?? null,
+            'repo_url' => $projeto->repo_url ?? null,
 
             // Reconhecimento
-            'is_award' => (bool) ($project->is_award ?? false),
-            'award_label' => $project->award_label ?? null,
+            'is_award' => (bool) ($projeto->is_award ?? false),
+            'award_label' => $projeto->award_label ?? null,
         ];
     }
 }

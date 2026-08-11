@@ -7,11 +7,11 @@ use Livewire\Component;
 
 class ProjectGallery extends Component
 {
-    public array $projects = [];
+    public array $projetos = [];
 
-    public function mount(PortfolioService $service): void
+    public function mount(PortfolioService $servicoPortfolio): void
     {
-        $this->projects = $service->getPageData()['projects'];
+        $this->projetos = $servicoPortfolio->obterDadosDaPagina()['projects'];
     }
 
     public function render()

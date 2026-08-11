@@ -28,35 +28,18 @@ foreach ($attributes->all() as $__key => $__value) {
 
 unset($__defined_vars, $__key, $__value); ?>
 
-<footer id="contato" class="flow-footer px-6 py-20 text-white md:px-12">
-    <div class="mx-auto max-w-3xl text-center">
-        <span class="eyebrow border-white/25 bg-white/5 text-white/70">Vamos trabalhar juntos?</span>
-        <h2 class="section-title mt-6 text-white">Fale comigo</h2>
-        <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-white/60">
-            Aberto a projetos, parcerias e oportunidades que envolvam tecnologia com propósito.
-        </p>
-
-        <div class="mt-10 flex flex-wrap justify-center gap-4">
-            <?php if(!empty($contact['email'])): ?>
-                <a href="mailto:<?php echo e($contact['email']); ?>" class="btn-cta"><?php echo e($contact['email']); ?></a>
-            <?php endif; ?>
-            <?php if(!empty($contact['whatsapp'])): ?>
-                <a href="<?php echo e($contact['whatsapp']); ?>" target="_blank" rel="noopener noreferrer" class="btn-outline">
-                    WhatsApp
-                </a>
-            <?php endif; ?>
-        </div>
-    </div>
-
-    <div class="mx-auto mt-16 flex max-w-6xl flex-col gap-8 border-t border-white/10 pt-10 md:flex-row md:items-center md:justify-between">
-        <div>
-            <p class="font-display text-lg font-semibold text-white">Kleiton Ferreira</p>
-            <p class="mt-2 max-w-xl text-sm leading-7 text-white/60">Desenvolvedor full stack com foco em soluções digitais humanas, acessíveis e com impacto social.</p>
+<footer class="border-t border-border bg-bg px-6 py-14 md:px-12">
+    <div class="mx-auto flex max-w-6xl flex-col gap-8 md:flex-row md:items-end md:justify-between">
+        <div class="max-w-md">
+            <p class="font-display text-lg font-bold text-ink">Kleiton Ferreira</p>
+            <p class="mt-2 text-sm leading-relaxed text-muted">
+                Desenvolvedor full stack com foco em soluções digitais humanas, acessíveis e com impacto social.
+            </p>
         </div>
 
         <div class="flex flex-wrap gap-3">
             <?php $__currentLoopData = $socialLinks ?? []; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <a href="<?php echo e($item['url']); ?>" target="_blank" rel="noopener noreferrer" class="rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-white/80 transition hover:bg-sun hover:text-black hover:border-sun">
+                <a href="<?php echo e($item['url']); ?>" target="_blank" rel="noopener noreferrer" class="rounded-full border border-border px-4 py-2 text-sm text-muted transition-colors hover:border-sun hover:text-sun">
                     <?php echo e($item['label']); ?>
 
                 </a>
@@ -64,7 +47,7 @@ unset($__defined_vars, $__key, $__value); ?>
         </div>
     </div>
 
-    <p class="mx-auto mt-10 max-w-6xl font-mono text-xs uppercase tracking-[0.3em] text-white/25">
+    <p class="label-mono mx-auto mt-10 max-w-6xl text-mutedDim">
         <?php echo e($contact['location'] ?? ''); ?> &middot; <?php echo e(date('Y')); ?>
 
     </p>

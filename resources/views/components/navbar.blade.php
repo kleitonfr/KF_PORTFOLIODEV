@@ -1,34 +1,34 @@
 @php
-    $anchor = fn (string $id) => request()->routeIs('home') ? "#{$id}" : route('home') . "#{$id}";
+    $ancora = fn (string $id) => request()->routeIs('home') ? "#{$id}" : route('home') . "#{$id}";
 @endphp
 
-<header id="navbar" class="sticky top-0 z-50 border-b border-border bg-bg/80 backdrop-blur-xl">
-    <nav class="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-6 py-4 sm:flex sm:justify-between md:px-12">
-        <a href="{{ route('home') }}" class="font-display text-lg font-extrabold tracking-tight text-ink">
+<nav id="navbar" class="fixed left-0 right-0 top-0 z-50 bg-black px-6 py-4 md:px-12">
+    <div class="mx-auto flex max-w-6xl items-center justify-between">
+        <a href="{{ route('home') }}" class="font-display text-xl font-extrabold tracking-tight text-white">
             KF<span class="text-sun">.</span>
         </a>
 
-        <div class="hidden items-center gap-8 md:flex">
-            <a href="{{ $anchor('projetos') }}" class="nav-link text-sm font-medium">Projetos</a>
-            <a href="{{ $anchor('depoimentos') }}" class="nav-link text-sm font-medium">Depoimentos</a>
-            <a href="{{ $anchor('curiosidades') }}" class="nav-link text-sm font-medium">Curiosidades</a>
-        </div>
+        <ul class="hidden gap-8 text-sm font-semibold text-white/70 md:flex">
+            <li><a href="{{ $ancora('depoimentos') }}" class="nav-link">Depoimentos</a></li>
+            <li><a href="{{ $ancora('projetos') }}" class="nav-link">Projetos</a></li>
+            <li><a href="{{ $ancora('curiosidades') }}" class="nav-link">Curiosidades</a></li>
+        </ul>
 
-        <a href="{{ $anchor('contato') }}" class="hidden shrink-0 rounded-full border border-border px-5 py-2 text-sm font-semibold text-ink transition-colors hover:border-sun hover:text-sun md:inline-flex" aria-label="Fale comigo">
+        <a href="{{ $ancora('contato') }}" class="btn-cta hidden !px-5 !py-2.5 text-sm md:inline-flex" aria-label="Fale comigo">
             Fale comigo
         </a>
 
-        <button id="menuBtn" class="rounded-full border border-border px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-ink md:hidden" aria-label="Abrir menu" aria-expanded="false">
+        <button id="menuBtn" class="rounded-full border border-white/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white md:hidden" aria-label="Abrir menu" aria-expanded="false">
             Menu
         </button>
-    </nav>
+    </div>
 
-    <div id="mobileMenu" class="mx-4 mb-4 hidden rounded-2xl border border-border bg-surface p-6 shadow-xl md:hidden">
-        <ul class="flex flex-col gap-5 text-sm font-medium text-muted">
-            <li><a href="{{ $anchor('projetos') }}" onclick="closeMobile()" class="block transition-colors hover:text-sun">Projetos</a></li>
-            <li><a href="{{ $anchor('depoimentos') }}" onclick="closeMobile()" class="block transition-colors hover:text-sun">Depoimentos</a></li>
-            <li><a href="{{ $anchor('curiosidades') }}" onclick="closeMobile()" class="block transition-colors hover:text-sun">Curiosidades</a></li>
-            <li><a href="{{ $anchor('contato') }}" onclick="closeMobile()" class="block transition-colors hover:text-sun">Contato</a></li>
+    <div id="mobileMenu" class="mx-4 mt-4 hidden rounded-2xl border border-white/10 bg-black p-6 shadow-xl md:hidden">
+        <ul class="flex flex-col gap-5 font-semibold text-white/70">
+            <li><a href="{{ $ancora('depoimentos') }}" onclick="fecharMenuMobile()" class="block transition-colors hover:text-white">Depoimentos</a></li>
+            <li><a href="{{ $ancora('projetos') }}" onclick="fecharMenuMobile()" class="block transition-colors hover:text-white">Projetos</a></li>
+            <li><a href="{{ $ancora('curiosidades') }}" onclick="fecharMenuMobile()" class="block transition-colors hover:text-white">Curiosidades</a></li>
+            <li><a href="{{ $ancora('contato') }}" onclick="fecharMenuMobile()" class="block transition-colors hover:text-white">Contato</a></li>
         </ul>
     </div>
-</header>
+</nav>

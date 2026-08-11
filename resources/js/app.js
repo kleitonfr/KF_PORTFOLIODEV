@@ -1,40 +1,37 @@
 // ============================================================
 // Portfolio Kleiton Ferreira — app.js
-// Scroll reveal, navbar scrolled, mobile menu
+// Revela elementos ao rolar, destaca navbar ao rolar, menu mobile
 // ============================================================
 
 import './bootstrap';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
 
-const menuBtn = document.getElementById('menuBtn');
-const mobileMenu = document.getElementById('mobileMenu');
+const botaoMenu = document.getElementById('menuBtn');
+const menuMobile = document.getElementById('mobileMenu');
 
-menuBtn?.addEventListener('click', () => {
-    const isHidden = mobileMenu?.classList.toggle('hidden');
-    menuBtn.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
-    menuBtn.textContent = isHidden ? 'Menu' : 'Fechar';
+botaoMenu?.addEventListener('click', () => {
+    const estaEscondido = menuMobile?.classList.toggle('hidden');
+    botaoMenu.setAttribute('aria-expanded', estaEscondido ? 'false' : 'true');
+    botaoMenu.textContent = estaEscondido ? 'Menu' : 'Fechar';
 });
 
-window.closeMobile = () => {
-    mobileMenu?.classList.add('hidden');
-    menuBtn?.setAttribute('aria-expanded', 'false');
-    if (menuBtn) menuBtn.textContent = 'Menu';
+window.fecharMenuMobile = () => {
+    menuMobile?.classList.add('hidden');
+    botaoMenu?.setAttribute('aria-expanded', 'false');
+    if (botaoMenu) botaoMenu.textContent = 'Menu';
 };
 
-const revealEls = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver((entries) => {
+const elementosReveal = document.querySelectorAll('.reveal');
+const observadorReveal = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
 
-        const siblings = [...(entry.target.parentElement?.querySelectorAll('.reveal') ?? [])];
-        let delay = 0;
+        const irmaos = [...(entry.target.parentElement?.querySelectorAll('.reveal') ?? [])];
+        let atraso = 0;
 
-        siblings.forEach((sib) => {
-            if (!sib.classList.contains('visible')) {
-                sib.style.transitionDelay = `${delay}ms`;
-                delay += 80;
+        irmaos.forEach((irmao) => {
+            if (!irmao.classList.contains('visible')) {
+                irmao.style.transitionDelay = `${atraso}ms`;
+                atraso += 80;
             }
         });
 
@@ -45,60 +42,55 @@ const observer = new IntersectionObserver((entries) => {
     rootMargin: '0px 0px -36px 0px',
 });
 
-revealEls.forEach((el) => observer.observe(el));
+elementosReveal.forEach((el) => observadorReveal.observe(el));
 
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('nav a[href^="#"]');
+const secoes = document.querySelectorAll('section[id]');
+const linksNav = document.querySelectorAll('nav a[href^="#"]');
 
-const sectionObs = new IntersectionObserver((entries) => {
+const observadorSecoes = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
 
-        navLinks.forEach((link) => {
-            const active = link.getAttribute('href') === `#${entry.target.id}`;
-            link.classList.toggle('text-sun', active);
+        linksNav.forEach((link) => {
+            const estaAtivo = link.getAttribute('href') === `#${entry.target.id}`;
+            link.classList.toggle('text-sun', estaAtivo);
         });
     });
 }, { threshold: 0.4 });
 
-sections.forEach((section) => sectionObs.observe(section));
+secoes.forEach((secao) => observadorSecoes.observe(secao));
 
 // ── Navbar: borda/sombra ao rolar ──
-const navbar = document.getElementById('navbar');
-const toggleNavbarScrolled = () => navbar?.classList.toggle('is-scrolled', window.scrollY > 12);
-toggleNavbarScrolled();
-window.addEventListener('scroll', toggleNavbarScrolled, { passive: true });
+const barraNavegacao = document.getElementById('navbar');
+const alternarNavbarRolada = () => barraNavegacao?.classList.toggle('is-scrolled', window.scrollY > 12);
+alternarNavbarRolada();
+window.addEventListener('scroll', alternarNavbarRolada, { passive: true });
 
-// ── Lightbox: qualquer elemento com [data-lightbox-trigger] abre a imagem ampliada ──
-const lightbox = document.getElementById('lightbox');
-const lightboxImage = document.getElementById('lightboxImage');
-const lightboxClose = document.getElementById('lightboxClose');
+// ── Visualizador de imagem: qualquer elemento com [data-lightbox-trigger] abre a imagem ampliada ──
+const visualizador = document.getElementById('lightbox');
+const imagemVisualizador = document.getElementById('lightboxImage');
+const botaoFecharVisualizador = document.getElementById('lightboxClose');
 
-const openLightbox = (src, alt = '') => {
-    if (!lightbox || !lightboxImage) return;
-    lightboxImage.src = src;
-    lightboxImage.alt = alt;
-    lightbox.classList.add('is-open');
+const abrirVisualizador = (src, textoAlternativo = '') => {
+    if (!visualizador || !imagemVisualizador) return;
+    imagemVisualizador.src = src;
+    imagemVisualizador.alt = textoAlternativo;
+    visualizador.classList.add('is-open');
     document.body.style.overflow = 'hidden';
 };
 
-const closeLightbox = () => {
-    if (!lightbox) return;
-    lightbox.classList.remove('is-open');
+const fecharVisualizador = () => {
+    if (!visualizador) return;
+    visualizador.classList.remove('is-open');
     document.body.style.overflow = '';
 };
 
 document.querySelectorAll('[data-lightbox-trigger]').forEach((el) => {
     el.addEventListener('click', () => {
-        openLightbox(el.getAttribute('data-lightbox-src'), el.getAttribute('aria-label') || '');
+        abrirVisualizador(el.getAttribute('data-lightbox-src'), el.getAttribute('aria-label') || '');
     });
 });
 
-lightboxClose?.addEventListener('click', closeLightbox);
-lightbox?.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
-
-
-
-/* Animações realizadas com GSAP (biblioteca de controle de animações) e ScrollTrigger (plugin do GSAP para animações baseadas em rolagem) */
-
+botaoFecharVisualizador?.addEventListener('click', fecharVisualizador);
+visualizador?.addEventListener('click', (e) => { if (e.target === visualizador) fecharVisualizador(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') fecharVisualizador(); });

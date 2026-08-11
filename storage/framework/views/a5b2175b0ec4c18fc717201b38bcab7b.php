@@ -8,19 +8,17 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['socialLinks' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($socialLinks ?? []),'contact' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($contact ?? [])]); ?>
-    <?php
-        $heroStats = $hero['highlights'] ?? [];
-    ?>
-
-    <?php echo $__env->make('sections.hero', ['stats' => $heroStats, 'contact' => [
+    <?php echo $__env->make('sections.hero', ['contact' => [
         'linkedin' => $contact['linkedin'] ?? '',
     ]], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
-    <?php echo $__env->make('sections.depoimentos', ['testimonials' => $testimonials], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-
     <?php echo $__env->make('sections.projetos', ['projects' => $projects], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
+    <?php echo $__env->make('sections.depoimentos', ['testimonials' => $testimonials], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
     <?php echo $__env->make('sections.outras-curiosidades', ['timeline' => $journey], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
+    <?php echo $__env->make('sections.contato', ['contact' => $contact ?? []], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal5863877a5171c196453bfa0bd807e410)): ?>

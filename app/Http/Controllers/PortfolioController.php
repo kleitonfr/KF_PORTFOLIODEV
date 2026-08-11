@@ -12,44 +12,42 @@ class PortfolioController extends Controller
     {
     }
 
-    public function index(): View
+    public function exibirPaginaInicial(): View
     {
-        $pageData = $this->portfolioService->getPageData();
+        $dadosDaPagina = $this->portfolioService->obterDadosDaPagina();
 
         return view('portfolio.index', [
-            'hero' => $pageData['hero'],
-            'journey' => $pageData['journey'],
-            'projects' => $pageData['projects'],
-            'socialLinks' => $pageData['socialLinks'],
-            'testimonials' => $pageData['testimonials'],
-            'contact' => $this->buildContact($pageData),
+            'journey' => $dadosDaPagina['journey'],
+            'socialLinks' => $dadosDaPagina['socialLinks'],
+            'testimonials' => $dadosDaPagina['testimonials'],
+            'contact' => $this->montarContato($dadosDaPagina),
         ]);
     }
 
-    public function showProject(string $slug): View
+    public function exibirProjeto(string $slug): View
     {
-        $pageData = $this->portfolioService->getPageData();
-        $project = $this->portfolioService->getProjectBySlug($slug);
+        $dadosDaPagina = $this->portfolioService->obterDadosDaPagina();
+        $projeto = $this->portfolioService->obterProjetoPorSlug($slug);
 
-        abort_if($project === null, 404);
+        abort_if($projeto === null, 404);
 
         return view('portfolio.project', [
-            'project' => $project,
-            'socialLinks' => $pageData['socialLinks'],
-            'contact' => $this->buildContact($pageData),
+            'project' => $projeto,
+            'socialLinks' => $dadosDaPagina['socialLinks'],
+            'contact' => $this->montarContato($dadosDaPagina),
         ]);
     }
 
     /**
      * Monta o array de contato exibido no footer (compartilhado por todas as páginas).
      */
-    private function buildContact(array $pageData): array
+    private function montarContato(array $dadosDaPagina): array
     {
         return [
             'email' => 'kleytonferreira9@gmail.com',
             'whatsapp' => 'https://wa.me/5512981232278',
-            'linkedin' => $pageData['socialLinks'][1]['url'] ?? '',
-            'github' => $pageData['socialLinks'][0]['url'] ?? '',
+            'linkedin' => $dadosDaPagina['socialLinks'][1]['url'] ?? '',
+            'github' => $dadosDaPagina['socialLinks'][0]['url'] ?? '',
             'location' => 'Caraguatatuba · São Paulo · Brasil',
         ];
     }

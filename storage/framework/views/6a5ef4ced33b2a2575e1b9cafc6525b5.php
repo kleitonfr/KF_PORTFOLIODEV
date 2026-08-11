@@ -1,14 +1,34 @@
-<section id="projetos" class="flow-projetos px-6 py-24 md:px-12">
+<section id="projetos" class="border-b border-border bg-bg px-6 py-24 md:px-12 md:py-32">
     <div class="mx-auto max-w-6xl">
-        <div class="reveal mb-4 text-center">
-            <span class="eyebrow">Meus projetos</span>
-            <h2 class="section-title mt-4">Cada card abre um estudo de caso completo</h2>
+        <div class="reveal">
+            <?php if (isset($component)) { $__componentOriginal1289ed7a7566caee9d9374ccbe752a3b = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal1289ed7a7566caee9d9374ccbe752a3b = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.section-label','data' => ['index' => '01']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('section-label'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['index' => '01']); ?>Projetos <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal1289ed7a7566caee9d9374ccbe752a3b)): ?>
+<?php $attributes = $__attributesOriginal1289ed7a7566caee9d9374ccbe752a3b; ?>
+<?php unset($__attributesOriginal1289ed7a7566caee9d9374ccbe752a3b); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal1289ed7a7566caee9d9374ccbe752a3b)): ?>
+<?php $component = $__componentOriginal1289ed7a7566caee9d9374ccbe752a3b; ?>
+<?php unset($__componentOriginal1289ed7a7566caee9d9374ccbe752a3b); ?>
+<?php endif; ?>
         </div>
-        <p class="reveal mx-auto mb-12 max-w-2xl text-center text-sm leading-7 text-muted">
-            Selecione um projeto para ver contexto, decisões de arquitetura, resultados e imagens em uma página dedicada.
+        <h2 class="reveal mt-6 max-w-3xl text-4xl font-extrabold text-balance text-ink md:text-6xl">
+            Cada card abre um estudo de caso completo
+        </h2>
+        <p class="reveal mt-5 max-w-2xl text-muted">
+            Contexto, decisões de arquitetura, resultados e imagens reais em uma página dedicada por projeto.
         </p>
 
-        <div class="reveal">
+        <div class="mt-14">
             <?php
 $__split = function ($name, $params = []) {
     return [$name, $params];

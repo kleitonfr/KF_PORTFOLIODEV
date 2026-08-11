@@ -6,23 +6,22 @@ use App\Contracts\PortfolioRepositoryInterface;
 
 class PortfolioService
 {
-    public function __construct(protected PortfolioRepositoryInterface $repository)
+    public function __construct(protected PortfolioRepositoryInterface $repositorio)
     {
     }
 
-    public function getPageData(): array
+    public function obterDadosDaPagina(): array
     {
         return [
-            'hero' => $this->repository->getHeroData(),
-            'journey' => $this->repository->getJourneyItems(),
-            'projects' => $this->repository->getProjects(),
-            'socialLinks' => $this->repository->getSocialLinks(),
-            'testimonials' => $this->repository->getTestimonials(),
+            'journey' => $this->repositorio->obterItensDaJornada(),
+            'projects' => $this->repositorio->obterProjetos(),
+            'socialLinks' => $this->repositorio->obterRedesSociais(),
+            'testimonials' => $this->repositorio->obterDepoimentos(),
         ];
     }
 
-    public function getProjectBySlug(string $slug): ?array
+    public function obterProjetoPorSlug(string $slug): ?array
     {
-        return $this->repository->getProjectBySlug($slug);
+        return $this->repositorio->obterProjetoPorSlug($slug);
     }
 }

@@ -4,15 +4,13 @@ namespace App\Contracts;
 
 interface PortfolioRepositoryInterface
 {
-    public function getHeroData(): array;
+    public function obterItensDaJornada(): array;
 
-    public function getJourneyItems(): array;
+    public function obterProjetos(): array;
 
-    public function getProjects(): array;
+    public function obterProjetoPorSlug(string $slug): ?array;
 
-    public function getProjectBySlug(string $slug): ?array;
+    public function obterRedesSociais(): array;
 
-    public function getSocialLinks(): array;
-
-    public function getTestimonials(): array;
+    public function obterDepoimentos(): array;
 }

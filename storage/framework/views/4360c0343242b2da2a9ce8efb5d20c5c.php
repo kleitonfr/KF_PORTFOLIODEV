@@ -1,80 +1,11 @@
-<section id="hero" class="flow-hero relative flex min-h-screen items-center px-6 pb-20 pt-28 md:px-12">
+<section id="hero" class="relative overflow-hidden border-b border-border bg-bg px-6 pb-20 pt-16 md:px-12 md:pb-28 md:pt-24">
+    <div
+        aria-hidden="true"
+        class="pointer-events-none absolute -top-40 left-[-10%] h-[32rem] w-[32rem] rounded-full rule-spectrum opacity-20 blur-[120px]"
+    ></div>
 
-    <div class="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 md:grid-cols-[1.05fr_0.95fr] md:gap-16">
-        <div class="reveal">
-            <span class="mb-6 inline-block rounded-full border border-sun/40 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-sun">
-                Desenvolvedor Full Stack
-            </span>
-
-            <h1 class="mb-5 font-display text-4xl font-extrabold leading-tight text-gradient md:text-5xl lg:text-6xl">
-                Kleiton Ferreira
-            </h1>
-
-            <p class="mb-3 max-w-xl text-lg font-medium leading-relaxed text-muted md:text-xl">
-                Uma jornada construída passo a passo.
-            </p>
-            <p class="mb-8 max-w-xl text-base leading-relaxed text-muted">
-                Comecei resolvendo problemas de pessoas. Hoje desenvolvo sistemas para elas com impacto direto na vida
-                de cidadãos e no funcionamento de instituições públicas.
-            </p>
-
-            <div class="flex flex-wrap gap-4">
-                <a href="#projetos" class="btn-cta">
-                    Ver projetos
-                </a>
-                <a href="<?php echo e($contact['linkedin']); ?>" target="_blank" rel="noopener noreferrer" class="btn-outline">
-                    LinkedIn
-                </a>
-            </div>
-
-            <div class="mt-10 grid grid-cols-1 gap-6 border-t border-border pt-7 sm:grid-cols-3 sm:gap-6 md:gap-8">
-
-                <div>
-                    <h3 class="font-display text-2xl font-extrabold leading-tight text-ink md:text-3xl lg:text-4xl">#1</h3>
-                    <p class="mt-2 max-w-xl text-sm leading-relaxed text-muted md:text-base">Ranking em atendimentos<br> 3 meses seguidos</p>
-                </div>
-
-                <div>
-                    <h3 class="font-display text-2xl font-extrabold leading-tight text-sun md:text-3xl lg:text-4xl">Prêmio</h3>
-                    <p class="mt-2 max-w-xl text-sm leading-relaxed text-muted md:text-base">InovaCidade<br> Iniciativas 2026</p>
-                </div>
-
-                <div>
-                    <h3 class="font-display text-2xl font-extrabold leading-tight text-ink md:text-3xl lg:text-4xl">4</h3>
-                    <p class="mt-2 max-w-xl text-sm leading-relaxed text-muted md:text-base">Sistemas em<br> produção real</p>
-                </div>
-
-            </div>
-
-            
-            <div class="stack-strip reveal" style="animation-delay:.1s">
-                <span class="stack-strip-label">Stack &amp; ferramentas</span>
-                <div class="stack-strip-track">
-                    <?php
-                        $stack = [
-                            ['name' => 'Laravel', 'src' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg'],
-                            ['name' => 'PHP', 'src' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg'],
-                            ['name' => 'JavaScript', 'src' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg'],
-                            ['name' => 'HTML5', 'src' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg'],
-                            ['name' => 'CSS3', 'src' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg'],
-                            ['name' => 'MySQL', 'src' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg'],
-                            ['name' => 'PostgreSQL', 'src' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg'],
-                            ['name' => 'SQLite', 'src' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg'],
-                            ['name' => 'Git', 'src' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg'],
-                            ['name' => 'GitHub', 'src' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg'],
-                            ['name' => 'Figma', 'src' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg'],
-                        ];
-                    ?>
-                    <?php $__currentLoopData = $stack; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tech): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <div class="stack-icon" tabindex="0" aria-label="<?php echo e($tech['name']); ?>" title="<?php echo e($tech['name']); ?>">
-                            <img src="<?php echo e($tech['src']); ?>" alt="<?php echo e($tech['name']); ?>" loading="lazy" width="26" height="26">
-                        </div>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </div>
-            </div>
-        </div>
-
-        <div class="reveal flex items-center justify-center" style="animation-delay:.15s">
+    <div class="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 md:grid-cols-[0.95fr_1.05fr] md:gap-16">
+        <div class="reveal flex items-center justify-center md:order-1" style="animation-delay:.2s">
             <div class="hero-avatar-wrap">
                 <div class="hero-avatar-ring"></div>
                 <div class="hero-avatar-inner">
@@ -82,11 +13,51 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 opacity-25 md:flex">
-        <span class="text-xs font-mono tracking-[0.35em] text-muted">scroll</span>
-        <div class="h-10 w-px animate-pulse bg-ink"></div>
+        <div class="md:order-2">
+            <p class="reveal label-mono">Desenvolvedor full stack</p>
+
+            <h1 class="reveal mt-6 max-w-2xl text-4xl font-extrabold leading-[1.02] text-balance text-spectrum md:text-6xl lg:text-7xl">
+                Kleiton Ferreira
+            </h1>
+
+            <p class="reveal mt-6 max-w-xl text-base leading-relaxed text-muted md:text-lg" style="animation-delay:.05s">
+                Comecei resolvendo problemas de pessoas. Hoje desenvolvo sistemas para elas, com impacto direto
+                na vida de cidadãos e no funcionamento de instituições públicas.
+            </p>
+
+            <div class="reveal mt-9 flex flex-wrap gap-3" style="animation-delay:.1s">
+                <a href="#projetos" class="btn-cta">Ver projetos</a>
+                <a href="<?php echo e($contact['linkedin']); ?>" target="_blank" rel="noopener noreferrer" class="btn-outline">
+                    LinkedIn
+                </a>
+            </div>
+
+            <dl class="reveal mt-14 grid grid-cols-1 gap-8 border-t border-border pt-10 sm:grid-cols-3" style="animation-delay:.15s">
+                <div>
+                    <dt class="font-display text-3xl font-extrabold text-ink md:text-4xl">#1</dt>
+                    <dd class="mt-2 text-sm leading-relaxed text-muted">Ranking em atendimentos<br>3 meses seguidos</dd>
+                </div>
+                <div>
+                    <dt class="font-display text-3xl font-extrabold text-sun md:text-4xl">Prêmio</dt>
+                    <dd class="mt-2 text-sm leading-relaxed text-muted">InovaCidade<br>Iniciativas 2026</dd>
+                </div>
+                <div>
+                    <dt class="font-display text-3xl font-extrabold text-ink md:text-4xl">4</dt>
+                    <dd class="mt-2 text-sm leading-relaxed text-muted">Sistemas em<br>produção real</dd>
+                </div>
+            </dl>
+        </div>
+    </div>
+</section>
+
+
+<section class="border-b border-border bg-surface px-6 py-10 md:px-12">
+    <div class="mx-auto flex max-w-6xl flex-wrap items-center gap-x-8 gap-y-4">
+        <span class="label-mono text-mutedDim">Stack</span>
+        <?php $__currentLoopData = ['Laravel', 'PHP', 'JavaScript', 'HTML', 'CSS', 'MySQL', 'PostgreSQL', 'SQLite', 'Git', 'GitHub', 'Figma']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tech): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <span class="text-sm font-semibold text-muted"><?php echo e($tech); ?></span>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </div>
 </section>
 <?php /**PATH C:\xampp\htdocs\portfolio-kleiton\resources\views/sections/hero.blade.php ENDPATH**/ ?>

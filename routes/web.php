@@ -9,5 +9,5 @@ use App\Http\Controllers\PortfolioController;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', [PortfolioController::class, 'index'])->name('home');
-Route::get('/projetos/{slug}', [PortfolioController::class, 'showProject'])->name('projects.show');
+Route::get('/', [PortfolioController::class, 'exibirPaginaInicial'])->name('home');
+Route::get('/projetos/{slug}', [PortfolioController::class, 'exibirProjeto'])->name('projects.show');

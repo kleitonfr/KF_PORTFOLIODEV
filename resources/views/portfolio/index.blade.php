@@ -3,11 +3,9 @@
         'linkedin' => $contact['linkedin'] ?? '',
     ]])
 
-    @include('sections.projetos', ['projects' => $projects])
-
     @include('sections.depoimentos', ['testimonials' => $testimonials])
 
-    @include('sections.outras-curiosidades', ['timeline' => $journey])
+    @include('sections.projetos')
 
-    @include('sections.contato', ['contact' => $contact ?? []])
+    @include('sections.outras-curiosidades', ['timeline' => $journey])
 </x-layouts.app>
