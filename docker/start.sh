@@ -1,37 +1,44 @@
 #!/bin/sh
 set -e
 
-# Render provides PORT at runtime. Laravel needs to listen on 0.0.0.0.
 PORT="${PORT:-10000}"
 
-# This portfolio uses SQLite and does not need database-backed sessions.
+# This portfolio uses SQLite, but sessions/cache should live on the filesystem.
+# This avoids requiring Laravel's database-backed sessions/cache tables.
 export SESSION_DRIVER="${SESSION_DRIVER:-file}"
+export CACHE_STORE="${CACHE_STORE:-file}"
 
-# Laravel needs an application key. Prefer the value configured in Render.
 if [ -z "${APP_KEY:-}" ]; then
     php artisan key:generate --force --no-interaction
 fi
 
-# Ensure the SQLite database exists when the app is configured for SQLite.
 if [ "${DB_CONNECTION:-sqlite}" = "sqlite" ]; then
     DB_FILE="${DB_DATABASE:-/var/www/html/database/database.sqlite}"
     mkdir -p "$(dirname "$DB_FILE")"
     touch "$DB_FILE"
 fi
 
-# Make sure the production Vite manifest/assets exist inside the image.
-# This also makes the container self-healing if a previous build cache omitted them.
+# Ensure Laravel's file-based session/cache directories exist and are writable.
+mkdir -p storage/framework/cache/data \
+    storage/framework/sessions \
+    storage/framework/views \
+    storage/logs \
+    bootstrap/cache
+chmod -R 775 storage bootstrap/cache
+
+# Build Vite assets if they are not present in the image.
 if [ ! -f public/build/manifest.json ]; then
     npm run build
 fi
 
-# Run migrations when explicitly enabled. Disabled by default to avoid surprises.
 if [ "${RUN_MIGRATIONS:-false}" = "true" ]; then
     php artisan migrate --force --no-interaction
 fi
 
-# Clear any stale Laravel caches before rebuilding production caches.
+# Clear stale caches without touching the SQLite cache table.
 php artisan optimize:clear
-php artisan optimize
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
 
 exec php artisan serve --host=0.0.0.0 --port="$PORT"
