@@ -5,8 +5,6 @@ set -e
 PORT="${PORT:-10000}"
 
 # This portfolio uses SQLite and does not need database-backed sessions.
-# Laravel 12 defaults can use the database session driver, which would require
-# a sessions table. Use file sessions instead.
 export SESSION_DRIVER="${SESSION_DRIVER:-file}"
 
 # Laravel needs an application key. Prefer the value configured in Render.
@@ -21,11 +19,19 @@ if [ "${DB_CONNECTION:-sqlite}" = "sqlite" ]; then
     touch "$DB_FILE"
 fi
 
+# Make sure the production Vite manifest/assets exist inside the image.
+# This also makes the container self-healing if a previous build cache omitted them.
+if [ ! -f public/build/manifest.json ]; then
+    npm run build
+fi
+
 # Run migrations when explicitly enabled. Disabled by default to avoid surprises.
 if [ "${RUN_MIGRATIONS:-false}" = "true" ]; then
     php artisan migrate --force --no-interaction
 fi
 
+# Clear any stale Laravel caches before rebuilding production caches.
+php artisan optimize:clear
 php artisan optimize
 
 exec php artisan serve --host=0.0.0.0 --port="$PORT"
