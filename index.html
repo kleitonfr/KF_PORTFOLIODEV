@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfólio de Kleiton Ferreira — Desenvolvedor Full Stack &amp; Designer. Soluções digitais com impacto real para o setor público." />
+    <meta name="keywords" content="Kleiton Ferreira, desenvolvedor, full stack, Laravel, PHP, LGPD, Caraguatatuba, portfólio, UX, design" />
+    <meta property="og:title" content="Kleiton Ferreira — Dev Full Stack &amp; Designer" />
+    <meta property="og:description" content="Transformando problemas reais em soluções digitais." />
+    <meta name="theme-color" content="#0B0B10" />
+    <title>Kleiton Ferreira — Dev Full Stack &amp; Designer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+    <!--
+        Build estático para GitHub Pages.
+        O CSS abaixo é exatamente o bundle já compilado pelo Vite (public/build/assets),
+        então a aparência é idêntica à do app Laravel em produção.
+    -->
+    <link rel="stylesheet" href="public/build/assets/app-B6ZOKCpS.css" />
+</head>
+<body class="overflow-x-hidden bg-bg font-body text-ink">
+
+    <nav id="navbar" class="fixed left-0 right-0 top-0 z-50 bg-black px-6 py-4 md:px-12">
+        <div class="mx-auto flex max-w-6xl items-center justify-between">
+            <a href="#hero" class="font-display text-xl font-extrabold tracking-tight text-white">
+                KF<span class="text-sun">.</span>
+            </a>
+
+            <ul class="hidden gap-8 text-sm font-semibold text-white/70 md:flex">
+                <li><a href="#depoimentos" class="nav-link">Depoimentos</a></li>
+                <li><a href="#projetos" class="nav-link">Projetos</a></li>
+                <li><a href="#curiosidades" class="nav-link">Curiosidades</a></li>
+            </ul>
+
+            <a href="#contato" class="btn-cta hidden !px-5 !py-2.5 text-sm md:inline-flex" aria-label="Fale comigo">
+                Fale comigo
+            </a>
+
+            <button id="menuBtn" class="rounded-full border border-white/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white md:hidden" aria-label="Abrir menu" aria-expanded="false">
+                Menu
+            </button>
+        </div>
+
+        <div id="mobileMenu" class="mx-4 mt-4 hidden rounded-2xl border border-white/10 bg-black p-6 shadow-xl md:hidden">
+            <ul class="flex flex-col gap-5 font-semibold text-white/70">
+                <li><a href="#depoimentos" onclick="fecharMenuMobile()" class="block transition-colors hover:text-white">Depoimentos</a></li>
+                <li><a href="#projetos" onclick="fecharMenuMobile()" class="block transition-colors hover:text-white">Projetos</a></li>
+                <li><a href="#curiosidades" onclick="fecharMenuMobile()" class="block transition-colors hover:text-white">Curiosidades</a></li>
+                <li><a href="#contato" onclick="fecharMenuMobile()" class="block transition-colors hover:text-white">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ============================== HERO ============================== -->
+    <section id="hero" class="relative overflow-hidden border-b border-border bg-bg px-6 pb-20 pt-24 md:px-12 md:pb-28 md:pt-24">
+        <div
+            aria-hidden="true"
+            class="pointer-events-none absolute -top-40 left-[-10%] h-[32rem] w-[32rem] rounded-full rule-spectrum opacity-20 blur-[120px]"
+        ></div>
+
+        <div class="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 md:grid-cols-[0.95fr_1.05fr] md:gap-16">
+            <div class="reveal flex items-center justify-center md:order-1" style="animation-delay:.2s">
+                <div class="hero-avatar-wrap">
+                    <div class="hero-avatar-ring"></div>
+                    <div class="hero-avatar-inner">
+                        <img src="public/img/kleitonF.jpeg" alt="Kleiton Ferreira">
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center md:order-2 md:text-left">
+                <p class="reveal label-mono">Desenvolvedor full stack</p>
+
+                <h1 class="reveal mt-6 max-w-2xl text-4xl font-extrabold leading-[1.02] text-balance text-spectrum md:text-6xl lg:text-7xl">
+                    Kleiton Ferreira
+                </h1>
+
+                <p class="reveal mt-6 max-w-xl text-base leading-relaxed text-muted md:text-lg" style="animation-delay:.05s">
+                    Comecei resolvendo problemas de pessoas. Hoje desenvolvo sistemas para elas, com impacto direto
+                    na vida de cidadãos e no funcionamento de instituições públicas.
+                </p>
+
+                <div class="reveal mt-9 flex flex-wrap justify-center gap-3 md:justify-start" style="animation-delay:.1s">
+                    <a href="#projetos" class="btn-cta">Ver projetos</a>
+                    <a href="https://www.linkedin.com/in/kleiton-ferreira" target="_blank" rel="noopener noreferrer" class="btn-outline">
+                        LinkedIn
+                    </a>
+                </div>
+
+                <dl class="reveal mt-14 grid grid-cols-1 gap- border-t border-border pt-10 sm:grid-cols-3" style="animation-delay:.15s">
+                    <div>
+                        <dt class="font-display text-3xl font-extrabold text-ink md:text-3xl">#1</dt>
+                        <dd class="mt-2 text-sm leading-relaxed text-muted">Ranking em atendimentos<br>3 meses seguidos</dd>
+                    </div>
+                    <div>
+                        <dt class="font-display text-3xl  font-extrabold text-sun md:text-3xl">Prêmio</dt>
+                        <dd class="mt-2 text-sm leading-relaxed text-muted">InovaCidade<br>Iniciativas 2026</dd>
+                    </div>
+                    <div>
+                        <dt class="font-display text-3xl font-extrabold text-ink md:text-3xl">4</dt>
+                        <dd class="mt-2 text-sm leading-relaxed text-muted">Sistemas em<br>produção real</dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stack -->
+    <section class="border-b border-border bg-surface px-6 py-10 md:px-12">
+        <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-4 md:justify-start">
+            <span class="label-mono text-mutedDim">Stack</span>
+            <span class="text-sm font-semibold text-muted">Laravel</span>
+            <span class="text-sm font-semibold text-muted">PHP</span>
+            <span class="text-sm font-semibold text-muted">Python</span>
+            <span class="text-sm font-semibold text-muted">JavaScript</span>
+            <span class="text-sm font-semibold text-muted">HTML</span>
+            <span class="text-sm font-semibold text-muted">CSS</span>
+            <span class="text-sm font-semibold text-muted">MySQL</span>
+            <span class="text-sm font-semibold text-muted">PostgreSQL</span>
+            <span class="text-sm font-semibold text-muted">SQLite</span>
+            <span class="text-sm font-semibold text-muted">Git</span>
+            <span class="text-sm font-semibold text-muted">GitHub</span>
+            <span class="text-sm font-semibold text-muted">Figma</span>
+            <span class="text-sm font-semibold text-muted">Rest API</span>
+        </div>
+    </section>
+
+    <!-- ============================== DEPOIMENTOS ============================== -->
+    <section id="depoimentos" class="border-b border-border bg-surface px-6 py-24 md:px-12 md:py-32">
+        <div class="mx-auto max-w-6xl">
+            <div class="reveal">
+                <div class="flex items-center justify-center gap-4 md:justify-start">
+                    <span class="label-mono text-sun">02</span>
+                    <span class="h-px w-10 rule-spectrum opacity-60"></span>
+                    <span class="label-mono">Quem viveu de perto</span>
+                </div>
+            </div>
+            <h2 class="reveal mx-auto mt-6 max-w-3xl break-words text-center text-4xl font-extrabold text-balance text-ink md:mx-0 md:text-left md:text-6xl">
+                Depoimentos
+            </h2>
+            <p class="reveal mx-auto mt-5 max-w-2xl text-center text-muted md:mx-0 md:text-left">
+                Mensagens reais de gestão, time e hackathon
+            </p>
+
+            <div class="reveal comments-grid mt-14">
+                <div class="comment-item">
+                    <button type="button" class="comment-frame" data-lightbox-trigger data-lightbox-src="public/img/Comentarios/chefe.jpg" aria-label="Ampliar depoimento — Gestor(a) direto(a)">
+                        <img src="public/img/Comentarios/chefe.jpg" alt="Depoimento — Gestor(a) direto(a)" loading="lazy">
+                    </button>
+                    <p class="comment-role">Gestor(a) direto(a)</p>
+                </div>
+                <div class="comment-item">
+                    <button type="button" class="comment-frame" data-lightbox-trigger data-lightbox-src="public/img/Comentarios/colegaDeTrabalho.jpg" aria-label="Ampliar depoimento — Colega de trabalho">
+                        <img src="public/img/Comentarios/colegaDeTrabalho.jpg" alt="Depoimento — Colega de trabalho" loading="lazy">
+                    </button>
+                    <p class="comment-role">Colega de trabalho</p>
+                </div>
+                <div class="comment-item">
+                    <button type="button" class="comment-frame" data-lightbox-trigger data-lightbox-src="public/img/Comentarios/colegaDeHackathon.jpg" aria-label="Ampliar depoimento — Colega de hackathon">
+                        <img src="public/img/Comentarios/colegaDeHackathon.jpg" alt="Depoimento — Colega de hackathon" loading="lazy">
+                    </button>
+                    <p class="comment-role">Colega de hackathon</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="lightbox" class="lightbox-overlay" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+            <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Fechar">&times;</button>
+            <img id="lightboxImage" src="" alt="">
+        </div>
+    </section>
+
+    <!-- ============================== PROJETOS ============================== -->
+    <section id="projetos" class="border-b border-border bg-bg px-6 py-24 md:px-12 md:py-32">
+        <div class="mx-auto max-w-6xl">
+            <div class="reveal">
+                <div class="flex items-center justify-center gap-4 md:justify-start">
+                    <span class="label-mono text-sun">01</span>
+                    <span class="h-px w-10 rule-spectrum opacity-60"></span>
+                    <span class="label-mono">Projetos</span>
+                </div>
+            </div>
+            <h2 class="reveal mx-auto mt-6 max-w-3xl text-center text-4xl font-extrabold text-balance text-ink md:mx-0 md:text-left md:text-6xl">
+                Cada card abre um estudo de caso completo
+            </h2>
+            <p class="reveal mx-auto mt-5 max-w-2xl text-center text-muted md:mx-0 md:text-left">
+                Contexto, decisões de arquitetura, resultados e imagens reais em uma página dedicada por projeto.
+            </p>
+
+            <div class="mt-14">
+                <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+                    <a href="https://lgpd360.caraguatatuba.sp.gov.br/" target="_blank" rel="noopener noreferrer" class="group reveal flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-colors hover:border-aqua">
+                        <div class="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-surface2 to-bg">
+                            <img src="public/img/lgpd360/image (1).png" alt="Portal LGPD360" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                            <span class="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-sun px-3 py-1 label-mono !text-[#0b0b10]">&#9733; Premiado</span>
+                        </div>
+                        <div class="flex flex-1 flex-col gap-3 p-7">
+                            <span class="label-mono text-aqua">Portal de Direitos Digitais</span>
+                            <h3 class="text-xl font-bold text-ink">Portal LGPD360</h3>
+                            <p class="flex-1 text-sm leading-relaxed text-muted">Portal institucional que transforma uma obrigação legal (LGPD) em entrega pública de valor: consulta de dados pessoais, painel de adequação por secretaria e canal direto com o Encarregado de Dados.</p>
+                            <div class="flex flex-wrap gap-2 pt-1">
+                                <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">PHP 8.2</span>
+                                <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">Laravel 12</span>
+                                <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">MySQL</span>
+                            </div>
+                            <span class="mt-2 text-sm font-semibold text-ink transition-transform group-hover:translate-x-1">Abrir &rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="https://estrategiadigital.caraguatatuba.sp.gov.br/" target="_blank" rel="noopener noreferrer" class="group reveal flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-colors hover:border-aqua">
+                        <div class="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-surface2 to-bg">
+                            <img src="public/img/estrategiaDigital/recenteCapa01.png" alt="Estratégia Digital" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                        </div>
+                        <div class="flex flex-1 flex-col gap-3 p-7">
+                            <span class="label-mono text-aqua">Redesign da Experiência e Arquitetura Visual</span>
+                            <h3 class="text-xl font-bold text-ink">Estratégia Digital</h3>
+                            <p class="flex-1 text-sm leading-relaxed text-muted">Redesign completo do portal que comunica a transformação digital do município — 6 eixos estratégicos, 18 objetivos e 81 iniciativas transformados em uma experiência visual guiada pela metáfora do cérebro neural.</p>
+                            <div class="flex flex-wrap gap-2 pt-1">
+                                <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">HTML</span>
+                                <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">CSS (Mobile First)</span>
+                                <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">JavaScript</span>
+                            </div>
+                            <span class="mt-2 text-sm font-semibold text-ink transition-transform group-hover:translate-x-1">Abrir &rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="https://www.linkedin.com/posts/kleiton-ferreira_hackathon-ifsp-ugcPost-7480129526455402496-ARIQ/" target="_blank" rel="noopener noreferrer" class="group reveal flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-colors hover:border-aqua">
+                        <div class="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-surface2 to-bg">
+                            <img src="public/img/vagaFacil/capa.jpg" alt="Vaga Fácil" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                        </div>
+                        <div class="flex flex-1 flex-col gap-3 p-7">
+                            <span class="label-mono text-aqua">Central de Vagas Escolares</span>
+                            <h3 class="text-xl font-bold text-ink">Vaga Fácil</h3>
+                            <p class="flex-1 text-sm leading-relaxed text-muted">Plataforma desenvolvida em equipe durante o Hackathon IFSP 2026 para facilitar o acesso a vagas da rede municipal de ensino: consulta pública por região, mapa interativo, pré-inscrição e painel administrativo.</p>
+                            <div class="flex flex-wrap gap-2 pt-1">
+                                <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">PHP</span>
+                                <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">Laravel 13</span>
+                                <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">Livewire 3</span>
+                            </div>
+                            <span class="mt-2 text-sm font-semibold text-ink transition-transform group-hover:translate-x-1">Abrir &rarr;</span>
+                        </div>
+                    </a>
+
+                    <div class="group reveal flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-colors hover:border-aqua">
+                        <div class="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-surface2 to-bg">
+                            <img src="public/img/mapeamentoLGPD/image1.png" alt="Sistema de Mapeamento LGPD" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                        </div>
+                        <div class="flex flex-1 flex-col gap-3 p-7">
+                            <span class="label-mono text-aqua">Gestão de ROPA e RIPD</span>
+                            <h3 class="text-xl font-bold text-ink">Sistema de Mapeamento LGPD</h3>
+                            <p class="flex-1 text-sm leading-relaxed text-muted">Sistema interno que automatiza o mapeamento, gestão e auditoria de todos os processos de tratamento de dados pessoais das secretarias municipais — da modelagem do banco ao deploy em produção.</p>
+                            <div class="flex flex-wrap gap-2 pt-1">
+                                <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">PHP 8.2</span>
+                                <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">Laravel 12</span>
+                                <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">MySQL</span>
+                            </div>
+                            <span class="mt-2 text-sm font-semibold text-ink">Sistema interno · sem link público</span>
+                        </div>
+                    </div>
+
+                    <div class="group reveal flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-colors hover:border-aqua">
+                        <div class="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-surface2 to-bg">
+                            <img src="public/img/nestFlorestal/app1.jpeg" alt="Nest Florestal" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                        </div>
+                        <div class="flex flex-1 flex-col gap-3 p-7">
+                            <span class="label-mono text-aqua">API de fiscalização e monitoramento ambiental</span>
+                            <h3 class="text-xl font-bold text-ink">Nest Florestal</h3>
+                            <p class="flex-1 text-sm leading-relaxed text-muted">API REST para gestão de fiscalização ambiental e florestal, construída com NestJS — autenticação e autorização em camadas com JWT e Guards, persistência via Prisma.</p>
+                            <div class="flex flex-wrap gap-2 pt-1">
+                                <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">NestJS</span>
+                                <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">TypeScript</span>
+                                <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">Prisma</span>
+                            </div>
+                            <span class="mt-2 text-sm font-semibold text-ink">Projeto privado · sem link público</span>
+                        </div>
+                    </div>
+
+                    <div class="group reveal flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-colors hover:border-aqua">
+                        <div class="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-surface2 to-bg">
+                            <img src="public/img/conversorRat/image (1).png" alt="Conversor RET → Excel" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                        </div>
+                        <div class="flex flex-1 flex-col gap-3 p-7">
+                            <span class="label-mono text-aqua">Padrão DJO190 · Banco do Brasil</span>
+                            <h3 class="text-xl font-bold text-ink">Conversor RET → Excel</h3>
+                            <p class="flex-1 text-sm leading-relaxed text-muted">Conversor standalone em PHP puro que lê arquivos .RET do padrão DJO190 (depósitos judiciais tributários do Banco do Brasil) e gera uma planilha Excel formatada para download.</p>
+                            <div class="flex flex-wrap gap-2 pt-1">
+                                <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">PHP</span>
+                                <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">PhpSpreadsheet</span>
+                                <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">CNAB / DJO190</span>
+                            </div>
+                            <span class="mt-2 text-sm font-semibold text-ink">Ferramenta interna · sem link público</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================== OUTRAS CURIOSIDADES ============================== -->
+    <section id="curiosidades" class="border-b border-border bg-bg px-6 py-24 md:px-12 md:py-32">
+        <div class="mx-auto max-w-6xl">
+            <div class="reveal">
+                <div class="flex items-center justify-center gap-4 md:justify-start">
+                    <span class="label-mono text-sun">03</span>
+                    <span class="h-px w-10 rule-spectrum opacity-60"></span>
+                    <span class="label-mono">Outras curiosidades</span>
+                </div>
+            </div>
+            <h2 class="reveal mx-auto mt-6 max-w-3xl text-center text-4xl font-extrabold text-balance text-ink md:mx-0 md:text-left md:text-6xl">
+                Minha jornada profissional
+            </h2>
+            <p class="reveal mx-auto mt-5 max-w-xl text-center text-muted md:mx-0 md:text-left">
+                Período a período, os passos que me trouxeram até aqui.
+            </p>
+
+            <div class="curio-track mt-10 md:mt-14 md:border-t md:border-border">
+
+                <div class="curio-card reveal md:grid md:grid-cols-12 md:gap-6 md:border-b md:border-border md:py-10">
+                    <span class="label-mono md:col-span-3">2019 — 2020</span>
+                    <div class="mt-3 md:col-span-6 md:mt-0">
+                        <h3 class="text-xl font-bold text-ink">Iniciação Científica</h3>
+                        <p class="mt-3 text-sm leading-relaxed text-muted">Desenvolvi o artigo "O valor propagandístico da Fake News", aprofundando meus conhecimentos em pesquisa acadêmica, análise crítica e interpretação de dados. A experiência também fortaleceu minhas habilidades de escrita científica, argumentação e comunicação, além de proporcionar a apresentação dos resultados em eventos acadêmicos.</p>
+                    </div>
+                    <div class="mt-4 flex flex-wrap gap-2 md:col-span-3 md:mt-0 md:justify-end">
+                        <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">Aprendizado contínuo</span>
+                        <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">Análise</span>
+                        <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">Pesquisa</span>
+                        <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">CNPQ</span>
+                    </div>
+                </div>
+
+                <div class="curio-card reveal md:grid md:grid-cols-12 md:gap-6 md:border-b md:border-border md:py-10">
+                    <span class="label-mono md:col-span-3">2019 — 2021</span>
+                    <div class="mt-3 md:col-span-6 md:mt-0">
+                        <h3 class="text-xl font-bold text-ink">Estágio de Administração</h3>
+                        <p class="mt-3 text-sm leading-relaxed text-muted">Análise diária de documentos, registro e acompanhamento em planilha excel e alimentação de banco de dados. Atendimento ao público, cadastro e acompanhamento da agenda de pacientes do dia, busca ativa por telefone.</p>
+                    </div>
+                    <div class="mt-4 flex flex-wrap gap-2 md:col-span-3 md:mt-0 md:justify-end">
+                        <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">Responsabilidade</span>
+                        <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">Organização</span>
+                        <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">Adaptabilidade</span>
+                    </div>
+                </div>
+
+                <div class="curio-card reveal md:grid md:grid-cols-12 md:gap-6 md:border-b md:border-border md:py-10">
+                    <span class="label-mono md:col-span-3">2021 — 2022</span>
+                    <div class="mt-3 md:col-span-6 md:mt-0">
+                        <h3 class="text-xl font-bold text-ink">Estoquista</h3>
+                        <p class="mt-3 text-sm leading-relaxed text-muted">Era responsável por receber, conferir e armazenar mercadorias, recepcionar o transportador, bem como o controle e cadastro da DANFE em sistema ERP.</p>
+                    </div>
+                    <div class="mt-4 flex flex-wrap gap-2 md:col-span-3 md:mt-0 md:justify-end">
+                        <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">Organização</span>
+                        <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">Atenção aos detalhes</span>
+                        <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">ERP</span>
+                        <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">Controle de NF</span>
+                    </div>
+                </div>
+
+                <div class="curio-card reveal md:grid md:grid-cols-12 md:gap-6 md:border-b md:border-border md:py-10">
+                    <span class="label-mono md:col-span-3">2022 — 2023</span>
+                    <div class="mt-3 md:col-span-6 md:mt-0">
+                        <h3 class="text-xl font-bold text-ink">Agente Administrativo — SESEP</h3>
+                        <p class="mt-3 text-sm leading-relaxed text-muted">Atuei como Agente Administrativo na Secretaria de Serviço Público, desempenhando atividades administrativas e de organização de informações. Nesse período, desenvolvi um dashboard para automatizar a consolidação de dados e a geração de relatórios mensais, contribuindo para maior eficiência, agilidade na análise de indicadores e apoio à tomada de decisões.</p>
+                    </div>
+                    <div class="mt-4 flex flex-wrap gap-2 md:col-span-3 md:mt-0 md:justify-end">
+                        <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">Gestão Pública</span>
+                        <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">Resolução de problemas</span>
+                        <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">Inovação</span>
+                    </div>
+                </div>
+
+                <div class="curio-card reveal md:grid md:grid-cols-12 md:gap-6 md:border-b md:border-border md:py-10">
+                    <span class="label-mono md:col-span-3">2022 — 2024</span>
+                    <div class="mt-3 md:col-span-6 md:mt-0">
+                        <h3 class="text-xl font-bold text-ink">Analista Service Desk — STII</h3>
+                        <p class="mt-3 text-sm leading-relaxed text-muted">Liderei o ranking interno de chamados solucionados por três meses consecutivos, atuando em múltiplos grupos: Sistemas, Helpdesk, Segurança de Rede e Embras-Atendimentos.</p>
+                    </div>
+                    <div class="mt-4 flex flex-wrap gap-2 md:col-span-3 md:mt-0 md:justify-end">
+                        <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">Suporte Técnico</span>
+                        <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">Liderança</span>
+                        <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">Excelência no atendimento</span>
+                    </div>
+                </div>
+
+                <div class="curio-card reveal md:grid md:grid-cols-12 md:gap-6 md:border-b md:border-border md:py-10">
+                    <span class="label-mono md:col-span-3">2025 — 2026</span>
+                    <div class="mt-3 md:col-span-6 md:mt-0">
+                        <h3 class="text-xl font-bold text-ink">Desenvolvedor Fullstack</h3>
+                        <p class="mt-3 text-sm leading-relaxed text-muted">Portal + software de governança para exercício de direitos LGPD. OAuth 2.0 + PKCE gov.br, 3 conexões de banco, acessibilidade e-MAG.</p>
+                    </div>
+                    <div class="mt-4 flex flex-wrap gap-2 md:col-span-3 md:mt-0 md:justify-end">
+                        <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">Desenvolvimento de Sistemas</span>
+                        <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">Sistemas WEB</span>
+                        <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">API</span>
+                        <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">PHP</span>
+                        <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">Laravel</span>
+                        <span class="h-fit rounded-full border border-border px-3 py-1 text-[11px] text-muted">SQL</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================== CONTATO ============================== -->
+    <section id="contato" class="bg-bg px-6 py-24 md:px-12 md:py-32">
+        <div class="mx-auto max-w-6xl">
+            <div class="reveal">
+                <div class="flex items-center justify-center gap-4 md:justify-start">
+                    <span class="label-mono text-sun">04</span>
+                    <span class="h-px w-10 rule-spectrum opacity-60"></span>
+                    <span class="label-mono">Vamos trabalhar juntos?</span>
+                </div>
+            </div>
+            <h2 class="reveal mx-auto mt-6 max-w-3xl text-center text-4xl font-extrabold text-balance text-ink md:mx-0 md:text-left md:text-7xl">
+                Fale <span class="text-spectrum">comigo</span>
+            </h2>
+            <p class="reveal mx-auto mt-5 max-w-xl text-center text-muted md:mx-0 md:text-left">
+                Aberto a projetos, parcerias e oportunidades que envolvam tecnologia com propósito.
+            </p>
+
+            <div class="reveal mt-12 grid gap-4 md:grid-cols-2">
+                <a href="mailto:kleiton.sfr@gmail.com" class="group flex items-center justify-between rounded-2xl border border-border bg-surface p-8 transition-colors hover:border-sun">
+                    <span>
+                        <span class="label-mono block">E-mail</span>
+                        <span class="mt-2 block break-all font-display text-lg font-bold text-ink">kleiton.sfr@gmail.com</span>
+                    </span>
+                    <span class="text-xl text-sun transition-transform group-hover:translate-x-1">&rarr;</span>
+                </a>
+
+                <a href="https://wa.me/5512997968787" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between rounded-2xl border border-border bg-surface p-8 transition-colors hover:border-aqua">
+                    <span>
+                        <span class="label-mono block">WhatsApp</span>
+                        <span class="mt-2 block font-display text-lg font-bold text-ink">Conversa direta</span>
+                    </span>
+                    <span class="text-xl text-aqua transition-transform group-hover:translate-x-1">&rarr;</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================== FOOTER ============================== -->
+    <footer class="border-t border-border bg-bg px-6 py-14 md:px-12">
+        <div class="mx-auto flex max-w-6xl flex-col items-center gap-8 text-center md:flex-row md:items-end md:justify-between md:text-left">
+            <div class="max-w-md">
+                <p class="font-display text-lg font-bold text-ink">Kleiton Ferreira</p>
+                <p class="mt-2 text-sm leading-relaxed text-muted">
+                    Desenvolvedor full stack com foco em soluções digitais humanas, acessíveis e com impacto social.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-3 md:justify-start">
+                <a href="https://github.com/kleitonfr" target="_blank" rel="noopener noreferrer" class="rounded-full border border-border px-4 py-2 text-sm text-muted transition-colors hover:border-sun hover:text-sun">
+                    GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/kleiton-ferreira" target="_blank" rel="noopener noreferrer" class="rounded-full border border-border px-4 py-2 text-sm text-muted transition-colors hover:border-sun hover:text-sun">
+                    LinkedIn
+                </a>
+                <a href="mailto:kleiton.sfr@gmail.com" class="rounded-full border border-border px-4 py-2 text-sm text-muted transition-colors hover:border-sun hover:text-sun">
+                    E-mail
+                </a>
+            </div>
+        </div>
+
+        <p class="label-mono mx-auto mt-10 max-w-6xl text-center text-mutedDim md:text-left">
+            Caraguatatuba · São Paulo · Brasil &middot; 2026
+        </p>
+    </footer>
+
+    <script>
+        // ============================================================
+        // Versão estática (GitHub Pages) do resources/js/app.js
+        // Sem axios/Livewire — apenas o comportamento visual do site.
+        // ============================================================
+
+        const botaoMenu = document.getElementById('menuBtn');
+        const menuMobile = document.getElementById('mobileMenu');
+
+        botaoMenu?.addEventListener('click', () => {
+            const estaEscondido = menuMobile?.classList.toggle('hidden');
+            botaoMenu.setAttribute('aria-expanded', estaEscondido ? 'false' : 'true');
+            botaoMenu.textContent = estaEscondido ? 'Menu' : 'Fechar';
+        });
+
+        window.fecharMenuMobile = () => {
+            menuMobile?.classList.add('hidden');
+            botaoMenu?.setAttribute('aria-expanded', 'false');
+            if (botaoMenu) botaoMenu.textContent = 'Menu';
+        };
+
+        const elementosReveal = document.querySelectorAll('.reveal');
+        const observadorReveal = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+
+                const irmaos = [...(entry.target.parentElement?.querySelectorAll('.reveal') ?? [])];
+                let atraso = 0;
+
+                irmaos.forEach((irmao) => {
+                    if (!irmao.classList.contains('visible')) {
+                        irmao.style.transitionDelay = `${atraso}ms`;
+                        atraso += 80;
+                    }
+                });
+
+                entry.target.classList.add('visible');
+            });
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -36px 0px',
+        });
+
+        elementosReveal.forEach((el) => observadorReveal.observe(el));
+
+        const secoes = document.querySelectorAll('section[id]');
+        const linksNav = document.querySelectorAll('nav a[href^="#"]');
+
+        const observadorSecoes = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+
+                linksNav.forEach((link) => {
+                    const estaAtivo = link.getAttribute('href') === `#${entry.target.id}`;
+                    link.classList.toggle('text-sun', estaAtivo);
+                });
+            });
+        }, { threshold: 0.4 });
+
+        secoes.forEach((secao) => observadorSecoes.observe(secao));
+
+        const barraNavegacao = document.getElementById('navbar');
+        const alternarNavbarRolada = () => barraNavegacao?.classList.toggle('is-scrolled', window.scrollY > 12);
+        alternarNavbarRolada();
+        window.addEventListener('scroll', alternarNavbarRolada, { passive: true });
+
+        const visualizador = document.getElementById('lightbox');
+        const imagemVisualizador = document.getElementById('lightboxImage');
+        const botaoFecharVisualizador = document.getElementById('lightboxClose');
+
+        const abrirVisualizador = (src, textoAlternativo = '') => {
+            if (!visualizador || !imagemVisualizador) return;
+            imagemVisualizador.src = src;
+            imagemVisualizador.alt = textoAlternativo;
+            visualizador.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const fecharVisualizador = () => {
+            if (!visualizador) return;
+            visualizador.classList.remove('is-open');
+            document.body.style.overflow = '';
+        };
+
+        document.querySelectorAll('[data-lightbox-trigger]').forEach((el) => {
+            el.addEventListener('click', () => {
+                abrirVisualizador(el.getAttribute('data-lightbox-src'), el.getAttribute('aria-label') || '');
+            });
+        });
+
+        botaoFecharVisualizador?.addEventListener('click', fecharVisualizador);
+        visualizador?.addEventListener('click', (e) => { if (e.target === visualizador) fecharVisualizador(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') fecharVisualizador(); });
+    </script>
+</body>
+</html>
