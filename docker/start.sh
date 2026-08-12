@@ -4,6 +4,11 @@ set -e
 # Render provides PORT at runtime. Laravel needs to listen on 0.0.0.0.
 PORT="${PORT:-10000}"
 
+# This portfolio uses SQLite and does not need database-backed sessions.
+# Laravel 12 defaults can use the database session driver, which would require
+# a sessions table. Use file sessions instead.
+export SESSION_DRIVER="${SESSION_DRIVER:-file}"
+
 # Laravel needs an application key. Prefer the value configured in Render.
 if [ -z "${APP_KEY:-}" ]; then
     php artisan key:generate --force --no-interaction
