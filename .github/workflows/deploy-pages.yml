@@ -43,10 +43,12 @@ jobs:
           sed -i 's#^APP_URL=.*#APP_URL=http://127.0.0.1:8000#' .env
           echo 'DB_DATABASE=database/database.sqlite' >> .env
           touch database/database.sqlite
-          php artisan key:generate --force
 
       - name: Install PHP dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Generate Laravel application key
+        run: php artisan key:generate --force
 
       - name: Install static exporter
         run: composer require spatie/laravel-export:^1.5 --no-interaction --with-all-dependencies
