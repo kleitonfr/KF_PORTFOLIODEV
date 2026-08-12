@@ -1,0 +1,11 @@
+.git
+.github
+node_modules
+vendor
+.env
+.env.*
+storage/logs/*
+Dockerfile
+.dockerignore
+README.md
+CLAUDE.md
