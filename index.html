@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <script>
+        // Evita que o navegador restaure a posição de rolagem anterior
+        // (causa do "abrir já no footer" no mobile ao recarregar a página).
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Portfólio de Kleiton Ferreira — Desenvolvedor Full Stack &amp; Designer. Soluções digitais com impacto real para o setor público." />
@@ -20,6 +28,185 @@
         então a aparência é idêntica à do app Laravel em produção.
     -->
     <link rel="stylesheet" href="public/build/assets/app-B6ZOKCpS.css" />
+
+    <style>
+        /* Reset para os cards de projeto virarem <button> (sem navegar para fora do site) */
+        .project-card-trigger {
+            background: none;
+            -webkit-appearance: none;
+            appearance: none;
+            padding: 0;
+            margin: 0;
+            font: inherit;
+            color: inherit;
+            text-align: left;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Modal de estudo de caso do projeto */
+        .project-modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 110;
+            background: rgba(4, 4, 6, .92);
+            display: flex;
+            justify-content: center;
+            padding: 5.5rem 1.25rem 3rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .25s ease;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .project-modal-overlay.is-open { opacity: 1; pointer-events: auto; }
+        .project-modal-panel {
+            position: relative;
+            width: 100%;
+            max-width: 780px;
+            height: fit-content;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 1.5rem;
+            padding: 2.25rem;
+            margin-bottom: 2rem;
+        }
+        @media (min-width: 768px) {
+            .project-modal-panel { padding: 3rem; }
+        }
+        .project-modal-close {
+            position: absolute;
+            top: 1.1rem;
+            right: 1.1rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--surface2);
+            color: var(--ink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+        .project-modal-close:hover { border-color: var(--sun); color: var(--sun); }
+        .project-modal-award {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            border-radius: 9999px;
+            background: var(--sun);
+            color: #0b0b10;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .68rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: .3rem .75rem;
+            margin-bottom: 1rem;
+        }
+        .project-modal-cover {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+            margin-top: 1.5rem;
+        }
+        .project-modal-subtitle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .72rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--aqua);
+        }
+        .project-modal-title {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.9rem;
+            color: var(--ink);
+            margin-top: .5rem;
+            line-height: 1.15;
+        }
+        .project-modal-excerpt {
+            margin-top: 1rem;
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: .98rem;
+        }
+        .project-modal-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem 2.25rem;
+            margin-top: 1.75rem;
+            padding-top: 1.75rem;
+            border-top: 1px solid var(--border);
+        }
+        .project-modal-meta-item span {
+            display: block;
+        }
+        .project-modal-meta-item .label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .65rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--mutedDim, #6b7280);
+        }
+        .project-modal-meta-item .value {
+            margin-top: .3rem;
+            font-size: .875rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .project-modal-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
+            margin-top: 1.5rem;
+        }
+        .project-modal-tag {
+            display: inline-block;
+            border: 1px solid var(--border);
+            border-radius: 9999px;
+            padding: .3rem .8rem;
+            font-size: .75rem;
+            color: var(--muted);
+        }
+        .project-modal-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .75rem;
+            margin-top: 1.5rem;
+        }
+        .project-modal-link {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            border: 1px solid var(--border);
+            border-radius: 9999px;
+            padding: .55rem 1.1rem;
+            font-size: .85rem;
+            font-weight: 600;
+            color: var(--ink);
+            text-decoration: none;
+            transition: border-color .2s ease, color .2s ease;
+        }
+        .project-modal-link:hover { border-color: var(--aqua); color: var(--aqua); }
+        .project-modal-section { margin-top: 2.25rem; }
+        .project-modal-section h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--ink);
+        }
+        .project-modal-section p {
+            margin-top: .65rem;
+            line-height: 1.75;
+            color: var(--muted);
+            font-size: .92rem;
+        }
+    </style>
 </head>
 <body class="overflow-x-hidden bg-bg font-body text-ink">
 
@@ -193,7 +380,7 @@
             <div class="mt-14">
                 <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
-                    <a href="https://lgpd360.caraguatatuba.sp.gov.br/" target="_blank" rel="noopener noreferrer" class="group reveal flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-colors hover:border-aqua">
+                    <button type="button" class="project-card-trigger group reveal flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-colors hover:border-aqua" data-project="portal-lgpd360">
                         <div class="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-surface2 to-bg">
                             <img src="public/img/lgpd360/image (1).png" alt="Portal LGPD360" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
                             <span class="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-sun px-3 py-1 label-mono !text-[#0b0b10]">&#9733; Premiado</span>
@@ -207,11 +394,11 @@
                                 <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">Laravel 12</span>
                                 <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">MySQL</span>
                             </div>
-                            <span class="mt-2 text-sm font-semibold text-ink transition-transform group-hover:translate-x-1">Abrir &rarr;</span>
+                            <span class="mt-2 text-sm font-semibold text-ink transition-transform group-hover:translate-x-1">Ver estudo de caso &rarr;</span>
                         </div>
-                    </a>
+                    </button>
 
-                    <a href="https://estrategiadigital.caraguatatuba.sp.gov.br/" target="_blank" rel="noopener noreferrer" class="group reveal flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-colors hover:border-aqua">
+                    <button type="button" class="project-card-trigger group reveal flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-colors hover:border-aqua" data-project="estrategia-digital">
                         <div class="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-surface2 to-bg">
                             <img src="public/img/estrategiaDigital/recenteCapa01.png" alt="Estratégia Digital" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
                         </div>
@@ -224,11 +411,11 @@
                                 <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">CSS (Mobile First)</span>
                                 <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">JavaScript</span>
                             </div>
-                            <span class="mt-2 text-sm font-semibold text-ink transition-transform group-hover:translate-x-1">Abrir &rarr;</span>
+                            <span class="mt-2 text-sm font-semibold text-ink transition-transform group-hover:translate-x-1">Ver estudo de caso &rarr;</span>
                         </div>
-                    </a>
+                    </button>
 
-                    <a href="https://www.linkedin.com/posts/kleiton-ferreira_hackathon-ifsp-ugcPost-7480129526455402496-ARIQ/" target="_blank" rel="noopener noreferrer" class="group reveal flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-colors hover:border-aqua">
+                    <button type="button" class="project-card-trigger group reveal flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-colors hover:border-aqua" data-project="vaga-facil">
                         <div class="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-surface2 to-bg">
                             <img src="public/img/vagaFacil/capa.jpg" alt="Vaga Fácil" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
                         </div>
@@ -241,11 +428,11 @@
                                 <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">Laravel 13</span>
                                 <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">Livewire 3</span>
                             </div>
-                            <span class="mt-2 text-sm font-semibold text-ink transition-transform group-hover:translate-x-1">Abrir &rarr;</span>
+                            <span class="mt-2 text-sm font-semibold text-ink transition-transform group-hover:translate-x-1">Ver estudo de caso &rarr;</span>
                         </div>
-                    </a>
+                    </button>
 
-                    <div class="group reveal flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-colors hover:border-aqua">
+                    <button type="button" class="project-card-trigger group reveal flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-colors hover:border-aqua" data-project="mapeamento-lgpd">
                         <div class="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-surface2 to-bg">
                             <img src="public/img/mapeamentoLGPD/image1.png" alt="Sistema de Mapeamento LGPD" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
                         </div>
@@ -258,11 +445,11 @@
                                 <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">Laravel 12</span>
                                 <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">MySQL</span>
                             </div>
-                            <span class="mt-2 text-sm font-semibold text-ink">Sistema interno · sem link público</span>
+                            <span class="mt-2 text-sm font-semibold text-ink transition-transform group-hover:translate-x-1">Ver estudo de caso &rarr;</span>
                         </div>
-                    </div>
+                    </button>
 
-                    <div class="group reveal flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-colors hover:border-aqua">
+                    <button type="button" class="project-card-trigger group reveal flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-colors hover:border-aqua" data-project="nest-florestal">
                         <div class="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-surface2 to-bg">
                             <img src="public/img/nestFlorestal/app1.jpeg" alt="Nest Florestal" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
                         </div>
@@ -275,11 +462,11 @@
                                 <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">TypeScript</span>
                                 <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">Prisma</span>
                             </div>
-                            <span class="mt-2 text-sm font-semibold text-ink">Projeto privado · sem link público</span>
+                            <span class="mt-2 text-sm font-semibold text-ink transition-transform group-hover:translate-x-1">Ver estudo de caso &rarr;</span>
                         </div>
-                    </div>
+                    </button>
 
-                    <div class="group reveal flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-colors hover:border-aqua">
+                    <button type="button" class="project-card-trigger group reveal flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-colors hover:border-aqua" data-project="conversor-ret-excel">
                         <div class="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-surface2 to-bg">
                             <img src="public/img/conversorRat/image (1).png" alt="Conversor RET → Excel" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
                         </div>
@@ -292,9 +479,9 @@
                                 <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">PhpSpreadsheet</span>
                                 <span class="rounded-full border border-border px-3 py-1 text-xs text-muted">CNAB / DJO190</span>
                             </div>
-                            <span class="mt-2 text-sm font-semibold text-ink">Ferramenta interna · sem link público</span>
+                            <span class="mt-2 text-sm font-semibold text-ink transition-transform group-hover:translate-x-1">Ver estudo de caso &rarr;</span>
                         </div>
-                    </div>
+                    </button>
 
                 </div>
             </div>
