@@ -81,11 +81,11 @@ jobs:
         run: |
           php artisan export
           find dist -type f \( -name '*.html' -o -name '*.xml' \) -print0 | xargs -0 sed -i \
-            -e 's#href="/#href="/KF_PORTFOLIODEV/#g' \
-            -e 's#src="/#src="/KF_PORTFOLIODEV/#g' \
-            -e 's#action="/#action="/KF_PORTFOLIODEV/#g' \
-            -e 's#url(/#url(/KF_PORTFOLIODEV/#g' \
-            -e 's#http://127.0.0.1:8000#https://kleitonfr.github.io/KF_PORTFOLIODEV#g'
+            -e 's#href="/#href="/portfolio/#g' \
+            -e 's#src="/#src="/portfolio/#g' \
+            -e 's#action="/#action="/portfolio/#g' \
+            -e 's#url(/#url(/portfolio/#g' \
+            -e 's#http://127.0.0.1:8000#https://kleitonfr.github.io/portfolio#g'
 
       - name: Verify project pages were exported
         run: |
