@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -30,7 +30,7 @@ jobs:
           coverage: none
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: '22'
           cache: npm
@@ -67,22 +67,27 @@ jobs:
           php artisan serve --host=127.0.0.1 --port=8000 > /tmp/laravel.log 2>&1 &
           for i in {1..30}; do
             if curl -fsS http://127.0.0.1:8000/ > /dev/null; then
+              echo "Laravel server is ready"
               break
+            fi
+            if [ "$i" -eq 30 ]; then
+              echo "Laravel server failed to start"
+              cat /tmp/laravel.log
+              exit 1
             fi
             sleep 1
           done
-          curl -fsS http://127.0.0.1:8000/ > /dev/null
 
       - name: Export complete static site
         run: |
-          php artisan export --skip-deploy
-          find export -type f \( -name '*.html' -o -name '*.xml' \) -print0 | xargs -0 sed -i 's#http://127.0.0.1:8000#https://kleitonfr.github.io/KF_PORTFOLIODEV#g'
+          php artisan export
+          find dist -type f \( -name '*.html' -o -name '*.xml' \) -print0 | xargs -0 sed -i 's#http://127.0.0.1:8000#https://kleitonfr.github.io/KF_PORTFOLIODEV#g'
 
       - name: Verify project pages were exported
         run: |
-          test -f export/index.html
+          test -f dist/index.html
           for slug in portal-lgpd360 mapeamento-lgpd estrategia-digital nest-florestal conversor-ret-excel vaga-facil; do
-            test -f "export/projetos/${slug}/index.html"
+            test -f "dist/projetos/${slug}/index.html"
           done
 
       - name: Configure GitHub Pages
@@ -91,7 +96,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: export
+          path: dist
 
   deploy:
     environment:
